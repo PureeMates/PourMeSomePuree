@@ -13,14 +13,14 @@ namespace PourMeSomePuree
     class Game
     {
         private static Window window;
-
+        static Background background;
         public static Window Win { get { return window; } }
 
 
         public static void Init()
         {
-            window = new Window(1920, 1080, "PourMeSomePuree");
-           
+            window = new Window(1280, 720, "PourMeSomePuree");
+            background = new Background();
         }
 
         public static void Play()
@@ -28,13 +28,13 @@ namespace PourMeSomePuree
             while (window.IsOpened)
             {
                 //INPUT
-                
+
 
                 //UPDATE
-               
+
 
                 //DRAW
-                
+                background.Draw();
 
                 window.Update();
             }

@@ -10,6 +10,8 @@ namespace PourMeSomePuree
     {
         static void Main(string[] args)
         {
+            Game.Init();
+            Game.Play();
         }
     }
 }
