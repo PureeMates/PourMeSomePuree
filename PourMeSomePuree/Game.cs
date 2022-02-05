@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 using Aiv.Fast2D;
 using OpenTK;
 
-
 namespace PourMeSomePuree
 {
-
-    class Game
+    static class Game
     {
         private static Window window;
         static Background background;
@@ -40,6 +38,12 @@ namespace PourMeSomePuree
             }
         }
 
-      
+        public static void Quit()
+        {
+            if(window.GetKey(KeyCode.Esc))
+            {
+                window.Exit();
+            }
+        }
     }
 }
