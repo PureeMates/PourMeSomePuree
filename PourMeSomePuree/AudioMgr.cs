@@ -16,7 +16,7 @@ namespace PourMeSomePuree
 
         public void Input()
         {
-            bgSource.Stream(bgMusic, win.DeltaTime);
+            //bgSource.Stream(bgMusic, win.DeltaTime);
         }
 
         public void Update()

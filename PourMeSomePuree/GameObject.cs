@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Aiv.Fast2D;
 using OpenTK;
+
 namespace PourMeSomePuree
 {
-    class GameObject        //Debug
+    class GameObject
     {
         protected Sprite sprite;
         protected Texture texture;
@@ -37,10 +38,8 @@ namespace PourMeSomePuree
 
         }
 
-        public virtual void OnCollide(GameObject other)
-        {
+        public virtual void OnCollide(GameObject other) { }
 
-        }
         public virtual void Draw()
         {
             sprite.DrawTexture(texture);

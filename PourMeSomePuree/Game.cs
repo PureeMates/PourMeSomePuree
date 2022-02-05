@@ -11,16 +11,16 @@ namespace PourMeSomePuree
     static class Game
     {
         private static Window window;
-        static Background background;
+        private static Background background;
         private static Player player;
+
         public static Window Win { get { return window; } }
         public static float DeltaTime { get { return Win.DeltaTime; } }
+
         public static void Init()
         {
             window = new Window(1280, 720, "PourMeSomePuree");
-            background = new Background("Assets/Background1.png");
-           
-            player = new Player("Assets/Character.png");       //Debug                           
+            background = new Background("Assets/Background1.png");                         
         }
         
         public static void Play()
@@ -28,17 +28,21 @@ namespace PourMeSomePuree
             while (window.IsOpened)
             {
                 //INPUT
-                player.Input();
+                Quit();
+
                 //UPDATE
+
+                //COLLISIONS
                 PhysicsMngr.CheckCollision();
+
                 //DRAW
                 background.Draw();
-                player.Draw();
+                
                 window.Update();
             }
         }
 
-        public static void Quit()
+        private static void Quit()
         {
             if(window.GetKey(KeyCode.Esc))
             {

@@ -8,11 +8,12 @@ namespace PourMeSomePuree
 {
     class CircleCollider : Collider
     {
-        private bool isInverted;
+        //private bool isInverted;
         public float Radius;
+
         public CircleCollider(RigidBody rb,bool isInner = true, bool isInverted = false) : base(rb)
         {
-            this.isInverted = isInverted;
+            //this.isInverted = isInverted;
             if (isInner)
             {
                 if (rigidBody.Owner.HalfWidth > rigidBody.Owner.HalfHeight)
@@ -39,14 +40,14 @@ namespace PourMeSomePuree
         {
             Vector2 dist = other.Position - Position;
 
-            if (isInverted)
+            /*if (isInverted)
             {
                 return (dist.LengthSquared >= Math.Pow(Radius + other.Radius, 2));
-            }
-            else
-            {
-                return (dist.LengthSquared <= Math.Pow(Radius + other.Radius, 2));
-            }
+            }*/
+            //else
+            //{
+            return (dist.LengthSquared <= Math.Pow(Radius + other.Radius, 2));
+            //}
         }
     }
 }
