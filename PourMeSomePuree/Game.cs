@@ -20,7 +20,11 @@ namespace PourMeSomePuree
         public static void Init()
         {
             window = new Window(1280, 720, "PourMeSomePuree");
-            background = new Background("Assets/Background1.png");                         
+            background = new Background("Assets/Background1.png");
+            player = new Player();
+            
+            
+
         }
         
         public static void Play()
@@ -28,15 +32,20 @@ namespace PourMeSomePuree
             while (window.IsOpened)
             {
                 //INPUT
+                player.Input();
                 Quit();
 
+
                 //UPDATE
+                
 
                 //COLLISIONS
                 PhysicsMngr.CheckCollision();
+                player.Update();
 
                 //DRAW
                 background.Draw();
+                player.Draw();
                 
                 window.Update();
             }

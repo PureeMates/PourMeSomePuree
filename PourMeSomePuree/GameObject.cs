@@ -12,7 +12,7 @@ namespace PourMeSomePuree
     {
         protected Sprite sprite;
         protected Texture texture;
-        protected float maxSpeed;
+        
 
         public RigidBody RigidBody;
         public bool IsActive;
@@ -35,7 +35,7 @@ namespace PourMeSomePuree
 
         public virtual void Update()
         {
-
+            
         }
 
         public virtual void OnCollide(GameObject other) { }
