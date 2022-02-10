@@ -15,21 +15,24 @@ namespace PourMeSomePuree
             sprite.scale = new Vector2(0.67f);
             sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
             sprite.position = new Vector2(Game.Win.Width * 0.5f, Game.Win.Height * 0.5f);
-            IsActive = true;
+
             RigidBody = new RigidBody(this);
-            RigidBody.Collider = new CircleCollider(RigidBody, isInverted : false);
+            RigidBody.Collider = CollidersFactory.CreateCircleInvertedFor(this);
+
+            IsActive = true;
         }
 
         public void Draw()
         {
             sprite.DrawTexture(texture);
+            sprite.DrawWireframe(50, 50, 50, 255);
         }
 
         public override void OnCollide(GameObject other)
         {
             if (other is Player)
             {
-                Console.WriteLine("COLLIDE");
+                Console.WriteLine("Background is colliding with player");
             }
         }
     }

@@ -16,7 +16,7 @@ namespace PourMeSomePuree
         }
 
         public abstract bool Collides(Collider collider);
-
         public abstract bool Collides(CircleCollider collider);
+        public abstract bool Collides(CircleColliderInverted collider);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aiv.Fast2D;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,30 +9,25 @@ namespace PourMeSomePuree
 {
     class CircleCollider : Collider
     {
-        //private bool isInverted;
-        public float Radius;
+        private Sprite sprite;
+        private float radius;
 
-        public CircleCollider(RigidBody rb,bool isInner = true, bool isInverted = false) : base(rb)
+        public float Radius { get { return radius; } }
+
+        public CircleCollider(RigidBody rb, float radius) : base(rb)
         {
-            //this.isInverted = isInverted;
-            if (isInner)
-            {
-                if (rigidBody.Owner.HalfWidth > rigidBody.Owner.HalfHeight)
-                {
-                    Radius = rb.Owner.HalfHeight;
-                }
-                else
-                {
-                    Radius = rb.Owner.HalfWidth;
-                }
-            }
-            else
-            {
-                Radius = (float)Math.Sqrt(rb.Owner.HalfWidth * rb.Owner.HalfWidth +
-                                          rb.Owner.HalfHeight * rb.Owner.HalfHeight);
-            }
+            this.radius = radius;
+            sprite = new Sprite(radius * 2, radius * 2);
+            sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
+            sprite.position = rb.Owner.Position;
         }
+
         public override bool Collides(Collider other)
+        {
+            return other.Collides(this);
+        }
+
+        public override bool Collides(CircleColliderInverted other)
         {
             return other.Collides(this);
         }
@@ -39,15 +35,12 @@ namespace PourMeSomePuree
         public override bool Collides(CircleCollider other)
         {
             Vector2 dist = other.Position - Position;
+            return dist.LengthSquared <= Math.Pow(radius + other.radius, 2);
+        }
 
-            /*if (isInverted)
-            {
-                return (dist.LengthSquared >= Math.Pow(Radius + other.Radius, 2));
-            }*/
-            //else
-            //{
-            return (dist.LengthSquared <= Math.Pow(Radius + other.Radius, 2));
-            //}
+        public void Draw()
+        {
+            sprite.DrawWireframe(255, 0, 0, 255);
         }
     }
 }

@@ -20,7 +20,8 @@ namespace PourMeSomePuree
         public static void Init()
         {
             window = new Window(1280, 720, "PourMeSomePuree");
-            background = new Background("Assets/Background1.png");                         
+            background = new Background("Assets/Background1.png");
+            player = new Player("Assets/Character.png");
         }
         
         public static void Play()
@@ -29,6 +30,7 @@ namespace PourMeSomePuree
             {
                 //INPUT
                 Quit();
+                player.Input();
 
                 //UPDATE
 
@@ -37,7 +39,10 @@ namespace PourMeSomePuree
 
                 //DRAW
                 background.Draw();
-                
+                player.Draw();
+
+                PhysicsMngr.Draw();
+
                 window.Update();
             }
         }

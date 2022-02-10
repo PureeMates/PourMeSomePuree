@@ -61,7 +61,9 @@
     <Compile Include="AudioMgr.cs" />
     <Compile Include="Background.cs" />
     <Compile Include="CircleCollider.cs" />
+    <Compile Include="CircleColliderInverted.cs" />
     <Compile Include="Collider.cs" />
+    <Compile Include="CollidersFactory.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GfxMgr.cs" />

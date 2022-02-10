@@ -33,16 +33,14 @@ namespace PourMeSomePuree
             sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
         }
 
-        public virtual void Update()
-        {
-
-        }
+        public virtual void Update() { }
 
         public virtual void OnCollide(GameObject other) { }
 
         public virtual void Draw()
         {
             sprite.DrawTexture(texture);
+            sprite.DrawWireframe(50, 50, 50, 255);
         }
     }
 }

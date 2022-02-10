@@ -15,10 +15,30 @@ namespace PourMeSomePuree
             sprite.scale = new Vector2(1.75f);
             Position = new Vector2(Game.Win.Width * 0.5f, Game.Win.Height * 0.5f);
             maxSpeed = 500f;
-            IsActive = true;
             
             RigidBody = new RigidBody(this);
-            RigidBody.Collider = new CircleCollider(RigidBody, isInverted : true);
+            RigidBody.Collider = CollidersFactory.CreateCircleFor(this);
+
+            IsActive = true;
+        }
+
+        public void Input()                     //debug
+        {                                       //debug
+            if (Game.Win.GetKey(KeyCode.W))     //debug
+            {                                   //debug
+                sprite.position.Y -= maxSpeed * Game.DeltaTime;     //debug
+            }
+            else if (Game.Win.GetKey(KeyCode.S))                //debug
+            {                                                  //debug
+                sprite.position.Y += maxSpeed * Game.DeltaTime;//debug
+            }                                   //debug
+        }                                       //debug
+        public override void OnCollide(GameObject other)
+        {
+            if (other is Background)
+            {
+                Console.WriteLine("Player is colliding with background");
+            }
         }
     }
 }

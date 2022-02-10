@@ -9,29 +9,43 @@ namespace PourMeSomePuree
     static class PhysicsMngr
     {
         private static List<RigidBody> items;
+
         static PhysicsMngr()
         {
             items = new List<RigidBody>();
         }
+
         public static void Update()
         {
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].IsActive)
+                if (items[i].Owner.IsActive)
                 {
                     items[i].Update();
                 }
             }
         }
+
+        public static void Draw()
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                if(items[i].Collider is CircleCollider)
+                {
+                    ((CircleCollider)items[i].Collider).Draw();
+                }
+            }
+        }
+
         public static void CheckCollision()
         {
             for (int i = 0; i < items.Count - 1; i++)
             {
-                if (items[i].IsActive && items[i].IsCollisionAffected)
+                if (items[i].Owner.IsActive && items[i].IsCollisionAffected)
                 {
                     for (int j = 1 + i; j < items.Count; j++)
                     {
-                        if (items[j].IsActive && items[j].IsCollisionAffected)
+                        if (items[j].Owner.IsActive && items[j].IsCollisionAffected)
                         {
                             if (items[i].Collides(items[j]))
                             {
