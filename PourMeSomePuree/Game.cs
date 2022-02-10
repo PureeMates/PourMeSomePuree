@@ -20,11 +20,11 @@ namespace PourMeSomePuree
         public static void Init()
         {
             window = new Window(1280, 720, "PourMeSomePuree");
-            background = new Background("Assets/Background1.png");
+            window.SetTitle($"FPS: {1 / DeltaTime}");
+            window.SetVSync(false);
+            LoadAssets();
+            background = new Background();
             player = new Player();
-            
-            
-
         }
         
         public static void Play()
@@ -58,5 +58,13 @@ namespace PourMeSomePuree
                 window.Exit();
             }
         }
+
+        private static void LoadAssets()
+        {
+            GfxMgr.AddTexture("player", "Assets/Character_SpriteSheet.png");
+            GfxMgr.AddTexture("enemy", "Assets/Squelette_SpriteSheet.png");
+            GfxMgr.AddTexture("background", "Assets/Background1.png");
+        }
+
     }
 }

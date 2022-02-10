@@ -24,8 +24,8 @@ namespace PourMeSomePuree
 
         public GameObject(string texturePath, int spriteWidth = 0, int spriteHeight = 0)
         {
-            texture = new Texture(texturePath);
-
+            texture = GfxMgr.GetTexture(texturePath);
+            
             int spriteW = spriteWidth != 0 ? spriteWidth : texture.Width;
             int spriteH = spriteHeight != 0 ? spriteHeight : texture.Height;
 

@@ -28,7 +28,11 @@ namespace PourMeSomePuree
 
         public int XOffset { get { return xOffset; } }
         public int YOffset { get { return yOffset; } }
-
+        public float Duration { get { return frameDuration * frameNumber; } }
+        public int StartRow { set { startRow = value; } }
+        public int StartColumn { set { startColumn = value; } }
+        public int TotFrames { set { frameNumber = value; } }
+        public int CurrentFrame { get { return currentFrame; } }
         public Animation(int fps, int totFrames, int frameW, int frameH, int startColumn = 1, int startRow = 1, bool loop = true)
         {
             frameNumber = totFrames;

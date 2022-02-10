@@ -22,8 +22,6 @@ namespace PourMeSomePuree
         {
             RigidBody = new RigidBody(this);
             maxEnergy = 100;
-
-
         }
 
         //public virtual void Update()

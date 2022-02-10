@@ -12,7 +12,7 @@ namespace PourMeSomePuree
     {
         private float nextSword;
 
-        public Enemy(string texturePath) : base (texturePath)
+        public Enemy() : base ("enemy")
         {
             maxSpeed = 170;
 
