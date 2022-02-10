@@ -10,7 +10,7 @@ namespace PourMeSomePuree
 {
     class Background : GameObject
     {
-        public Background(string texturePath, int spriteWidth = 0, int spriteHeight = 0) : base(texturePath, spriteWidth, spriteHeight)
+        public Background() : base("background")
         {
             sprite.scale = new Vector2(0.67f);
             sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);

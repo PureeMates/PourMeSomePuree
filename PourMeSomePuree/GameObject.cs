@@ -12,7 +12,7 @@ namespace PourMeSomePuree
     {
         protected Sprite sprite;
         protected Texture texture;
-        protected float maxSpeed;
+        
 
         public RigidBody RigidBody;
         public bool IsActive;
@@ -24,8 +24,8 @@ namespace PourMeSomePuree
 
         public GameObject(string texturePath, int spriteWidth = 0, int spriteHeight = 0)
         {
-            texture = new Texture(texturePath);
-
+            texture = GfxMgr.GetTexture(texturePath);
+            
             int spriteW = spriteWidth != 0 ? spriteWidth : texture.Width;
             int spriteH = spriteHeight != 0 ? spriteHeight : texture.Height;
 
@@ -33,7 +33,10 @@ namespace PourMeSomePuree
             sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
         }
 
-        public virtual void Update() { }
+        public virtual void Update()
+        {
+            
+        }
 
         public virtual void OnCollide(GameObject other) { }
 

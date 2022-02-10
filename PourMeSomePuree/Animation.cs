@@ -1,5 +1,4 @@
-﻿using OpenTK;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +28,11 @@ namespace PourMeSomePuree
 
         public int XOffset { get { return xOffset; } }
         public int YOffset { get { return yOffset; } }
-
+        public float Duration { get { return frameDuration * frameNumber; } }
+        public int StartRow { set { startRow = value; } }
+        public int StartColumn { set { startColumn = value; } }
+        public int TotFrames { set { frameNumber = value; } }
+        public int CurrentFrame { get { return currentFrame; } }
         public Animation(int fps, int totFrames, int frameW, int frameH, int startColumn = 1, int startRow = 1, bool loop = true)
         {
             frameNumber = totFrames;
@@ -52,11 +55,11 @@ namespace PourMeSomePuree
 
         public void Update()
         {
-            if(isPlaying)
+            if (isPlaying)
             {
                 elapsedTime += Game.Win.DeltaTime;
 
-                if(elapsedTime >= frameDuration)
+                if (elapsedTime >= frameDuration)
                 {
                     elapsedTime = 0.0f;
                     currentFrame++;
@@ -64,7 +67,7 @@ namespace PourMeSomePuree
 
                     if (currentFrame >= frameNumber)
                     {
-                        if(loop)
+                        if (loop)
                         {
                             currentFrame = 0;
                             actualColumn = startColumn;
@@ -75,8 +78,8 @@ namespace PourMeSomePuree
                         }
                     }
                 }
-                
-                if(startColumn != 0)
+
+                if (startColumn != 0)
                 {
                     xOffset = frameWidth * actualColumn;
                 }
