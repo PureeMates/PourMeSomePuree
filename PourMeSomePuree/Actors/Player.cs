@@ -22,7 +22,7 @@ namespace PourMeSomePuree
             Position = new Vector2(Game.Win.Width * 0.5f, Game.Win.Height * 0.5f);
             maxSpeed = 200f;
             IsActive = true;
-            RigidBody.Collider = new CircleCollider(RigidBody, isInverted: true);
+            RigidBody.Collider = CollidersFactory.CreateCircleFor(this);
             offSet = new Vector2(0, 0);
 
             animation = new Animation(15, 4, 64, 64, loop: false);

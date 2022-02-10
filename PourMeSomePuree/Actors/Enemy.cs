@@ -19,7 +19,7 @@ namespace PourMeSomePuree
             RigidBody.Velocity.X = maxSpeed;
             RigidBody.Velocity.Y = maxSpeed;
 
-            RigidBody.Collider = new CircleCollider(RigidBody, isInverted: true);
+            RigidBody.Collider = CollidersFactory.CreateCircleFor(this);
 
             nextSword = RandomGenerator.GetRandomInt(1, 3);
         }
