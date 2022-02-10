@@ -20,7 +20,6 @@ namespace PourMeSomePuree
         public static void Init()
         {
             window = new Window(1280, 720, "PourMeSomePuree");
-            window.SetTitle($"FPS: {1 / DeltaTime}");
             window.SetVSync(false);
             LoadAssets();
             background = new Background();
@@ -31,24 +30,23 @@ namespace PourMeSomePuree
         {
             while (window.IsOpened)
             {
+                window.SetTitle($"FPS: {1.0f / DeltaTime}");
+
                 //INPUT
-                player.Input();
                 Quit();
                 player.Input();
 
-
                 //UPDATE
-                
+                player.Update();
 
                 //COLLISIONS
                 PhysicsMngr.CheckCollision();
-                player.Update();
 
                 //DRAW
                 background.Draw();
                 player.Draw();
 
-                PhysicsMngr.Draw();
+                DebugMgr.Draw();
 
                 window.Update();
             }

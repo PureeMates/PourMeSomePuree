@@ -26,17 +26,6 @@ namespace PourMeSomePuree
             }
         }
 
-        public static void Draw()
-        {
-            for (int i = 0; i < items.Count; i++)
-            {
-                if(items[i].Collider is CircleCollider)
-                {
-                    ((CircleCollider)items[i].Collider).Draw();
-                }
-            }
-        }
-
         public static void CheckCollision()
         {
             for (int i = 0; i < items.Count - 1; i++)

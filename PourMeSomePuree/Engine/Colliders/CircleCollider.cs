@@ -20,6 +20,8 @@ namespace PourMeSomePuree
             sprite = new Sprite(radius * 2, radius * 2);
             sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
             sprite.position = rb.Owner.Position;
+
+            DebugMgr.AddItem(this);
         }
 
         public override bool Collides(Collider other)
@@ -38,9 +40,14 @@ namespace PourMeSomePuree
             return dist.LengthSquared <= Math.Pow(radius + other.radius, 2);
         }
 
-        public void Draw()
+        public override bool Collides(BoxCollider other)
         {
-            sprite.DrawWireframe(255, 0, 0, 255);
+            return other.Collides(this);
+        }
+
+        public override bool Collides(BoxColliderInverted other)
+        {
+            return other.Collides(this);
         }
     }
 }

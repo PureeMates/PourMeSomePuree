@@ -11,9 +11,13 @@ namespace PourMeSomePuree
     {
         private float radius;
 
+        public float Radius { get { return radius; } }
+
         public CircleColliderInverted(RigidBody rb, float radius) : base(rb)
         {
             this.radius = radius;
+
+            DebugMgr.AddItem(this);
         }
 
         public override bool Collides(Collider other)
@@ -32,5 +36,14 @@ namespace PourMeSomePuree
             return true;
         }
 
+        public override bool Collides(BoxCollider other)
+        {
+            return other.Collides(this);
+        }
+
+        public override bool Collides(BoxColliderInverted other)
+        {
+            return other.Collides(this);
+        }
     }
 }
