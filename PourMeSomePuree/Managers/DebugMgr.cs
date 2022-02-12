@@ -25,23 +25,33 @@ namespace PourMeSomePuree
 
             if(c is CircleCollider)
             {
-                sprites.Add(new Sprite(((CircleCollider)c).Radius * 2, ((CircleCollider)c).Radius * 2));
+                Sprite sprite = new Sprite(((CircleCollider)c).Radius * 2, ((CircleCollider)c).Radius * 2);
+                sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
+                sprites.Add(sprite);
             }
             else if (c is CircleColliderInverted)
             {
-                sprites.Add(new Sprite(((CircleColliderInverted)c).Radius * 2, ((CircleColliderInverted)c).Radius * 2));
+                Sprite sprite = new Sprite(((CircleColliderInverted)c).Radius * 2, ((CircleColliderInverted)c).Radius * 2);
+                sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
+                sprites.Add(sprite);
             }
             else if(c is BoxCollider)
             {
-                sprites.Add(new Sprite(((BoxCollider)c).HalfWidth * 2, ((BoxCollider)c).HalfHeight * 2));
+                Sprite sprite = new Sprite(((BoxCollider)c).HalfWidth * 2, ((BoxCollider)c).HalfHeight * 2);
+                sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
+                sprites.Add(sprite);
             }
             else if (c is BoxColliderInverted)
             {
-                sprites.Add(new Sprite(((BoxColliderInverted)c).HalfWidth * 2, ((BoxColliderInverted)c).HalfHeight * 2));
+                Sprite sprite = new Sprite(((BoxColliderInverted)c).HalfWidth * 2, ((BoxColliderInverted)c).HalfHeight * 2);
+                sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
+                sprites.Add(sprite);
             }
             else
             {
-                sprites.Add(new Sprite(c.RigidBody.Owner.HalfWidth * 2, c.RigidBody.Owner.HalfHeight * 2));
+                Sprite sprite = new Sprite(c.RigidBody.Owner.HalfWidth * 2, c.RigidBody.Owner.HalfHeight * 2);
+                sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
+                sprites.Add(sprite);
             }
         }
 
@@ -87,7 +97,7 @@ namespace PourMeSomePuree
                         color = new Vector4(0.0f, 0.0f, 1.0f, 1.0f);
                     }
 
-                    sprites[i].position = items[i].Position - new Vector2(items[i].RigidBody.Owner.HalfWidth, items[i].RigidBody.Owner.HalfHeight) + items[i].Offset;
+                    sprites[i].position = items[i].Position + items[i].Offset;
                     sprites[i].DrawWireframe(color);
                 }
             }

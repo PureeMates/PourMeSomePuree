@@ -7,13 +7,17 @@ using OpenTK;
 
 namespace PourMeSomePuree
 {
+    enum RigidBodyType { Player = 1, Background = 2 }
+
     class RigidBody
     {
         private GameObject owner;
+        private uint collisionMask;
 
         public Collider Collider;
         public Vector2 Velocity;
         public bool IsCollisionAffected = true;
+        public RigidBodyType Type;
 
         public GameObject Owner { get { return owner; } }
         public Vector2 Position { get { return Owner.Position; } }
@@ -22,7 +26,7 @@ namespace PourMeSomePuree
         {
             this.owner = owner;
 
-            PhysicsMngr.AddItem(this);
+            PhysicsMgr.AddItem(this);
         }
 
         public void Update()
@@ -33,6 +37,16 @@ namespace PourMeSomePuree
         public bool Collides(RigidBody other)
         {
             return Collider.Collides(other.Collider);
+        }
+
+        public void AddCollisionType(RigidBodyType type)
+        {
+            collisionMask |= (uint)type;
+        }
+
+        public bool CollisionTypeMatches(RigidBodyType type)
+        {
+            return (collisionMask & (uint)type) != 0;
         }
     }
 }

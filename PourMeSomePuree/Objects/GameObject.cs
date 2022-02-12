@@ -8,42 +8,40 @@ using OpenTK;
 
 namespace PourMeSomePuree
 {
-    class GameObject
+    class GameObject : I_Updatable, I_Drawable
     {
         protected Sprite sprite;
         protected Texture texture;
         
-
         public RigidBody RigidBody;
         public bool IsActive;
 
-        public Vector2 Position { get { return sprite.position; } set{ sprite.position = value; } }
+        public Vector2 Position { get { return sprite.position; } set { sprite.position = value; } }
 
         public float HalfWidth { get { return sprite.Width * 0.5f;} }
         public float HalfHeight { get { return sprite.Height * 0.5f;} }
 
-        public GameObject(string texturePath, int spriteWidth = 0, int spriteHeight = 0)
+        public GameObject(string textureName, int spriteWidth = 0, int spriteHeight = 0)
         {
-            texture = GfxMgr.GetTexture(texturePath);
+            texture = GfxMgr.GetTexture(textureName);
             
             int spriteW = spriteWidth != 0 ? spriteWidth : texture.Width;
             int spriteH = spriteHeight != 0 ? spriteHeight : texture.Height;
 
             sprite = new Sprite(spriteW, spriteH);
             sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
+
+            UpdateMgr.AddItem(this);
+            DrawMgr.AddItem(this);
         }
 
-        public virtual void Update()
-        {
-            
-        }
+        public virtual void Update() { }
 
         public virtual void OnCollide(GameObject other) { }
 
         public virtual void Draw()
         {
             sprite.DrawTexture(texture);
-            sprite.DrawWireframe(50, 50, 50, 255);
         }
     }
 }

@@ -9,25 +9,19 @@ namespace PourMeSomePuree
 {
     abstract class Actor : GameObject
     {
+        protected Animation animation;
+
         protected int energy;
         protected float maxSpeed;
         protected int maxEnergy;
-        protected Animation animation;
 
         public bool IsAlive { get { return energy > 0; } }
         
-        
-
-        public Actor(string texturePath, int w = 0, int h = 0) : base (texturePath, w, h)
+        public Actor(string textureName, int w = 0, int h = 0) : base (textureName, w, h)
         {
             RigidBody = new RigidBody(this);
             maxEnergy = 100;
         }
-
-        //public virtual void Update()
-        //{
-            
-        //}
 
         public virtual void AddDamage(int dmg)
         {
@@ -37,22 +31,15 @@ namespace PourMeSomePuree
             {
                 OnDie();
             }
-
         }
 
-        public virtual void OnDie()
-        {
-
-        }
+        public virtual void OnDie() { }
 
         public virtual void Restore()
         {
             energy = maxEnergy;
         }
 
-        public virtual void Sword() // spadata
-        {
-
-        }
+        protected virtual void Attack() { }
     }
 }

@@ -40,15 +40,14 @@ namespace PourMeSomePuree
                 bgMusic.Input();
 
                 //UPDATE
-                player.Update();
+                UpdateMgr.Update();
+                PhysicsMgr.Update();
 
                 //COLLISIONS
-                PhysicsMngr.CheckCollision();
+                PhysicsMgr.CheckCollision();
 
                 //DRAW
-                background.Draw();
-                player.Draw();
-
+                DrawMgr.Draw();
                 DebugMgr.Draw();
 
                 window.Update();
@@ -65,9 +64,10 @@ namespace PourMeSomePuree
 
         private static void LoadAssets()
         {
+            GfxMgr.AddTexture("background", "Assets/Background1.png");
+
             GfxMgr.AddTexture("player", "Assets/Character_SpriteSheet.png");
             GfxMgr.AddTexture("enemy", "Assets/Squelette_SpriteSheet.png");
-            GfxMgr.AddTexture("background", "Assets/Background1.png");
         }
 
     }

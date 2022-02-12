@@ -12,7 +12,7 @@ namespace PourMeSomePuree
 
         public Vector2 Offset;
 
-        public Vector2 Position { get { return rigidBody.Position; } }
+        public Vector2 Position { get { return rigidBody.Position + Offset; } }
         public RigidBody RigidBody { get { return rigidBody; } }
 
         public Collider(RigidBody rb)

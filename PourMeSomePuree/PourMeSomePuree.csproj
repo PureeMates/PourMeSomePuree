@@ -58,27 +58,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\Colliders\BoxCollider.cs" />
-    <Compile Include="Engine\Colliders\BoxColliderInverted.cs" />
+    <Compile Include="Engine\Interfaces\I_Drawable.cs" />
+    <Compile Include="Engine\Interfaces\I_Updatable.cs" />
+    <Compile Include="Engine\Physics\Colliders\BoxCollider.cs" />
+    <Compile Include="Engine\Physics\Colliders\BoxColliderInverted.cs" />
     <Compile Include="Managers\DebugMgr.cs" />
+    <Compile Include="Managers\DrawMgr.cs" />
+    <Compile Include="Managers\UpdateMgr.cs" />
     <Compile Include="Objects\Actors\Actor.cs" />
     <Compile Include="Engine\Animation.cs" />
     <Compile Include="Objects\Actors\Enemy.cs" />
     <Compile Include="Objects\Actors\Player.cs" />
     <Compile Include="Managers\AudioMgr.cs" />
     <Compile Include="Objects\Background.cs" />
-    <Compile Include="Engine\Colliders\CircleCollider.cs" />
-    <Compile Include="Engine\Colliders\CircleColliderInverted.cs" />
-    <Compile Include="Engine\Colliders\Collider.cs" />
+    <Compile Include="Engine\Physics\Colliders\CircleCollider.cs" />
+    <Compile Include="Engine\Physics\Colliders\CircleColliderInverted.cs" />
+    <Compile Include="Engine\Physics\Colliders\Collider.cs" />
     <Compile Include="Utility\CollidersFactory.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Objects\GameObject.cs" />
     <Compile Include="Managers\GfxMgr.cs" />
-    <Compile Include="Managers\PhysicsMngr.cs" />
+    <Compile Include="Managers\PhysicsMgr.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\RandomGenerator.cs" />
-    <Compile Include="Engine\RigidBody.cs" />
+    <Compile Include="Engine\Physics\RigidBody.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -152,6 +156,9 @@
     <Content Include="Assets\Tileset.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Engine\GUI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

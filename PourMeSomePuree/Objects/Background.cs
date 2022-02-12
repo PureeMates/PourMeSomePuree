@@ -24,21 +24,32 @@ namespace PourMeSomePuree
 
             RigidBody = new RigidBody(this);
             RigidBody.Collider = CollidersFactory.CreateInvertedBoxFor(this, width, height);
-            RigidBody.Collider.Offset = new Vector2(sprite.Width * 0.5f - ((BoxColliderInverted)RigidBody.Collider).HalfWidth, sprite.Height * 0.5f - ((BoxColliderInverted)RigidBody.Collider).HalfHeight);
+            RigidBody.Type = RigidBodyType.Background;
+            RigidBody.AddCollisionType(RigidBodyType.Player);
 
             IsActive = true;
         }
 
-        public void Draw()
-        {
-            sprite.DrawTexture(texture);
-        }
-
         public override void OnCollide(GameObject other)
         {
-            if (other is Player)
+            BoxColliderInverted bgCollider = (BoxColliderInverted)RigidBody.Collider;
+
+            if (other.Position.X + other.HalfWidth >= bgCollider.RightPos)
             {
-                Console.WriteLine("Background is colliding with player");
+                other.Position = new Vector2(bgCollider.RightPos - other.HalfWidth, other.Position.Y);
+            }
+            else if (other.Position.X - other.HalfWidth <= bgCollider.LeftPos)
+            {
+                other.Position = new Vector2(bgCollider.LeftPos + other.HalfWidth, other.Position.Y);
+            }
+
+            if (other.Position.Y - other.HalfHeight <= bgCollider.UpPos)
+            {
+                other.Position = new Vector2(other.Position.X, bgCollider.UpPos + other.HalfHeight);
+            }
+            else if (other.Position.Y + other.HalfHeight >= bgCollider.DownPos)
+            {
+                other.Position = new Vector2(other.Position.X, bgCollider.DownPos - other.HalfHeight);
             }
         }
     }

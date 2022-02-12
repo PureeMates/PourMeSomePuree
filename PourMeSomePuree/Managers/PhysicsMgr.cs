@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace PourMeSomePuree
 {
-    static class PhysicsMngr
+    static class PhysicsMgr
     {
         private static List<RigidBody> items;
 
-        static PhysicsMngr()
+        static PhysicsMgr()
         {
             items = new List<RigidBody>();
         }
@@ -36,10 +36,19 @@ namespace PourMeSomePuree
                     {
                         if (items[j].Owner.IsActive && items[j].IsCollisionAffected)
                         {
-                            if (items[i].Collides(items[j]))
+                            bool firstCheck = items[i].CollisionTypeMatches(items[j].Type);
+                            bool secondCheck = items[j].CollisionTypeMatches(items[i].Type);
+
+                            if((firstCheck || secondCheck) && items[i].Collides(items[j]))
                             {
-                                items[i].Owner.OnCollide(items[j].Owner);
-                                items[j].Owner.OnCollide(items[i].Owner);
+                                if(firstCheck)
+                                {
+                                    items[i].Owner.OnCollide(items[j].Owner);
+                                }
+                                if(secondCheck)
+                                {
+                                    items[j].Owner.OnCollide(items[i].Owner);
+                                }
                             }
                         }
                     }

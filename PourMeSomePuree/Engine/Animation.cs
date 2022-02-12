@@ -20,19 +20,14 @@ namespace PourMeSomePuree
         private int startRow;
         private int startColumn;
 
-        private int xOffset;
-        private int yOffset;
-
         private bool isPlaying;
         private bool loop;
 
-        public int XOffset { get { return xOffset; } }
-        public int YOffset { get { return yOffset; } }
+        public int XOffset { get; private set; }
+        public int YOffset { get; private set; }
         public float Duration { get { return frameDuration * frameNumber; } }
-        public int StartRow { set { startRow = value; } }
-        public int StartColumn { set { startColumn = value; } }
-        public int TotFrames { set { frameNumber = value; } }
         public int CurrentFrame { get { return currentFrame; } }
+
         public Animation(int fps, int totFrames, int frameW, int frameH, int startColumn = 1, int startRow = 1, bool loop = true)
         {
             frameNumber = totFrames;
@@ -46,8 +41,8 @@ namespace PourMeSomePuree
             this.startColumn = startColumn - 1;
             actualColumn = this.startColumn;
 
-            xOffset = 0;
-            yOffset = frameHeight * this.startRow;
+            XOffset = 0;
+            YOffset = frameHeight * this.startRow;
 
             isPlaying = false;
             this.loop = loop;
@@ -81,11 +76,11 @@ namespace PourMeSomePuree
 
                 if (startColumn != 0)
                 {
-                    xOffset = frameWidth * actualColumn;
+                    XOffset = frameWidth * actualColumn;
                 }
                 else
                 {
-                    xOffset = frameWidth * currentFrame;
+                    XOffset = frameWidth * currentFrame;
                 }
             }
         }

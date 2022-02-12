@@ -10,7 +10,7 @@ namespace PourMeSomePuree
 {
     class Enemy : Actor
     {
-        private float nextSword;
+        private float nextAttack;
 
         public Enemy() : base ("enemy")
         {
@@ -21,26 +21,19 @@ namespace PourMeSomePuree
 
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
 
-            nextSword = RandomGenerator.GetRandomInt(1, 3);
+            nextAttack = RandomGenerator.GetRandomInt(1, 3);
         }
 
         public override void Update()
         {
             if (IsActive)
             {
-                if (sprite.position.X + HalfWidth < 0)
-                {
-                    //Spawn
-                }
-                else
-                {
-                    nextSword -= Game.DeltaTime;
+                nextAttack -= Game.DeltaTime;
 
-                    if (nextSword <= 0)
-                    {
-                        nextSword = RandomGenerator.GetRandomFloat() * 2 + 1;
-                        Sword();
-                    }
+                if (nextAttack <= 0.0f)
+                {
+                    nextAttack = RandomGenerator.GetRandomFloat() * 2 + 1;
+                    Attack();
                 }
             }
         }
