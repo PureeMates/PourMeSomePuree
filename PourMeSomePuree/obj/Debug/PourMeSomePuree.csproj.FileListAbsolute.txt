@@ -32,3 +32,41 @@ Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\NVo
 Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\System.ValueTuple.dll
 Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\NVorbis.xml
 Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\System.ValueTuple.xml
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\obj\Debug\PourMeSomePuree.csproj.CoreCompileInputs.cache
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\obj\Debug\PourMeSomePuree.exe
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\obj\Debug\PourMeSomePuree.pdb
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Background1.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Character.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Character_SpriteSheet.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Character_SpriteSheet_Block_hurt.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Chest_SpriteSheet.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Door.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\DoorGrid.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\HUD.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\HUD_Mask.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Jar_SpriteSheet.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\PetitePieceShadow_SpriteSheet.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\PetitePiece_SpriteSheet.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\PieceHUD.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Piece_HUD_SpriteSheet.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Portrait.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Squelette_SpriteSheet.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Squelette_SpriteSheet_Hurt.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Tileset.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\PourMeSomePuree.exe.config
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\PourMeSomePuree.exe
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\PourMeSomePuree.pdb
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\aiv-audio.dll
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\aiv-fast2d.dll
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\NVorbis.dll
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\OpenTK.dll
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\System.ValueTuple.dll
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\NVorbis.xml
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\OpenTK.pdb
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\OpenTK.xml
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\System.ValueTuple.xml
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\obj\Debug\PourMeSomePuree.csproj.CopyComplete
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Audio\Horde_theme.ogg
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Audio\Sound_Coin.wav
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Audio\Sound_sword_attack.mp3
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Audio\Sound_sword_melee.wav

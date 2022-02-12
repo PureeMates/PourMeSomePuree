@@ -86,10 +86,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Audio\Horde_theme.ogg" />
-    <Content Include="Assets\Audio\Sound_Coin.wav" />
-    <Content Include="Assets\Audio\Sound_sword_attack.mp3" />
-    <Content Include="Assets\Audio\Sound_sword_melee.wav" />
+    <Content Include="Assets\Audio\Horde_theme.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Audio\Sound_Coin.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Audio\Sound_sword_attack.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Audio\Sound_sword_melee.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Background1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

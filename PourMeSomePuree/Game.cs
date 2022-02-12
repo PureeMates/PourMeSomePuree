@@ -13,6 +13,7 @@ namespace PourMeSomePuree
         private static Window window;
         private static Background background;
         private static Player player;
+        private static AudioMgr bgMusic;
 
         public static Window Win { get { return window; } }
         public static float DeltaTime { get { return Win.DeltaTime; } }
@@ -24,6 +25,7 @@ namespace PourMeSomePuree
             LoadAssets();
             background = new Background();
             player = new Player();
+            bgMusic = new AudioMgr();
         }
         
         public static void Play()
@@ -35,6 +37,7 @@ namespace PourMeSomePuree
                 //INPUT
                 Quit();
                 player.Input();
+                bgMusic.Input();
 
                 //UPDATE
                 player.Update();

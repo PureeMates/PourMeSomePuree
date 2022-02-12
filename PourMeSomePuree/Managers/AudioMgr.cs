@@ -9,14 +9,17 @@ using OpenTK;
 
 namespace PourMeSomePuree
 {
-    class AudioMgr
+     class AudioMgr
     {
         AudioSource bgSource = new AudioSource();
         AudioClip bgMusic = new AudioClip("Assets/Audio/Horde_theme.ogg");
+        
 
         public void Input()
         {
-            //bgSource.Stream(bgMusic, win.DeltaTime);
+            bgSource.Position = new Vector3(Game.Win.Width * 0.5f, Game.Win.Height * 0.5f, 0.0f);
+
+            bgSource.Stream(bgMusic, Game.Win.DeltaTime);
         }
 
         public void Update()
