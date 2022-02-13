@@ -28,6 +28,11 @@ namespace PourMeSomePuree
         public float Duration { get { return frameDuration * frameNumber; } }
         public int CurrentFrame { get { return currentFrame; } }
 
+        public int FrameWidth { get { return frameWidth; } }
+        public int FrameHeight { get { return frameHeight; } }
+
+        
+
         public Animation(int fps, int totFrames, int frameW, int frameH, int startColumn = 1, int startRow = 1, bool loop = true)
         {
             frameNumber = totFrames;

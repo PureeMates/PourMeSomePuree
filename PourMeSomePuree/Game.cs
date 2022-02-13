@@ -37,11 +37,12 @@ namespace PourMeSomePuree
                 //INPUT
                 Quit();
                 player.Input();
-                bgMusic.Input();
+                //bgMusic.Input();
 
                 //UPDATE
                 UpdateMgr.Update();
                 PhysicsMgr.Update();
+
 
                 //COLLISIONS
                 PhysicsMgr.CheckCollision();
@@ -65,9 +66,30 @@ namespace PourMeSomePuree
         private static void LoadAssets()
         {
             GfxMgr.AddTexture("background", "Assets/Background1.png");
-
             GfxMgr.AddTexture("player", "Assets/Character_SpriteSheet.png");
             GfxMgr.AddTexture("enemy", "Assets/Squelette_SpriteSheet.png");
+
+            //when player is moving
+            GfxMgr.AddAnimation("Down", 15, 4, 64, 64, 1, 1);
+            GfxMgr.AddAnimation("Up", 15, 4, 64, 64, 1, 2);
+            GfxMgr.AddAnimation("Right", 15, 4, 64, 64, 1, 3);
+            GfxMgr.AddAnimation("Left", 15, 4, 64, 64, 1, 4);
+            GfxMgr.AddAnimation("Attack", 15, 4, 64, 64, 5, 1);
+
+            //When Player stop
+            GfxMgr.AddAnimation("IdleDown", 15, 1, 64, 64, 1, 1);
+            GfxMgr.AddAnimation("IdleUp", 15, 1, 64, 64, 1, 2);
+            GfxMgr.AddAnimation("IdleRight", 15, 1, 64, 64, 1, 3);
+            GfxMgr.AddAnimation("IdleLeft", 15, 1, 64, 64, 1, 4);
+
+            //when Player is attacking
+            GfxMgr.AddAnimation("AttackDown", 15, 4, 64, 64, 5, 1);
+            GfxMgr.AddAnimation("AttackUp", 15, 4, 64, 64, 5, 2);
+            GfxMgr.AddAnimation("AttackRight", 15, 4, 64, 64, 5, 3);
+            GfxMgr.AddAnimation("AttackLeft", 15, 4, 64, 64, 5, 4);
+
+            
+
         }
 
     }

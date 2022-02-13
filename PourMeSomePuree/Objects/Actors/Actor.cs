@@ -14,8 +14,11 @@ namespace PourMeSomePuree
         protected int energy;
         protected float maxSpeed;
         protected int maxEnergy;
+        protected bool isAttacking;
 
         public bool IsAlive { get { return energy > 0; } }
+
+        
         
         public Actor(string textureName, int w = 0, int h = 0) : base (textureName, w, h)
         {
@@ -41,5 +44,13 @@ namespace PourMeSomePuree
         }
 
         protected virtual void Attack() { }
+
+        //public virtual void CheckDirections(Vector2 velocity)
+        //{
+        //    switch (velocity)
+        //    {
+        //        
+        //    }
+        //}
     }
 }

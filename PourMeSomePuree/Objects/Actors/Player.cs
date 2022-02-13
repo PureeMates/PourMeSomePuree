@@ -8,14 +8,11 @@ using OpenTK;
 
 namespace PourMeSomePuree
 {
-    //enum DirectionType { DOWN = 0, UP = 64, RIGHT = 128, LEFT = 192 }
-    //enum ActionType { MOVEMENT = 0, ATTACK = 256 }
+    enum Direction { DOWN, UP, RIGHT, LEFT }
 
     class Player : Actor
     {
-        //private bool isSwordPressed;
-        //private bool isAttacking;
-        //private Vector2 offSet;
+        private Direction direction;
 
         public Player() : base("player", 64, 64)
         {
@@ -26,38 +23,76 @@ namespace PourMeSomePuree
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
             RigidBody.Type = RigidBodyType.Player;
             RigidBody.AddCollisionType(RigidBodyType.Background);
-            //offSet = new Vector2(0, 0);
-
-            //animation = new Animation(15, 4, 64, 64, loop: false);
-            //animation = new Animation(15, 4, 64, 64, loop: false);
+            animation = GfxMgr.GetAnimation("IdleDown");
+            direction = Direction.DOWN;
         }
 
         public void Input()
         {
             if (Game.Win.GetKey(KeyCode.D) || Game.Win.GetKey(KeyCode.Right))
             {
+                if (isAttacking)
+                {
+                    return;
+                }
+
                 MovingRight();
             }
             else if (Game.Win.GetKey(KeyCode.A) || Game.Win.GetKey(KeyCode.Left))
             {
+                if (isAttacking)
+                {
+                    return;
+                }
+
                 MovingLeft();
             }
             else
             {
                 RigidBody.Velocity.X = 0.0f;
+
+                if (direction == Direction.RIGHT)
+                {
+                    animation = GfxMgr.GetAnimation("IdleRight");
+                }
+                else if (direction == Direction.LEFT)
+                {
+                    animation = GfxMgr.GetAnimation("IdleLeft");
+                }
             }
 
             if (Game.Win.GetKey(KeyCode.W) || Game.Win.GetKey(KeyCode.Up))
             {
+                if (isAttacking)
+                {
+                    return;
+                }
+
                 MovingUp();
             }
             else if (Game.Win.GetKey(KeyCode.S) || Game.Win.GetKey(KeyCode.Down))
             {
+                if (isAttacking)
+                {
+                    return;
+                }
+
                 MovingDown();
             }
             else
             {
                 RigidBody.Velocity.Y = 0.0f;
+
+
+                if (direction == Direction.DOWN)
+                {
+                    animation = GfxMgr.GetAnimation("IdleDown");
+                }
+                else if (direction == Direction.UP)
+                {
+                    animation = GfxMgr.GetAnimation("IdleUp");
+                }
+
             }
 
             if (RigidBody.Velocity.X != 0 || RigidBody.Velocity.Y != 0)
@@ -69,46 +104,40 @@ namespace PourMeSomePuree
             {
                 Attack();
             }
+            else 
+            {
+                isAttacking = false;
+            }
+            
         }
 
-        private bool MovingRight()
+        private void MovingRight()
         {
-            RigidBody.Velocity.X = maxSpeed;
-            //offSet.X = (int)ActionType.MOVEMENT;
-            //offSet.Y = (int)DirectionType.RIGHT;
-            //animation.Start();
 
-            return true;
+            RigidBody.Velocity.X = maxSpeed;
+            direction = Direction.RIGHT;
+            animation = GfxMgr.GetAnimation("Right");
         }
 
-        private bool MovingLeft()
+        private void MovingLeft()
         {
             RigidBody.Velocity.X = -maxSpeed;
-            //offSet.X = (int)ActionType.MOVEMENT;
-            //offSet.Y = (int)DirectionType.LEFT;
-            //animation.Start();
-
-            return true;
+            direction = Direction.LEFT;
+            animation = GfxMgr.GetAnimation("Left");
         }
 
-        private bool MovingDown()
+        private void MovingDown()
         {
             RigidBody.Velocity.Y = maxSpeed;
-            //offSet.X = (int)ActionType.MOVEMENT;
-            //offSet.Y = (int)DirectionType.DOWN;
-            //animation.Start();
-
-            return true;
+            direction = Direction.DOWN;
+            animation = GfxMgr.GetAnimation("Down");
         }
 
-        private bool MovingUp()
+        private void MovingUp()
         {
             RigidBody.Velocity.Y = -maxSpeed;
-            //offSet.X = (int)ActionType.MOVEMENT;
-            //offSet.Y = (int)DirectionType.UP;
-            //animation.Start();
-
-            return true;
+            direction = Direction.UP;
+            animation = GfxMgr.GetAnimation("Up");
         }
 
         public override void OnCollide(GameObject other) { }
@@ -126,28 +155,47 @@ namespace PourMeSomePuree
 
         protected override void Attack()
         {
-            //offSet.X = (int)ActionType.ATTACK;
-
-            /*if (!isSwordPressed)
+            switch (direction)
             {
-                isSwordPressed = true;
-                Attack();
-                attackAnimation.Start();
+                case Direction.DOWN:
+                    animation = GfxMgr.GetAnimation("AttackDown");
+                    break;
+                case Direction.UP:
+                    animation = GfxMgr.GetAnimation("AttackUp");
+                    break;
+                case Direction.RIGHT:
+                    animation = GfxMgr.GetAnimation("AttackRight");
+                    break;
+                case Direction.LEFT:
+                    animation = GfxMgr.GetAnimation("AttackLeft");
+                    break;
             }
-            else if (isSwordPressed)
+
+            if (!isAttacking)
             {
-                isSwordPressed = false;
-            }*/
+                isAttacking = true;
+            }
+            else if (isAttacking)
+            {
+                isAttacking = false;
+            }
         }
 
-        //public bool CanAttack()
-        //{
-        //    if (attackCounter <= 0)
-        //    {
-        //        attackCounter = 1000f;
-        //        return true;
-        //    }
-        //    return false;
-        //}
+        public override void Update()
+        {
+            base.Update();
+            animation.Update();
+            animation.Start();
+
+        }
+
+
+
+        public override void Draw()
+        {
+            sprite.DrawTexture(texture, animation.XOffset, animation.YOffset, animation.FrameWidth, animation.FrameHeight);
+        }
+
+
     }
 }
