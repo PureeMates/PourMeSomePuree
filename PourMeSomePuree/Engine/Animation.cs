@@ -27,11 +27,10 @@ namespace PourMeSomePuree
         public int YOffset { get; private set; }
         public float Duration { get { return frameDuration * frameNumber; } }
         public int CurrentFrame { get { return currentFrame; } }
+        public bool IsPlaying { get { return isPlaying; } }
 
         public int FrameWidth { get { return frameWidth; } }
         public int FrameHeight { get { return frameHeight; } }
-
-        
 
         public Animation(int fps, int totFrames, int frameW, int frameH, int startColumn = 1, int startRow = 1, bool loop = true)
         {
@@ -78,15 +77,19 @@ namespace PourMeSomePuree
                         }
                     }
                 }
+                ShiftOffset();
+            }
+        }
 
-                if (startColumn != 0)
-                {
-                    XOffset = frameWidth * actualColumn;
-                }
-                else
-                {
-                    XOffset = frameWidth * currentFrame;
-                }
+        private void ShiftOffset()
+        {
+            if (startColumn != 0)
+            {
+                XOffset = frameWidth * actualColumn;
+            }
+            else
+            {
+                XOffset = frameWidth * currentFrame;
             }
         }
 
@@ -95,6 +98,7 @@ namespace PourMeSomePuree
             isPlaying = false;
             currentFrame = 0;
             actualColumn = startColumn;
+            ShiftOffset();
             elapsedTime = 0.0f;
         }
 

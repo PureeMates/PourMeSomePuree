@@ -8,12 +8,8 @@ using OpenTK;
 
 namespace PourMeSomePuree
 {
-    enum Direction { DOWN, UP, RIGHT, LEFT }
-
     class Player : Actor
     {
-        private Direction direction;
-
         public Player() : base("player", 64, 64)
         {
             sprite.scale = new Vector2(1.75f);
@@ -23,179 +19,161 @@ namespace PourMeSomePuree
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
             RigidBody.Type = RigidBodyType.Player;
             RigidBody.AddCollisionType(RigidBodyType.Background);
-            animation = GfxMgr.GetAnimation("IdleDown");
-            direction = Direction.DOWN;
+            LoadAnimations();
+            movementAnimation = GfxMgr.GetAnimation("down");
+            attackAnimation = GfxMgr.GetAnimation("attackDown");
+            actualAnimation = movementAnimation;
+        }
+
+        private void LoadAnimations()
+        {
+            //when player is moving
+            GfxMgr.AddAnimation("down", 15, 4, 64, 64, 1, 1);
+            GfxMgr.AddAnimation("up", 15, 4, 64, 64, 1, 2);
+            GfxMgr.AddAnimation("right", 15, 4, 64, 64, 1, 3);
+            GfxMgr.AddAnimation("left", 15, 4, 64, 64, 1, 4);
+
+            //When Player stop
+            GfxMgr.AddAnimation("idleDown", 15, 1, 64, 64, 1, 1);
+            GfxMgr.AddAnimation("idleUp", 15, 1, 64, 64, 1, 2);
+            GfxMgr.AddAnimation("idleRight", 15, 1, 64, 64, 1, 3);
+            GfxMgr.AddAnimation("idleLeft", 15, 1, 64, 64, 1, 4);
+
+            //when Player is attacking
+            GfxMgr.AddAnimation("attackDown", 15, 4, 64, 64, 5, 1, false);
+            GfxMgr.AddAnimation("attackUp", 15, 4, 64, 64, 5, 2, false);
+            GfxMgr.AddAnimation("attackRight", 15, 4, 64, 64, 5, 3, false);
+            GfxMgr.AddAnimation("attackLeft", 15, 4, 64, 64, 5, 4, false);
         }
 
         public void Input()
         {
+            if (Game.Win.GetKey(KeyCode.Space))
+            {
+                if (!isAttackPressed)
+                {
+                    Attack();
+                }
+            }
+            else if (isAttackPressed)
+            {
+                isAttackPressed = false;
+            }
+
             if (Game.Win.GetKey(KeyCode.D) || Game.Win.GetKey(KeyCode.Right))
             {
-                if (isAttacking)
-                {
-                    return;
-                }
-
                 MovingRight();
             }
             else if (Game.Win.GetKey(KeyCode.A) || Game.Win.GetKey(KeyCode.Left))
             {
-                if (isAttacking)
-                {
-                    return;
-                }
-
                 MovingLeft();
             }
             else
             {
                 RigidBody.Velocity.X = 0.0f;
-
-                if (direction == Direction.RIGHT)
-                {
-                    animation = GfxMgr.GetAnimation("IdleRight");
-                }
-                else if (direction == Direction.LEFT)
-                {
-                    animation = GfxMgr.GetAnimation("IdleLeft");
-                }
             }
 
             if (Game.Win.GetKey(KeyCode.W) || Game.Win.GetKey(KeyCode.Up))
             {
-                if (isAttacking)
-                {
-                    return;
-                }
-
                 MovingUp();
             }
             else if (Game.Win.GetKey(KeyCode.S) || Game.Win.GetKey(KeyCode.Down))
             {
-                if (isAttacking)
-                {
-                    return;
-                }
-
                 MovingDown();
             }
             else
             {
                 RigidBody.Velocity.Y = 0.0f;
-
-
-                if (direction == Direction.DOWN)
-                {
-                    animation = GfxMgr.GetAnimation("IdleDown");
-                }
-                else if (direction == Direction.UP)
-                {
-                    animation = GfxMgr.GetAnimation("IdleUp");
-                }
-
             }
 
             if (RigidBody.Velocity.X != 0 || RigidBody.Velocity.Y != 0)
             {
                 RigidBody.Velocity = RigidBody.Velocity.Normalized() * maxSpeed;
             }
-
-            if (Game.Win.GetKey(KeyCode.Space))
+            else
             {
-                Attack();
-            }
-            else 
-            {
-                isAttacking = false;
-            }
-            
-        }
-
-        private void MovingRight()
-        {
-
-            RigidBody.Velocity.X = maxSpeed;
-            direction = Direction.RIGHT;
-            animation = GfxMgr.GetAnimation("Right");
-        }
-
-        private void MovingLeft()
-        {
-            RigidBody.Velocity.X = -maxSpeed;
-            direction = Direction.LEFT;
-            animation = GfxMgr.GetAnimation("Left");
-        }
-
-        private void MovingDown()
-        {
-            RigidBody.Velocity.Y = maxSpeed;
-            direction = Direction.DOWN;
-            animation = GfxMgr.GetAnimation("Down");
-        }
-
-        private void MovingUp()
-        {
-            RigidBody.Velocity.Y = -maxSpeed;
-            direction = Direction.UP;
-            animation = GfxMgr.GetAnimation("Up");
-        }
-
-        public override void OnCollide(GameObject other) { }
-
-        /*public override void Update()
-        {
-            //animation.Update();
-        }*/
-
-        /*public override void Draw()
-        {
-            //sprite.DrawTexture(texture, (int)offSet.X + animation.XOffset, (int)offSet.Y + animation.YOffset, 64, 64);
-            //sprite.DrawTexture(texture);
-        }*/
-
-        protected override void Attack()
-        {
-            switch (direction)
-            {
-                case Direction.DOWN:
-                    animation = GfxMgr.GetAnimation("AttackDown");
-                    break;
-                case Direction.UP:
-                    animation = GfxMgr.GetAnimation("AttackUp");
-                    break;
-                case Direction.RIGHT:
-                    animation = GfxMgr.GetAnimation("AttackRight");
-                    break;
-                case Direction.LEFT:
-                    animation = GfxMgr.GetAnimation("AttackLeft");
-                    break;
-            }
-
-            if (!isAttacking)
-            {
-                isAttacking = true;
-            }
-            else if (isAttacking)
-            {
-                isAttacking = false;
+                isMoving = false;
+                movementAnimation.Stop();
             }
         }
 
         public override void Update()
         {
+            if(attackAnimation.IsPlaying)
+            {
+                actualAnimation = attackAnimation;
+            }
+            else
+            {
+                actualAnimation = movementAnimation;
+            }
             base.Update();
-            animation.Update();
-            animation.Start();
-
         }
 
+        private void MovingRight()
+        {
+            isMoving = true;
+            RigidBody.Velocity.X = maxSpeed;
+            direction = Direction.RIGHT;
+            movementAnimation = GfxMgr.GetAnimation("right");
+            movementAnimation.Start();
+        }
 
+        private void MovingLeft()
+        {
+            isMoving = true;
+            RigidBody.Velocity.X = -maxSpeed;
+            direction = Direction.LEFT;
+            movementAnimation = GfxMgr.GetAnimation("left");
+            movementAnimation.Start(); 
+        }
+
+        private void MovingDown()
+        {
+            isMoving = true;
+            RigidBody.Velocity.Y = maxSpeed;
+            direction = Direction.DOWN;
+            movementAnimation = GfxMgr.GetAnimation("down");
+            movementAnimation.Start(); 
+        }
+
+        private void MovingUp()
+        {
+            isMoving = true;
+            RigidBody.Velocity.Y = -maxSpeed;
+            direction = Direction.UP;
+            movementAnimation = GfxMgr.GetAnimation("up");
+            movementAnimation.Start(); 
+        }
+
+        public override void OnCollide(GameObject other) { }
+
+        protected override void Attack()
+        {
+            isAttackPressed = true;
+
+            switch (direction)
+            {
+                case Direction.DOWN:
+                    attackAnimation = GfxMgr.GetAnimation("attackDown");
+                    break;
+                case Direction.UP:
+                    attackAnimation = GfxMgr.GetAnimation("attackUp");
+                    break;
+                case Direction.RIGHT:
+                    attackAnimation = GfxMgr.GetAnimation("attackRight");
+                    break;
+                case Direction.LEFT:
+                    attackAnimation = GfxMgr.GetAnimation("attackLeft");
+                    break;
+            }
+
+            attackAnimation.Start();
+        }
 
         public override void Draw()
         {
-            sprite.DrawTexture(texture, animation.XOffset, animation.YOffset, animation.FrameWidth, animation.FrameHeight);
+            sprite.DrawTexture(texture, actualAnimation.XOffset, actualAnimation.YOffset, actualAnimation.FrameWidth, actualAnimation.FrameHeight);
         }
-
-
     }
 }

@@ -7,23 +7,32 @@ using OpenTK;
 
 namespace PourMeSomePuree
 {
+    enum Direction { DOWN, UP, RIGHT, LEFT, LAST }
+
     abstract class Actor : GameObject
     {
-        protected Animation animation;
+        protected Animation movementAnimation;
+        protected Animation attackAnimation;
+        protected Animation actualAnimation;
+        protected Direction direction;
 
         protected int energy;
         protected float maxSpeed;
         protected int maxEnergy;
-        protected bool isAttacking;
+        protected bool isAttackPressed;
+        protected bool isMoving;
 
         public bool IsAlive { get { return energy > 0; } }
 
-        
-        
         public Actor(string textureName, int w = 0, int h = 0) : base (textureName, w, h)
         {
             RigidBody = new RigidBody(this);
             maxEnergy = 100;
+        }
+
+        public override void Update()
+        {
+            actualAnimation.Update();
         }
 
         public virtual void AddDamage(int dmg)
@@ -44,13 +53,5 @@ namespace PourMeSomePuree
         }
 
         protected virtual void Attack() { }
-
-        //public virtual void CheckDirections(Vector2 velocity)
-        //{
-        //    switch (velocity)
-        //    {
-        //        
-        //    }
-        //}
     }
 }
