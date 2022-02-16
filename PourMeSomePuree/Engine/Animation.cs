@@ -23,15 +23,14 @@ namespace PourMeSomePuree
         private bool isPlaying;
         private bool loop;
 
+        public bool IsFinished;
+
         public int XOffset { get; private set; }
         public int YOffset { get; private set; }
         public float Duration { get { return frameDuration * frameNumber; } }
         public int CurrentFrame { get { return currentFrame; } }
-
         public int FrameWidth { get { return frameWidth; } }
         public int FrameHeight { get { return frameHeight; } }
-
-        
 
         public Animation(int fps, int totFrames, int frameW, int frameH, int startColumn = 1, int startRow = 1, bool loop = true)
         {
@@ -48,6 +47,7 @@ namespace PourMeSomePuree
 
             XOffset = 0;
             YOffset = frameHeight * this.startRow;
+            IsFinished = true;
 
             isPlaying = false;
             this.loop = loop;
@@ -58,7 +58,6 @@ namespace PourMeSomePuree
             if (isPlaying)
             {
                 elapsedTime += Game.Win.DeltaTime;
-
                 if (elapsedTime >= frameDuration)
                 {
                     elapsedTime = 0.0f;
@@ -92,6 +91,8 @@ namespace PourMeSomePuree
 
         public void Stop()
         {
+            Console.WriteLine("isFinished");
+            IsFinished = true;
             isPlaying = false;
             currentFrame = 0;
             actualColumn = startColumn;

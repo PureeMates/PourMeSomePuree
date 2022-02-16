@@ -27,7 +27,7 @@ namespace PourMeSomePuree
             player = new Player();
             bgMusic = new AudioMgr();
         }
-        
+
         public static void Play()
         {
             while (window.IsOpened)
@@ -42,14 +42,13 @@ namespace PourMeSomePuree
                 //UPDATE
                 UpdateMgr.Update();
                 PhysicsMgr.Update();
-
-
+                Console.WriteLine(player.Anim.CurrentFrame);
                 //COLLISIONS
                 PhysicsMgr.CheckCollision();
 
                 //DRAW
                 DrawMgr.Draw();
-                DebugMgr.Draw();
+                //DebugMgr.Draw();
 
                 window.Update();
             }
@@ -57,7 +56,7 @@ namespace PourMeSomePuree
 
         private static void Quit()
         {
-            if(window.GetKey(KeyCode.Esc))
+            if (window.GetKey(KeyCode.Esc))
             {
                 window.Exit();
             }
@@ -83,14 +82,10 @@ namespace PourMeSomePuree
             GfxMgr.AddAnimation("IdleLeft", 15, 1, 64, 64, 1, 4);
 
             //when Player is attacking
-            GfxMgr.AddAnimation("AttackDown", 15, 4, 64, 64, 5, 1);
-            GfxMgr.AddAnimation("AttackUp", 15, 4, 64, 64, 5, 2);
-            GfxMgr.AddAnimation("AttackRight", 15, 4, 64, 64, 5, 3);
-            GfxMgr.AddAnimation("AttackLeft", 15, 4, 64, 64, 5, 4);
-
-            
-
+            GfxMgr.AddAnimation("AttackDown", 15, 4, 64, 64, 5, 1, false);
+            GfxMgr.AddAnimation("AttackUp", 15, 4, 64, 64, 5, 2, false);
+            GfxMgr.AddAnimation("AttackRight", 15, 4, 64, 64, 5, 3, false);
+            GfxMgr.AddAnimation("AttackLeft", 15, 4, 64, 64, 5, 4, false);
         }
-
     }
 }

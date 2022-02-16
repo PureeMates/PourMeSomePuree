@@ -10,6 +10,7 @@ namespace PourMeSomePuree
     abstract class Actor : GameObject
     {
         protected Animation animation;
+        protected Animation attackAnimation;
 
         protected int energy;
         protected float maxSpeed;

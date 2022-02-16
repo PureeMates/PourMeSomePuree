@@ -13,7 +13,8 @@ namespace PourMeSomePuree
     class Player : Actor
     {
         private Direction direction;
-
+        public bool IsAttacking { get { return isAttacking; } }
+        public Animation Anim { get { return attackAnimation; } }
         public Player() : base("player", 64, 64)
         {
             sprite.scale = new Vector2(1.75f);
@@ -24,75 +25,39 @@ namespace PourMeSomePuree
             RigidBody.Type = RigidBodyType.Player;
             RigidBody.AddCollisionType(RigidBodyType.Background);
             animation = GfxMgr.GetAnimation("IdleDown");
+            attackAnimation = GfxMgr.GetAnimation("IdleDown");
             direction = Direction.DOWN;
         }
 
         public void Input()
         {
-            if (Game.Win.GetKey(KeyCode.D) || Game.Win.GetKey(KeyCode.Right))
+            if (isAttacking == false || attackAnimation.IsFinished == true) //togliere seconda clausola e riaggiungere vector.zero in attack se non si vuole farlo fermare
             {
-                if (isAttacking)
+                if (Game.Win.GetKey(KeyCode.D) || Game.Win.GetKey(KeyCode.Right))
                 {
-                    return;
+                    MovingRight();
+                }
+                else if (Game.Win.GetKey(KeyCode.A) || Game.Win.GetKey(KeyCode.Left))
+                {
+                    MovingLeft();
+                }
+                else
+                {
+                    RigidBody.Velocity.X = 0.0f;
                 }
 
-                MovingRight();
-            }
-            else if (Game.Win.GetKey(KeyCode.A) || Game.Win.GetKey(KeyCode.Left))
-            {
-                if (isAttacking)
+                if (Game.Win.GetKey(KeyCode.W) || Game.Win.GetKey(KeyCode.Up))
                 {
-                    return;
+                    MovingUp();
                 }
-
-                MovingLeft();
-            }
-            else
-            {
-                RigidBody.Velocity.X = 0.0f;
-
-                if (direction == Direction.RIGHT)
+                else if (Game.Win.GetKey(KeyCode.S) || Game.Win.GetKey(KeyCode.Down))
                 {
-                    animation = GfxMgr.GetAnimation("IdleRight");
+                    MovingDown();
                 }
-                else if (direction == Direction.LEFT)
+                else
                 {
-                    animation = GfxMgr.GetAnimation("IdleLeft");
+                    RigidBody.Velocity.Y = 0.0f;
                 }
-            }
-
-            if (Game.Win.GetKey(KeyCode.W) || Game.Win.GetKey(KeyCode.Up))
-            {
-                if (isAttacking)
-                {
-                    return;
-                }
-
-                MovingUp();
-            }
-            else if (Game.Win.GetKey(KeyCode.S) || Game.Win.GetKey(KeyCode.Down))
-            {
-                if (isAttacking)
-                {
-                    return;
-                }
-
-                MovingDown();
-            }
-            else
-            {
-                RigidBody.Velocity.Y = 0.0f;
-
-
-                if (direction == Direction.DOWN)
-                {
-                    animation = GfxMgr.GetAnimation("IdleDown");
-                }
-                else if (direction == Direction.UP)
-                {
-                    animation = GfxMgr.GetAnimation("IdleUp");
-                }
-
             }
 
             if (RigidBody.Velocity.X != 0 || RigidBody.Velocity.Y != 0)
@@ -102,13 +67,18 @@ namespace PourMeSomePuree
 
             if (Game.Win.GetKey(KeyCode.Space))
             {
-                Attack();
+                if (!isAttacking || attackAnimation.IsFinished == true)
+                {
+                    Attack();
+                    attackAnimation.Start();
+                    isAttacking = true;
+                }
             }
             else 
             {
                 isAttacking = false;
             }
-            
+
         }
 
         private void MovingRight()
@@ -116,84 +86,128 @@ namespace PourMeSomePuree
 
             RigidBody.Velocity.X = maxSpeed;
             direction = Direction.RIGHT;
-            animation = GfxMgr.GetAnimation("Right");
         }
 
         private void MovingLeft()
         {
             RigidBody.Velocity.X = -maxSpeed;
             direction = Direction.LEFT;
-            animation = GfxMgr.GetAnimation("Left");
         }
 
         private void MovingDown()
         {
             RigidBody.Velocity.Y = maxSpeed;
             direction = Direction.DOWN;
-            animation = GfxMgr.GetAnimation("Down");
         }
 
         private void MovingUp()
         {
             RigidBody.Velocity.Y = -maxSpeed;
             direction = Direction.UP;
-            animation = GfxMgr.GetAnimation("Up");
         }
 
         public override void OnCollide(GameObject other) { }
-
-        /*public override void Update()
-        {
-            //animation.Update();
-        }*/
-
-        /*public override void Draw()
-        {
-            //sprite.DrawTexture(texture, (int)offSet.X + animation.XOffset, (int)offSet.Y + animation.YOffset, 64, 64);
-            //sprite.DrawTexture(texture);
-        }*/
 
         protected override void Attack()
         {
             switch (direction)
             {
                 case Direction.DOWN:
-                    animation = GfxMgr.GetAnimation("AttackDown");
+                    attackAnimation = GfxMgr.GetAnimation("AttackDown");
                     break;
                 case Direction.UP:
-                    animation = GfxMgr.GetAnimation("AttackUp");
+                    attackAnimation = GfxMgr.GetAnimation("AttackUp");
                     break;
                 case Direction.RIGHT:
-                    animation = GfxMgr.GetAnimation("AttackRight");
+                    attackAnimation = GfxMgr.GetAnimation("AttackRight");
                     break;
                 case Direction.LEFT:
-                    animation = GfxMgr.GetAnimation("AttackLeft");
+                    attackAnimation = GfxMgr.GetAnimation("AttackLeft");
                     break;
-            }
-
-            if (!isAttacking)
-            {
-                isAttacking = true;
-            }
-            else if (isAttacking)
-            {
-                isAttacking = false;
             }
         }
 
+        public void UpdateAnimation(Vector2 velocity)
+        {
+            if ((isAttacking == true || attackAnimation.IsFinished == true) && velocity == Vector2.Zero)
+            {
+                switch (direction)
+                {
+                    case Direction.DOWN:
+                        animation = GfxMgr.GetAnimation("IdleDown");
+                        break;
+                    case Direction.UP:
+                        animation = GfxMgr.GetAnimation("IdleUp");
+                        break;
+                    case Direction.RIGHT:
+                        animation = GfxMgr.GetAnimation("IdleRight");
+                        break;
+                    case Direction.LEFT:
+                        animation = GfxMgr.GetAnimation("IdleLeft");
+                        break;
+                }
+            }
+            else if ((isAttacking == true || attackAnimation.IsFinished == true) && velocity != Vector2.Zero)
+            {
+                switch (direction)
+                {
+                    case Direction.DOWN:
+                        animation = GfxMgr.GetAnimation("Down");
+                        break;
+                    case Direction.UP:
+                        animation = GfxMgr.GetAnimation("Up");
+                        break;
+                    case Direction.RIGHT:
+                        animation = GfxMgr.GetAnimation("Right");
+                        break;
+                    case Direction.LEFT:
+                        animation = GfxMgr.GetAnimation("Left");
+                        break;
+                }
+            }
+            #region ANIMATIONATTACKMK1
+            //else
+            //{
+            //    switch (direction)
+            //    {
+            //        case Direction.DOWN:
+            //            attackAnimation = GfxMgr.GetAnimation("AttackDown");
+            //            break;
+            //        case Direction.UP:
+            //            attackAnimation = GfxMgr.GetAnimation("AttackUp");
+            //            break;
+            //        case Direction.RIGHT:
+            //            attackAnimation = GfxMgr.GetAnimation("AttackRight");
+            //            break;
+            //        case Direction.LEFT:
+            //            attackAnimation = GfxMgr.GetAnimation("AttackLeft");
+            //            break;
+            //    }
+            //} 
+            #endregion
+        }
         public override void Update()
         {
-            base.Update();
-            animation.Update();
-            animation.Start();
+            UpdateAnimation(RigidBody.Velocity);
 
+            animation.Start();
+            animation.Update();
+
+            attackAnimation.Update();
         }
 
 
 
         public override void Draw()
         {
-            sprite.DrawTexture(texture, animation.XOffset, animation.YOffset, animation.FrameWidth, animation.FrameHeight);
+            if (isAttacking || attackAnimation.IsFinished == false)
+            {
+                sprite.DrawTexture(texture, attackAnimation.XOffset, attackAnimation.YOffset, attackAnimation.FrameWidth, attackAnimation.FrameHeight);
+            }
+            else
+            {
+                sprite.DrawTexture(texture, animation.XOffset, animation.YOffset, animation.FrameWidth, animation.FrameHeight);
+            }
         }
 
 
