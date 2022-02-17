@@ -9,22 +9,42 @@ using OpenTK;
 
 namespace PourMeSomePuree
 {
-     class AudioMgr
+     static class AudioMgr
     {
-        AudioSource bgSource = new AudioSource();
-        AudioClip bgMusic = new AudioClip("Assets/Audio/Horde_theme.ogg");
-        
+        private static Dictionary<string, Texture> sounds;
 
-        public void Input()
+        static AudioMgr()
         {
-            bgSource.Position = new Vector3(Game.Win.Width * 0.5f, Game.Win.Height * 0.5f, 0.0f);
-
-            bgSource.Stream(bgMusic, Game.Win.DeltaTime);
+            sounds = new Dictionary<string, Texture>();
         }
 
-        public void Update()
+        public static Texture AddSounds(string name, string path)
         {
+            Texture s = new Texture(path);
 
+            if (s != null)
+            {
+                sounds[name] = s;
+            }
+
+            return s;
+        }
+
+        public static Texture GetSounds(string name)
+        {
+            Texture s = null;
+
+            if (sounds.ContainsKey(name))
+            {
+                s = sounds[name];
+            }
+
+            return s;
+        }
+
+        public static void ClearAll()
+        {
+            sounds.Clear();
         }
 
     }

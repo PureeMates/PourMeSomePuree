@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Aiv.Fast2D;
 using OpenTK;
+using Aiv.Audio;
 
 namespace PourMeSomePuree
 {
@@ -12,6 +13,9 @@ namespace PourMeSomePuree
     {
         private int width;
         private int height;
+
+        AudioSource bgSource = new AudioSource();
+        AudioClip bgMusic = new AudioClip("Assets/Audio/Horde_theme.ogg");
 
         public Background() : base("background")
         {
@@ -51,6 +55,11 @@ namespace PourMeSomePuree
             {
                 other.Position = new Vector2(other.Position.X, bgCollider.DownPos - other.HalfHeight);
             }
+        }
+
+        public void Input()     //audio
+        {
+            bgSource.Stream(bgMusic, Game.Win.DeltaTime);
         }
     }
 }
