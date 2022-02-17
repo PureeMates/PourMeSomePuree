@@ -74,3 +74,4 @@ Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\Ass
 Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Audio\Sound_Coin.wav
 Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Audio\Sound_sword_attack.mp3
 Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Audio\Sound_sword_melee.wav
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\obj\Debug\PourMeSomePuree.csproj.AssemblyReference.cache

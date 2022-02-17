@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Aiv.Fast2D;
 using OpenTK;
+using Aiv.Audio;
 
 namespace PourMeSomePuree
 {
@@ -16,6 +17,9 @@ namespace PourMeSomePuree
         //private bool isSwordPressed;
         //private bool isAttacking;
         //private Vector2 offSet;
+
+        AudioSource playerSource= new AudioSource();
+        AudioClip playerAttack = new AudioClip("Assets/Audio/Sound_sword_attack.mp3");
 
         public Player() : base("player", 64, 64)
         {
@@ -69,6 +73,13 @@ namespace PourMeSomePuree
             {
                 Attack();
             }
+
+            // AUDIO
+            if (Game.Win.GetKey(KeyCode.Space))     // <- aggiungere attacco all'enemy
+            {
+                playerSource.Stream(playerAttack, Game.Win.DeltaTime);
+            }
+            // fare attacco melee
         }
 
         private bool MovingRight()
