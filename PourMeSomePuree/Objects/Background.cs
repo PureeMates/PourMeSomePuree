@@ -13,10 +13,7 @@ namespace PourMeSomePuree
     {
         private int width;
         private int height;
-
-        AudioSource bgSource = new AudioSource();
-        AudioClip bgMusic = new AudioClip("Assets/Audio/Horde_theme.ogg");
-
+        
         public Background() : base("background")
         {
             width = 1070;
@@ -30,6 +27,10 @@ namespace PourMeSomePuree
             RigidBody.Collider = CollidersFactory.CreateInvertedBoxFor(this, width, height);
             RigidBody.Type = RigidBodyType.Background;
             RigidBody.AddCollisionType(RigidBodyType.Player);
+
+            audioSource = new AudioSource();
+            audioSource.Volume = 0.06f; 
+            audioClip = AudioMgr.GetClip("background");
 
             IsActive = true;
         }
@@ -57,9 +58,9 @@ namespace PourMeSomePuree
             }
         }
 
-        public void Input()     //audio
+        public override void Update()
         {
-            bgSource.Stream(bgMusic, Game.Win.DeltaTime);
+            audioSource.Stream(audioClip, Game.DeltaTime);
         }
     }
 }

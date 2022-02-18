@@ -16,35 +16,20 @@ namespace PourMeSomePuree
             sprite.scale = new Vector2(1.75f);
             Position = new Vector2(Game.Win.Width * 0.5f, Game.Win.Height * 0.5f);
             maxSpeed = 200.0f;
-            IsActive = true;
+
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
             RigidBody.Type = RigidBodyType.Player;
             RigidBody.AddCollisionType(RigidBodyType.Background);
-            LoadAnimations();
+
+            AnimationStorage.LoadPlayerAnimations();
             movementAnimation = GfxMgr.GetAnimation("down");
             attackAnimation = GfxMgr.GetAnimation("attackDown");
             actualAnimation = movementAnimation;
-        }
 
-        private void LoadAnimations()
-        {
-            //when player is moving
-            GfxMgr.AddAnimation("down", 15, 4, 64, 64, 1, 1);
-            GfxMgr.AddAnimation("up", 15, 4, 64, 64, 1, 2);
-            GfxMgr.AddAnimation("right", 15, 4, 64, 64, 1, 3);
-            GfxMgr.AddAnimation("left", 15, 4, 64, 64, 1, 4);
-
-            //When Player stop
-            GfxMgr.AddAnimation("idleDown", 15, 1, 64, 64, 1, 1);
-            GfxMgr.AddAnimation("idleUp", 15, 1, 64, 64, 1, 2);
-            GfxMgr.AddAnimation("idleRight", 15, 1, 64, 64, 1, 3);
-            GfxMgr.AddAnimation("idleLeft", 15, 1, 64, 64, 1, 4);
-
-            //when Player is attacking
-            GfxMgr.AddAnimation("attackDown", 15, 4, 64, 64, 5, 1, false);
-            GfxMgr.AddAnimation("attackUp", 15, 4, 64, 64, 5, 2, false);
-            GfxMgr.AddAnimation("attackRight", 15, 4, 64, 64, 5, 3, false);
-            GfxMgr.AddAnimation("attackLeft", 15, 4, 64, 64, 5, 4, false);
+            audioSource.Volume = 0.25f;
+            audioClip = AudioMgr.GetClip("sword");
+            
+            IsActive = true;
         }
 
         public void Input()
@@ -97,18 +82,25 @@ namespace PourMeSomePuree
                 movementAnimation.Stop();
             }
         }
-
         public override void Update()
         {
             if(attackAnimation.IsPlaying)
             {
                 actualAnimation = attackAnimation;
+                if((attackAnimation.CurrentFrame == 2) && !audioSource.IsPlaying)
+                {
+                    audioSource.Play(audioClip);
+                }
             }
             else
             {
                 actualAnimation = movementAnimation;
             }
             base.Update();
+        }
+        public override void Draw()
+        {
+            sprite.DrawTexture(texture, actualAnimation.XOffset, actualAnimation.YOffset, actualAnimation.FrameWidth, actualAnimation.FrameHeight);
         }
 
         private void MovingRight()
@@ -119,7 +111,6 @@ namespace PourMeSomePuree
             movementAnimation = GfxMgr.GetAnimation("right");
             movementAnimation.Start();
         }
-
         private void MovingLeft()
         {
             isMoving = true;
@@ -128,7 +119,6 @@ namespace PourMeSomePuree
             movementAnimation = GfxMgr.GetAnimation("left");
             movementAnimation.Start(); 
         }
-
         private void MovingDown()
         {
             isMoving = true;
@@ -137,7 +127,6 @@ namespace PourMeSomePuree
             movementAnimation = GfxMgr.GetAnimation("down");
             movementAnimation.Start(); 
         }
-
         private void MovingUp()
         {
             isMoving = true;
@@ -170,11 +159,6 @@ namespace PourMeSomePuree
             }
 
             attackAnimation.Start();
-        }
-
-        public override void Draw()
-        {
-            sprite.DrawTexture(texture, actualAnimation.XOffset, actualAnimation.YOffset, actualAnimation.FrameWidth, actualAnimation.FrameHeight);
         }
     }
 }

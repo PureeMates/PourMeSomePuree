@@ -14,6 +14,7 @@ namespace PourMeSomePuree
         private static Window window;
         private static Background background;
         private static Player player;
+        private static AudioDevice playerEar;
 
         public static Window Win { get { return window; } }
         public static float DeltaTime { get { return Win.DeltaTime; } }
@@ -22,7 +23,10 @@ namespace PourMeSomePuree
         {
             window = new Window(1280, 720, "PourMeSomePuree");
             window.SetVSync(false);
+
             LoadAssets();
+            LoadAudio();
+
             background = new Background();
             player = new Player();
         }
@@ -35,20 +39,20 @@ namespace PourMeSomePuree
 
                 //INPUT
                 Quit();
-                background.Input();     //new
                 player.Input();
 
                 //UPDATE
                 UpdateMgr.Update();
                 PhysicsMgr.Update();
 
+                playerEar.Position = new Vector3(player.Position.X, player.Position.Y, 0.0f);
 
                 //COLLISIONS
                 PhysicsMgr.CheckCollision();
 
                 //DRAW
                 DrawMgr.Draw();
-                DebugMgr.Draw();
+                //DebugMgr.Draw();
 
                 window.Update();
             }
@@ -64,9 +68,17 @@ namespace PourMeSomePuree
 
         private static void LoadAssets()
         {
-            GfxMgr.AddTexture("background", "Assets/Background1.png");
-            GfxMgr.AddTexture("player", "Assets/Character_SpriteSheet.png");
-            GfxMgr.AddTexture("enemy", "Assets/Squelette_SpriteSheet.png");
+            GfxMgr.AddTexture("background", "Assets/Graphic/Background_Tiles/Background1.png");
+            GfxMgr.AddTexture("player", "Assets/Graphic/Player/Character_SpriteSheet.png");
+            GfxMgr.AddTexture("enemy", "Assets/Graphic/Enemy/Squelette_SpriteSheet.png");
+        }
+        private static void LoadAudio()
+        {
+            playerEar = new AudioDevice();
+
+            AudioMgr.AddClip("background", "Assets/Audio/Horde_theme.ogg");
+            AudioMgr.AddClip("coin", "Assets/Audio/Sound_Coin.ogg");
+            AudioMgr.AddClip("sword", "Assets/Audio/Sound_sword_melee.ogg");
         }
     }
 }

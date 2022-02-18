@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenTK;
+using Aiv.Audio;
 
 namespace PourMeSomePuree
 {
@@ -28,6 +29,8 @@ namespace PourMeSomePuree
         {
             RigidBody = new RigidBody(this);
             maxEnergy = 100;
+
+            audioSource = new AudioSource();
         }
 
         public override void Update()

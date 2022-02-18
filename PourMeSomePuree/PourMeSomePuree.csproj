@@ -74,8 +74,9 @@
     <Compile Include="Engine\Physics\Colliders\CircleCollider.cs" />
     <Compile Include="Engine\Physics\Colliders\CircleColliderInverted.cs" />
     <Compile Include="Engine\Physics\Colliders\Collider.cs" />
+    <Compile Include="Storage\AnimationStorage.cs" />
     <Compile Include="Utility\CollidersFactory.cs" />
-    <Compile Include="Game.cs" />
+    <Compile Include="Game\Game.cs" />
     <Compile Include="Objects\GameObject.cs" />
     <Compile Include="Managers\GfxMgr.cs" />
     <Compile Include="Managers\PhysicsMgr.cs" />
@@ -93,67 +94,70 @@
     <Content Include="Assets\Audio\Horde_theme.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Audio\Sound_Coin.wav">
+    <Content Include="Assets\Audio\Sound_Coin.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Audio\Sound_sword_attack.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Audio\Sound_sword_melee.wav">
+    <Content Include="Assets\Audio\Sound_sword_melee.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Background1.png">
+    <Content Include="Assets\Graphic\Background_Tiles\Background1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Character.png">
+    <Content Include="Assets\Graphic\Fonts\comics.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Character_SpriteSheet.png">
+    <Content Include="Assets\Graphic\Player\Character.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Character_SpriteSheet_Block_hurt.png">
+    <Content Include="Assets\Graphic\Player\Character_SpriteSheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Chest_SpriteSheet.png">
+    <Content Include="Assets\Graphic\Player\Character_SpriteSheet_Block_hurt.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Door.png">
+    <Content Include="Assets\Graphic\Objects\Chest_SpriteSheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\DoorGrid.png">
+    <Content Include="Assets\Graphic\Objects\Door.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\HUD.png">
+    <Content Include="Assets\Graphic\Objects\DoorGrid.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\HUD_Mask.png">
+    <Content Include="Assets\Graphic\HUD\HUD.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Jar_SpriteSheet.png">
+    <Content Include="Assets\Graphic\HUD\HUD_Mask.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\PetitePieceShadow_SpriteSheet.png">
+    <Content Include="Assets\Graphic\Objects\Jar_SpriteSheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\PetitePiece_SpriteSheet.png">
+    <Content Include="Assets\Graphic\Objects\PetitePieceShadow_SpriteSheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\PieceHUD.png">
+    <Content Include="Assets\Graphic\Objects\PetitePiece_SpriteSheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Piece_HUD_SpriteSheet.png">
+    <Content Include="Assets\Graphic\HUD\PieceHUD.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Portrait.png">
+    <Content Include="Assets\Graphic\HUD\Piece_HUD_SpriteSheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Squelette_SpriteSheet.png">
+    <Content Include="Assets\Graphic\HUD\Portrait.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Squelette_SpriteSheet_Hurt.png">
+    <Content Include="Assets\Graphic\Enemy\Squelette_SpriteSheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Tileset.png">
+    <Content Include="Assets\Graphic\Enemy\Squelette_SpriteSheet_Hurt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Graphic\Background_Tiles\Tileset.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

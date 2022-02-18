@@ -5,47 +5,45 @@ using System.Text;
 using System.Threading.Tasks;
 using Aiv.Fast2D;
 using Aiv.Audio;
-using OpenTK;
 
 namespace PourMeSomePuree
 {
-     static class AudioMgr
+    static class AudioMgr
     {
-        private static Dictionary<string, Texture> sounds;
+        private static Dictionary<string, AudioClip> clips;
 
         static AudioMgr()
         {
-            sounds = new Dictionary<string, Texture>();
+            clips = new Dictionary<string, AudioClip>();
         }
 
-        public static Texture AddSounds(string name, string path)
+        public static AudioClip AddClip(string name, string path)
         {
-            Texture s = new Texture(path);
+            AudioClip c = new AudioClip(path);
 
-            if (s != null)
+            if (c != null)
             {
-                sounds[name] = s;
+                clips[name] = c;
             }
 
-            return s;
+            return c;
         }
 
-        public static Texture GetSounds(string name)
+        public static AudioClip GetClip(string name)
         {
-            Texture s = null;
+            AudioClip c = null;
 
-            if (sounds.ContainsKey(name))
+            if (clips.ContainsKey(name))
             {
-                s = sounds[name];
+                c = clips[name];
             }
 
-            return s;
+            return c;
         }
 
         public static void ClearAll()
         {
-            sounds.Clear();
+            clips.Clear();
         }
-
     }
 }

@@ -37,5 +37,10 @@ namespace PourMeSomePuree
                 }
             }
         }
+
+        protected override void Attack()
+        {
+            
+        }
     }
 }

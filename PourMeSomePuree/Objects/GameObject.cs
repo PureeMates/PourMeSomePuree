@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Aiv.Fast2D;
 using OpenTK;
+using Aiv.Audio;
 
 namespace PourMeSomePuree
 {
@@ -12,7 +13,9 @@ namespace PourMeSomePuree
     {
         protected Sprite sprite;
         protected Texture texture;
-        protected Texture sounds;
+
+        protected AudioSource audioSource;
+        protected AudioClip audioClip;
 
         public RigidBody RigidBody;
         public bool IsActive;
@@ -25,7 +28,6 @@ namespace PourMeSomePuree
         public GameObject(string textureName, int spriteWidth = 0, int spriteHeight = 0)
         {
             texture = GfxMgr.GetTexture(textureName);
-            sounds = AudioMgr.GetSounds(textureName);
 
             int spriteW = spriteWidth != 0 ? spriteWidth : texture.Width;
             int spriteH = spriteHeight != 0 ? spriteHeight : texture.Height;
