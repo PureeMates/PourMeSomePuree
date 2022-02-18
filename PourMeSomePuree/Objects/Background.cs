@@ -28,10 +28,6 @@ namespace PourMeSomePuree
             RigidBody.Type = RigidBodyType.Background;
             RigidBody.AddCollisionType(RigidBodyType.Player);
 
-            audioSource = new AudioSource();
-            audioSource.Volume = 0.06f; 
-            audioClip = AudioMgr.GetClip("background");
-
             IsActive = true;
         }
 
@@ -56,11 +52,6 @@ namespace PourMeSomePuree
             {
                 other.Position = new Vector2(other.Position.X, bgCollider.DownPos - other.HalfHeight);
             }
-        }
-
-        public override void Update()
-        {
-            audioSource.Stream(audioClip, Game.DeltaTime);
         }
     }
 }

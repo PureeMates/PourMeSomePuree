@@ -16,6 +16,8 @@ namespace PourMeSomePuree
             sprite.scale = new Vector2(1.75f);
             Position = new Vector2(Game.Win.Width * 0.5f, Game.Win.Height * 0.5f);
             maxSpeed = 200.0f;
+            maxEnergy = 100;
+            Restore();
 
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
             RigidBody.Type = RigidBodyType.Player;
@@ -136,8 +138,6 @@ namespace PourMeSomePuree
             movementAnimation.Start(); 
         }
 
-        public override void OnCollide(GameObject other) { }
-
         protected override void Attack()
         {
             isAttackPressed = true;
@@ -159,6 +159,11 @@ namespace PourMeSomePuree
             }
 
             attackAnimation.Start();
+        }
+
+        public override void OnDie()
+        {
+            base.Destroy();
         }
     }
 }

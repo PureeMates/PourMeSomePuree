@@ -12,73 +12,56 @@ namespace PourMeSomePuree
     static class Game
     {
         private static Window window;
-        private static Background background;
-        private static Player player;
-        private static AudioDevice playerEar;
+        private static PlayScene playScene;
+
+        private static AudioDevice playerEar; 
+        private static AudioSource bgAudio;
+        private static AudioClip bgAudioClip;
 
         public static Window Win { get { return window; } }
         public static float DeltaTime { get { return Win.DeltaTime; } }
+        public static Vector3 PlayerEarPosition { get { return playerEar.Position; } set { playerEar.Position = value; } }
 
         public static void Init()
         {
+            //CANVAS
             window = new Window(1280, 720, "PourMeSomePuree");
             window.SetVSync(false);
 
-            LoadAssets();
-            LoadAudio();
+            //BACKGROUND AUDIO
+            playerEar = new AudioDevice();
+            bgAudio = new AudioSource();
+            bgAudio.Volume = 0.06f;
+            bgAudioClip = AudioMgr.AddClip("background", "Assets/Audio/Horde_theme.ogg");
 
-            background = new Background();
-            player = new Player();
+            //SCENES
+            //TitleScene titleScene = new TitleScene("");
+            playScene = new PlayScene();
+            //GameOverScene gameOverScene = new GameOverScene();
         }
-        
+
         public static void Play()
         {
+            SceneMgr.Start();
+
             while (window.IsOpened)
             {
                 window.SetTitle($"FPS: {1.0f / DeltaTime}");
 
                 //INPUT
-                Quit();
-                player.Input();
+                SceneMgr.CurrentScene.Input();
 
                 //UPDATE
-                UpdateMgr.Update();
-                PhysicsMgr.Update();
+                bgAudio.Stream(bgAudioClip, DeltaTime);
 
-                playerEar.Position = new Vector3(player.Position.X, player.Position.Y, 0.0f);
-
-                //COLLISIONS
-                PhysicsMgr.CheckCollision();
+                SceneMgr.Update();
+                SceneMgr.CurrentScene.Update();
 
                 //DRAW
-                DrawMgr.Draw();
-                //DebugMgr.Draw();
+                SceneMgr.CurrentScene.Draw();
 
                 window.Update();
             }
-        }
-
-        private static void Quit()
-        {
-            if(window.GetKey(KeyCode.Esc))
-            {
-                window.Exit();
-            }
-        }
-
-        private static void LoadAssets()
-        {
-            GfxMgr.AddTexture("background", "Assets/Graphic/Background_Tiles/Background1.png");
-            GfxMgr.AddTexture("player", "Assets/Graphic/Player/Character_SpriteSheet.png");
-            GfxMgr.AddTexture("enemy", "Assets/Graphic/Enemy/Squelette_SpriteSheet.png");
-        }
-        private static void LoadAudio()
-        {
-            playerEar = new AudioDevice();
-
-            AudioMgr.AddClip("background", "Assets/Audio/Horde_theme.ogg");
-            AudioMgr.AddClip("coin", "Assets/Audio/Sound_Coin.ogg");
-            AudioMgr.AddClip("sword", "Assets/Audio/Sound_sword_melee.ogg");
         }
     }
 }

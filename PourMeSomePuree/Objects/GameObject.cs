@@ -11,8 +11,8 @@ namespace PourMeSomePuree
 {
     class GameObject : I_Updatable, I_Drawable
     {
-        protected Sprite sprite;
         protected Texture texture;
+        protected Sprite sprite;
 
         protected AudioSource audioSource;
         protected AudioClip audioClip;
@@ -40,12 +40,23 @@ namespace PourMeSomePuree
         }
 
         public virtual void Update() { }
-
-        public virtual void OnCollide(GameObject other) { }
-
         public virtual void Draw()
         {
             sprite.DrawTexture(texture);
         }
+
+        public virtual void OnCollide(GameObject other) { }
+
+        public virtual void Destroy()
+        {
+            texture = null;
+            sprite = null;
+            audioSource.Stop();
+            audioSource = null;
+            audioClip = null;
+            RigidBody = null;
+        }
+
+        public virtual void OnDie() { }
     }
 }

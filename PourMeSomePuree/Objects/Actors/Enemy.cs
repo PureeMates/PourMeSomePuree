@@ -15,6 +15,8 @@ namespace PourMeSomePuree
         public Enemy() : base ("enemy")
         {
             maxSpeed = 170;
+            maxEnergy = 100;
+            Restore();
 
             RigidBody.Velocity.X = maxSpeed;
             RigidBody.Velocity.Y = maxSpeed;

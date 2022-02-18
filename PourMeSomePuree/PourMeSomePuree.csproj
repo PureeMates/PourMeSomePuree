@@ -62,8 +62,13 @@
     <Compile Include="Engine\Interfaces\I_Updatable.cs" />
     <Compile Include="Engine\Physics\Colliders\BoxCollider.cs" />
     <Compile Include="Engine\Physics\Colliders\BoxColliderInverted.cs" />
+    <Compile Include="Game\Scenes\GameOverScene.cs" />
+    <Compile Include="Game\Scenes\PlayScene.cs" />
+    <Compile Include="Game\Scenes\Scene.cs" />
+    <Compile Include="Game\Scenes\TitleScene.cs" />
     <Compile Include="Managers\DebugMgr.cs" />
     <Compile Include="Managers\DrawMgr.cs" />
+    <Compile Include="Managers\SceneMgr.cs" />
     <Compile Include="Managers\UpdateMgr.cs" />
     <Compile Include="Objects\Actors\Actor.cs" />
     <Compile Include="Engine\Animation.cs" />

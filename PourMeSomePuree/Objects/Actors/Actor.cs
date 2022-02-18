@@ -28,8 +28,6 @@ namespace PourMeSomePuree
         public Actor(string textureName, int w = 0, int h = 0) : base (textureName, w, h)
         {
             RigidBody = new RigidBody(this);
-            maxEnergy = 100;
-
             audioSource = new AudioSource();
         }
 
@@ -48,7 +46,14 @@ namespace PourMeSomePuree
             }
         }
 
-        public virtual void OnDie() { }
+        public override void Destroy()
+        {
+            actualAnimation = null;
+            movementAnimation = null;
+            attackAnimation = null;
+
+            base.Destroy();
+        }
 
         public virtual void Restore()
         {
