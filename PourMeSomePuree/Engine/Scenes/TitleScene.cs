@@ -33,6 +33,8 @@ namespace PourMeSomePuree
         {
             texture = null;
             sprite = null;
+
+            base.OnExit();
         }
 
         public override void Input()

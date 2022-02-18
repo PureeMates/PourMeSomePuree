@@ -35,12 +35,7 @@ namespace PourMeSomePuree
             player = null;
             background = null;
 
-            AudioMgr.ClearAll();
-            DebugMgr.ClearAll();
-            DrawMgr.ClearAll();
-            GfxMgr.ClearAll();
-            PhysicsMgr.ClearAll();
-            UpdateMgr.ClearAll();
+            base.OnExit();
         }
 
         public override void Input()

@@ -58,23 +58,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\GUI\Texts\Font.cs" />
+    <Compile Include="Engine\GUI\Texts\TextChar.cs" />
+    <Compile Include="Engine\GUI\Texts\TextObject.cs" />
     <Compile Include="Engine\Interfaces\I_Drawable.cs" />
     <Compile Include="Engine\Interfaces\I_Updatable.cs" />
+    <Compile Include="Engine\Managers\FontMgr.cs" />
     <Compile Include="Engine\Physics\Colliders\BoxCollider.cs" />
     <Compile Include="Engine\Physics\Colliders\BoxColliderInverted.cs" />
-    <Compile Include="Game\Scenes\GameOverScene.cs" />
-    <Compile Include="Game\Scenes\PlayScene.cs" />
-    <Compile Include="Game\Scenes\Scene.cs" />
-    <Compile Include="Game\Scenes\TitleScene.cs" />
-    <Compile Include="Managers\DebugMgr.cs" />
-    <Compile Include="Managers\DrawMgr.cs" />
-    <Compile Include="Managers\SceneMgr.cs" />
-    <Compile Include="Managers\UpdateMgr.cs" />
+    <Compile Include="Engine\Scenes\GameOverScene.cs" />
+    <Compile Include="Engine\Scenes\PlayScene.cs" />
+    <Compile Include="Engine\Scenes\Scene.cs" />
+    <Compile Include="Engine\Scenes\TitleScene.cs" />
+    <Compile Include="Engine\Managers\DebugMgr.cs" />
+    <Compile Include="Engine\Managers\DrawMgr.cs" />
+    <Compile Include="Engine\Managers\SceneMgr.cs" />
+    <Compile Include="Engine\Managers\UpdateMgr.cs" />
     <Compile Include="Objects\Actors\Actor.cs" />
     <Compile Include="Engine\Animation.cs" />
     <Compile Include="Objects\Actors\Enemy.cs" />
     <Compile Include="Objects\Actors\Player.cs" />
-    <Compile Include="Managers\AudioMgr.cs" />
+    <Compile Include="Engine\Managers\AudioMgr.cs" />
     <Compile Include="Objects\Background.cs" />
     <Compile Include="Engine\Physics\Colliders\CircleCollider.cs" />
     <Compile Include="Engine\Physics\Colliders\CircleColliderInverted.cs" />
@@ -83,8 +87,8 @@
     <Compile Include="Utility\CollidersFactory.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Objects\GameObject.cs" />
-    <Compile Include="Managers\GfxMgr.cs" />
-    <Compile Include="Managers\PhysicsMgr.cs" />
+    <Compile Include="Engine\Managers\GfxMgr.cs" />
+    <Compile Include="Engine\Managers\PhysicsMgr.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\RandomGenerator.cs" />
@@ -166,8 +170,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Engine\GUI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

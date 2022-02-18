@@ -23,6 +23,14 @@ namespace PourMeSomePuree
 
         public virtual void OnExit()
         {
+            AudioMgr.ClearAll();
+            DebugMgr.ClearAll();
+            DrawMgr.ClearAll();
+            FontMgr.ClearAll();
+            GfxMgr.ClearAll();
+            PhysicsMgr.ClearAll();
+            UpdateMgr.ClearAll();
+
             IsPlaying = false;
         }
 

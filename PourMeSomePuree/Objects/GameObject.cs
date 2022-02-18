@@ -21,6 +21,7 @@ namespace PourMeSomePuree
         public bool IsActive;
 
         public Vector2 Position { get { return sprite.position; } set { sprite.position = value; } }
+        public Vector2 Pivot { get { return sprite.pivot; } set { sprite.pivot = value; } }
 
         public float HalfWidth { get { return sprite.Width * 0.5f;} }
         public float HalfHeight { get { return sprite.Height * 0.5f;} }
