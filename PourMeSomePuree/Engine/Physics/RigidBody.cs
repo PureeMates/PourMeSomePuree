@@ -31,10 +31,7 @@ namespace PourMeSomePuree
 
         public void Update()
         {
-            if(Owner.IsActive)
-            {
-                Owner.Position += Velocity * Game.DeltaTime;
-            }
+            Owner.Position += Velocity * Game.DeltaTime;
         }
 
         public bool Collides(RigidBody other)
