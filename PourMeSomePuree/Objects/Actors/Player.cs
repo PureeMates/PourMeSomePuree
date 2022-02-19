@@ -42,86 +42,95 @@ namespace PourMeSomePuree
 
         public void Input()
         {
-            if (Game.Win.GetKey(KeyCode.Return))
+            if (IsAlive)
             {
-                if (!isReturnPressed)
+                if (Game.Win.GetKey(KeyCode.Space))
                 {
-                    AddDamage(15);
-                    Console.WriteLine("attacco");
-                }                
-            }
-            else if (isReturnPressed)
-            {
-                isReturnPressed = false;
-            }
-
-            if (Game.Win.GetKey(KeyCode.Space))
-            {
-                if (!isAttackPressed)
-                {
-                    Attack();
+                    if (!isAttackPressed)
+                    {
+                        Attack();
+                    }
                 }
-            }
-            else if (isAttackPressed)
-            {
-                isAttackPressed = false;
-            }
+                else if (isAttackPressed)
+                {
+                    isAttackPressed = false;
+                }
 
-            if (Game.Win.GetKey(KeyCode.D) || Game.Win.GetKey(KeyCode.Right))
-            {
-                MovingRight();
-            }
-            else if (Game.Win.GetKey(KeyCode.A) || Game.Win.GetKey(KeyCode.Left))
-            {
-                MovingLeft();
-            }
-            else
-            {
-                RigidBody.Velocity.X = 0.0f;
-            }
+                if (Game.Win.GetKey(KeyCode.D) || Game.Win.GetKey(KeyCode.Right))
+                {
+                    MovingRight();
+                }
+                else if (Game.Win.GetKey(KeyCode.A) || Game.Win.GetKey(KeyCode.Left))
+                {
+                    MovingLeft();
+                }
+                else
+                {
+                    RigidBody.Velocity.X = 0.0f;
+                }
 
-            if (Game.Win.GetKey(KeyCode.W) || Game.Win.GetKey(KeyCode.Up))
-            {
-                MovingUp();
-            }
-            else if (Game.Win.GetKey(KeyCode.S) || Game.Win.GetKey(KeyCode.Down))
-            {
-                MovingDown();
-            }
-            else
-            {
-                RigidBody.Velocity.Y = 0.0f;
-            }
+                if (Game.Win.GetKey(KeyCode.W) || Game.Win.GetKey(KeyCode.Up))
+                {
+                    MovingUp();
+                }
+                else if (Game.Win.GetKey(KeyCode.S) || Game.Win.GetKey(KeyCode.Down))
+                {
+                    MovingDown();
+                }
+                else
+                {
+                    RigidBody.Velocity.Y = 0.0f;
+                }
 
-            if (RigidBody.Velocity.X != 0 || RigidBody.Velocity.Y != 0)
-            {
-                RigidBody.Velocity = RigidBody.Velocity.Normalized() * maxSpeed;
-            }
-            else
-            {
-                isMoving = false;
-                movementAnimation.Stop();
+                if (RigidBody.Velocity.X != 0 || RigidBody.Velocity.Y != 0)
+                {
+                    RigidBody.Velocity = RigidBody.Velocity.Normalized() * maxSpeed;
+                }
+                else
+                {
+                    isMoving = false;
+                    movementAnimation.Stop();
+                }
+
+                if (Game.Win.GetKey(KeyCode.Return))
+                {
+                    if (!isReturnPressed)
+                    {
+                        AddDamage(15);
+                        Console.WriteLine("attacco");
+                    }
+                }
+                else if (isReturnPressed)
+                {
+                    isReturnPressed = false;
+                }
             }
         }
         public override void Update()
         {
-            if(attackAnimation.IsPlaying)
+            if (IsAlive)
             {
-                actualAnimation = attackAnimation;
-                if((attackAnimation.CurrentFrame == 2) && !audioSource.IsPlaying)
+                if (attackAnimation.IsPlaying)
                 {
-                    audioSource.Play(audioClip);
+                    actualAnimation = attackAnimation;
+                    if ((attackAnimation.CurrentFrame == 2) && !audioSource.IsPlaying)
+                    {
+                        audioSource.Play(audioClip);
+                    }
                 }
+                else
+                {
+                    actualAnimation = movementAnimation;
+                }
+                base.Update(); 
             }
-            else
-            {
-                actualAnimation = movementAnimation;
-            }
-            base.Update();
         }
         public override void Draw()
         {
-            sprite.DrawTexture(texture, actualAnimation.XOffset, actualAnimation.YOffset, actualAnimation.FrameWidth, actualAnimation.FrameHeight);
+            if (IsAlive)
+            {
+                sprite.DrawTexture(texture, actualAnimation.XOffset, actualAnimation.YOffset, actualAnimation.FrameWidth, actualAnimation.FrameHeight);
+            }
         }
 
         private void MovingRight()
@@ -182,6 +191,7 @@ namespace PourMeSomePuree
 
         public override void OnDie()
         {
+            IsActive = false;
             base.Destroy();
         }
     }

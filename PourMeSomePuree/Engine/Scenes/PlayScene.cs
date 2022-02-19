@@ -42,27 +42,43 @@ namespace PourMeSomePuree
         {
             Quit();
 
-            player.Input();
-        }
-        public override void Update()
-        {
-            if(!player.IsAlive)
+            if (player.IsAlive)
+            {
+                player.Input();
+            }
+            else
             {
                 IsPlaying = false;
             }
+        }
+        public override void Update()
+        {
+            if(player.IsAlive)
+            {
+                UpdateMgr.Update();
+                PhysicsMgr.Update();
 
-            UpdateMgr.Update();
-            PhysicsMgr.Update();
+                Game.PlayerEarPosition = new Vector3(player.Position.X, player.Position.Y, 0.0f);
 
-            Game.PlayerEarPosition = new Vector3(player.Position.X, player.Position.Y, 0.0f);
-
-            //COLLISIONS
-            PhysicsMgr.CheckCollision();
+                //COLLISIONS
+                PhysicsMgr.CheckCollision();
+            }
+            else
+            {
+                IsPlaying = false;
+            }
         }
         public override void Draw()
         {
-            DrawMgr.Draw();
-            //DebugMgr.Draw();
+            if (player.IsAlive)
+            {
+                DrawMgr.Draw();
+                //DebugMgr.Draw();
+            }
+            else
+            {
+                IsPlaying = false;
+            }
         }
 
         private void LoadAssets()

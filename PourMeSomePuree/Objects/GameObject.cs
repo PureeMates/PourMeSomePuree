@@ -26,6 +26,7 @@ namespace PourMeSomePuree
         public float HalfWidth { get { return sprite.Width * 0.5f;} }
         public float HalfHeight { get { return sprite.Height * 0.5f;} }
 
+
         public GameObject(string textureName, int spriteWidth = 0, int spriteHeight = 0)
         {
             texture = GfxMgr.GetTexture(textureName);
@@ -52,7 +53,6 @@ namespace PourMeSomePuree
         {
             texture = null;
             sprite = null;
-            audioSource.Stop();
             audioSource = null;
             audioClip = null;
             RigidBody = null;
