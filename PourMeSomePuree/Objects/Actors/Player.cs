@@ -11,13 +11,15 @@ namespace PourMeSomePuree
 {
     class Player : Actor
     {
+        private ProgressBar energyBar;
+
+        public override int Energy { get => base.Energy; set { base.Energy = value; energyBar.Scale((float)value / maxEnergy); } }
+
         public Player() : base("player", 64, 64)
         {
             sprite.scale = new Vector2(1.75f);
             Position = new Vector2(Game.Win.Width * 0.5f, Game.Win.Height * 0.5f);
             maxSpeed = 200.0f;
-            maxEnergy = 100;
-            Restore();
 
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
             RigidBody.Type = RigidBodyType.Player;
@@ -30,12 +32,29 @@ namespace PourMeSomePuree
 
             audioSource.Volume = 0.25f;
             audioClip = AudioMgr.GetClip("sword");
-            
+
+            energyBar = new ProgressBar();
+            maxEnergy = 100;
+            Restore();
+
             IsActive = true;
         }
 
         public void Input()
         {
+            if (Game.Win.GetKey(KeyCode.Return))
+            {
+                if (!isReturnPressed)
+                {
+                    AddDamage(15);
+                    Console.WriteLine("attacco");
+                }                
+            }
+            else if (isReturnPressed)
+            {
+                isReturnPressed = false;
+            }
+
             if (Game.Win.GetKey(KeyCode.Space))
             {
                 if (!isAttackPressed)

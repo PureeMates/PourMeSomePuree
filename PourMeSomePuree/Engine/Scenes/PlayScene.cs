@@ -70,6 +70,9 @@ namespace PourMeSomePuree
             GfxMgr.AddTexture("background", "Assets/Graphic/Background_Tiles/Background1.png");
             GfxMgr.AddTexture("player", "Assets/Graphic/Player/Character_SpriteSheet.png");
             GfxMgr.AddTexture("enemy", "Assets/Graphic/Enemy/Squelette_SpriteSheet.png");
+            GfxMgr.AddTexture("hudMask", "Assets/Graphic/HUD/HUD_Mask.png");
+            GfxMgr.AddTexture("hud", "Assets/Graphic/HUD/HUD.png");
+
         }
         private void LoadAudio()
         {

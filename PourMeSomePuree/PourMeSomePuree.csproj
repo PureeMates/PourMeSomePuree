@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\GUI\HUD\ProgressBar.cs" />
     <Compile Include="Engine\GUI\Texts\Font.cs" />
     <Compile Include="Engine\GUI\Texts\TextChar.cs" />
     <Compile Include="Engine\GUI\Texts\TextObject.cs" />

@@ -22,9 +22,11 @@ namespace PourMeSomePuree
         protected int maxEnergy;
         protected bool isAttackPressed;
         protected bool isMoving;
+        protected bool isReturnPressed; // DEBUG
 
+        public virtual int Energy { get { return energy; } set { energy = MathHelper.Clamp(value, 0, maxEnergy); } }
         public bool IsAlive { get { return energy > 0; } }
-
+        
         public Actor(string textureName, int w = 0, int h = 0) : base (textureName, w, h)
         {
             RigidBody = new RigidBody(this);
@@ -38,11 +40,13 @@ namespace PourMeSomePuree
 
         public virtual void AddDamage(int dmg)
         {
-            energy -= dmg;
+            isReturnPressed = true;
 
-            if (energy <= 0)
+            Energy -= dmg;
+
+            if (Energy <= 0)
             {
-                OnDie();
+                //OnDie();
             }
         }
 
@@ -57,7 +61,7 @@ namespace PourMeSomePuree
 
         public virtual void Restore()
         {
-            energy = maxEnergy;
+            Energy = maxEnergy;
         }
 
         protected virtual void Attack() { }
