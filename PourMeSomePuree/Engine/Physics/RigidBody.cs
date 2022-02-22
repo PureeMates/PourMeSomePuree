@@ -7,7 +7,7 @@ using OpenTK;
 
 namespace PourMeSomePuree
 {
-    enum RigidBodyType { Player = 1, Background = 2 }
+    enum RigidBodyType { Player = 1, Background = 2, Pot = 4 }
 
     class RigidBody
     {

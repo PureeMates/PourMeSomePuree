@@ -13,6 +13,7 @@ namespace PourMeSomePuree
     {
         private Background background;
         private Player player;
+        private Pot pot;
 
         public PlayScene() : base() { }
 
@@ -22,6 +23,7 @@ namespace PourMeSomePuree
             LoadAudio();
 
             background = new Background();
+            pot = new Pot();
             player = new Player();
 
             base.Start();
@@ -70,6 +72,7 @@ namespace PourMeSomePuree
             GfxMgr.AddTexture("background", "Assets/Graphic/Background_Tiles/Background1.png");
             GfxMgr.AddTexture("player", "Assets/Graphic/Player/Character_SpriteSheet.png");
             GfxMgr.AddTexture("enemy", "Assets/Graphic/Enemy/Squelette_SpriteSheet.png");
+            GfxMgr.AddTexture("pot", "Assets/Graphic/Objects/Jar_SpriteSheet.png");
         }
         private void LoadAudio()
         {

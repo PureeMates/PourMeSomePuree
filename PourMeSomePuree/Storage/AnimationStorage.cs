@@ -33,5 +33,10 @@ namespace PourMeSomePuree
         {
 
         }
+        public static void LoadPotAnimations()
+        {
+            GfxMgr.AddAnimation("breaking", 15, 4, 64, 64, 1, 1, false);
+        }
+
     }
 }

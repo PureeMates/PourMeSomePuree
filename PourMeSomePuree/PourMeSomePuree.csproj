@@ -83,6 +83,7 @@
     <Compile Include="Engine\Physics\Colliders\CircleCollider.cs" />
     <Compile Include="Engine\Physics\Colliders\CircleColliderInverted.cs" />
     <Compile Include="Engine\Physics\Colliders\Collider.cs" />
+    <Compile Include="Objects\Pot.cs" />
     <Compile Include="Storage\AnimationStorage.cs" />
     <Compile Include="Utility\CollidersFactory.cs" />
     <Compile Include="Game\Game.cs" />
@@ -113,6 +114,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Graphic\Background_Tiles\Background1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Graphic\Background_Tiles\Bgf.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Graphic\Fonts\comics.png">

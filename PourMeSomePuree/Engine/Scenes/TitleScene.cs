@@ -49,5 +49,10 @@ namespace PourMeSomePuree
         {
             throw new NotImplementedException();
         }
+
+        private void LoadAssets()
+        {
+            GfxMgr.AddTexture("titleBackground", "Assets / Graphic / Background_Tiles / Bgf.png");
+        }
     }
 }

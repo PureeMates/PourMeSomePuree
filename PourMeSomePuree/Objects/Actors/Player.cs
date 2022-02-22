@@ -21,7 +21,7 @@ namespace PourMeSomePuree
 
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
             RigidBody.Type = RigidBodyType.Player;
-            RigidBody.AddCollisionType(RigidBodyType.Background);
+            RigidBody.AddCollisionType(RigidBodyType.Background | RigidBodyType.Pot);
 
             AnimationStorage.LoadPlayerAnimations();
             movementAnimation = GfxMgr.GetAnimation("down");
