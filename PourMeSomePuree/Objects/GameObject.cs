@@ -20,7 +20,7 @@ namespace PourMeSomePuree
         public RigidBody RigidBody;
         public bool IsActive;
 
-        public Vector2 Position { get { return sprite.position; } set { sprite.position = value; } }
+        public virtual Vector2 Position { get { return sprite.position; } set { sprite.position = value; } }
         public Vector2 Pivot { get { return sprite.pivot; } set { sprite.pivot = value; } }
 
         public float HalfWidth { get { return sprite.Width * 0.5f;} }

@@ -11,9 +11,15 @@ namespace PourMeSomePuree
 {
     class Player : Actor
     {
-        private ProgressBar energyBar;
+        private Hud hud;
 
-        public override int Energy { get => base.Energy; set { base.Energy = value; energyBar.Scale((float)value / maxEnergy); } }
+        private int maxStamina;
+        private int stamina;
+        private int staminaAttCost;
+        private float staminaRechargeRatio;
+
+        public override int Energy { get => base.Energy; set { base.Energy = value; hud.ScaleEnergy((float)value / maxEnergy); } }
+        public int Stamina { get { return stamina; } set { stamina = value; hud.ScaleStamina((float)value / maxStamina); } }
 
         public Player() : base("player", 64, 64)
         {
@@ -33,8 +39,14 @@ namespace PourMeSomePuree
             audioSource.Volume = 0.25f;
             audioClip = AudioMgr.GetClip("sword");
 
-            energyBar = new ProgressBar();
+            hud = new Hud("hudMaskAvatar", "hudMaskEnergy", "hudMaskStamina", "portrait", new Vector2(17.5f, 17.5f), new Vector2(73.0f,16.0f), new Vector2(86.75f,34.0f), new Vector2(24.5f,17.5f));
+            hud.Position = new Vector2(10.0f, 10.0f);
+
             maxEnergy = 100;
+            maxStamina = 100;
+            staminaAttCost = 25;
+            staminaRechargeRatio = 0.2f;
+
             Restore();
 
             IsActive = true;
@@ -57,9 +69,10 @@ namespace PourMeSomePuree
 
             if (Game.Win.GetKey(KeyCode.Space))
             {
-                if (!isAttackPressed)
+                if (!isAttackPressed && stamina >= staminaAttCost)
                 {
                     Attack();
+                    Stamina -= staminaAttCost;
                 }
             }
             else if (isAttackPressed)
@@ -105,6 +118,16 @@ namespace PourMeSomePuree
         }
         public override void Update()
         {
+            if (stamina < maxStamina)
+            {
+                staminaRechargeRatio -= Game.DeltaTime;
+                if (staminaRechargeRatio <= 0.0f)
+                {
+                    staminaRechargeRatio = 0.2f;
+                    Stamina += 5;
+                }
+            }
+
             if(attackAnimation.IsPlaying)
             {
                 actualAnimation = attackAnimation;
@@ -180,9 +203,17 @@ namespace PourMeSomePuree
             attackAnimation.Start();
         }
 
+        public override void Restore()
+        {
+            Stamina = maxStamina;
+            base.Restore();
+        }
+
         public override void OnDie()
         {
             base.Destroy();
         }
+
+        
     }
 }

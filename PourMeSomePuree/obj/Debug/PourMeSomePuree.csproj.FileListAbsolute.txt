@@ -114,3 +114,6 @@ C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphi
 C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Enemy\Squelette_SpriteSheet.png
 C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Enemy\Squelette_SpriteSheet_Hurt.png
 C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\Tileset.png
+C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\HudMaskAvatar.png
+C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\HudMaskEnergyBar.png
+C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\HudMaskStaminaBar.png
