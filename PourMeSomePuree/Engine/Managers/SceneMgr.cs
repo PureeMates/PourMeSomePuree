@@ -35,6 +35,7 @@ namespace PourMeSomePuree
                     currentSceneIndex = 0;
                 }
 
+                CurrentScene.OnExit();
                 CurrentScene = scenes[currentSceneIndex];
                 CurrentScene.Start();
             }

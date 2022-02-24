@@ -54,19 +54,6 @@ namespace PourMeSomePuree
 
         public void Input()
         {
-            if (Game.Win.GetKey(KeyCode.Return))
-            {
-                if (!isReturnPressed)
-                {
-                    AddDamage(15);
-                    Console.WriteLine("attacco");
-                }                
-            }
-            else if (isReturnPressed)
-            {
-                isReturnPressed = false;
-            }
-
             if (Game.Win.GetKey(KeyCode.Space))
             {
                 if (!isAttackPressed && stamina >= staminaAttCost)
@@ -115,6 +102,19 @@ namespace PourMeSomePuree
                 isMoving = false;
                 movementAnimation.Stop();
             }
+
+            if (Game.Win.GetKey(KeyCode.Return))
+            {
+                if (!isReturnPressed)
+                {
+                    AddDamage(15);
+                    Console.WriteLine("attacco");
+                }
+            }
+            else if (isReturnPressed)
+            {
+                isReturnPressed = false;
+            }
         }
         public override void Update()
         {
@@ -131,7 +131,7 @@ namespace PourMeSomePuree
             if(attackAnimation.IsPlaying)
             {
                 actualAnimation = attackAnimation;
-                if((attackAnimation.CurrentFrame == 2) && !audioSource.IsPlaying)
+                if ((attackAnimation.CurrentFrame == 2) && !audioSource.IsPlaying)
                 {
                     audioSource.Play(audioClip);
                 }
@@ -140,7 +140,7 @@ namespace PourMeSomePuree
             {
                 actualAnimation = movementAnimation;
             }
-            base.Update();
+            base.Update(); 
         }
         public override void Draw()
         {
@@ -211,6 +211,7 @@ namespace PourMeSomePuree
 
         public override void OnDie()
         {
+            IsActive = false;
             base.Destroy();
         }
 

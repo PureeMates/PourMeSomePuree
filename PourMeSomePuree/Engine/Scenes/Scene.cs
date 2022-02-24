@@ -30,8 +30,6 @@ namespace PourMeSomePuree
             GfxMgr.ClearAll();
             PhysicsMgr.ClearAll();
             UpdateMgr.ClearAll();
-
-            IsPlaying = false;
         }
 
         public abstract void Input();

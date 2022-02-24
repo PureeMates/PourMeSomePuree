@@ -46,7 +46,7 @@ namespace PourMeSomePuree
 
             if (Energy <= 0)
             {
-                //OnDie();
+                OnDie();
             }
         }
 
