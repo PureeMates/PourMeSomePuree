@@ -45,6 +45,10 @@ namespace PourMeSomePuree
         {
             sprite.DrawTexture(texture);
         }
+        public virtual void Draw(Texture text)
+        {
+            sprite.DrawTexture(text);
+        }
 
         public virtual void OnCollide(GameObject other) { }
 

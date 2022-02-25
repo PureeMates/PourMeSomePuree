@@ -11,6 +11,12 @@ namespace PourMeSomePuree
 {
     class Player : Actor
     {
+        protected Direction collidesDirection;
+        public bool CanMoveUp { get; set; }
+        public bool CanMoveRight { get; set; }
+        public bool CanMoveLeft { get; set; }
+        public bool CanMoveDown { get; set; }
+
         public Player() : base("player", 64, 64)
         {
             sprite.scale = new Vector2(1.75f);
@@ -18,10 +24,14 @@ namespace PourMeSomePuree
             maxSpeed = 200.0f;
             maxEnergy = 100;
             Restore();
-
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
             RigidBody.Type = RigidBodyType.Player;
             RigidBody.AddCollisionType(RigidBodyType.Background | RigidBodyType.Pot);
+
+            CanMoveUp = true;
+            CanMoveDown = true;
+            CanMoveLeft = true;
+            CanMoveRight = true;
 
             AnimationStorage.LoadPlayerAnimations();
             movementAnimation = GfxMgr.GetAnimation("down");
@@ -48,30 +58,34 @@ namespace PourMeSomePuree
                 isAttackPressed = false;
             }
 
-            if (Game.Win.GetKey(KeyCode.D) || Game.Win.GetKey(KeyCode.Right))
+            if ((Game.Win.GetKey(KeyCode.D) || Game.Win.GetKey(KeyCode.Right)) && CanMoveRight)
             {
                 MovingRight();
             }
-            else if (Game.Win.GetKey(KeyCode.A) || Game.Win.GetKey(KeyCode.Left))
+            else if ((Game.Win.GetKey(KeyCode.A) || Game.Win.GetKey(KeyCode.Left)) && CanMoveLeft)
             {
                 MovingLeft();
             }
             else
             {
-                RigidBody.Velocity.X = 0.0f;
+                RigidBody.Velocity.X = 0.0f; 
+                CanMoveRight = true;
+                CanMoveLeft = true;
             }
 
-            if (Game.Win.GetKey(KeyCode.W) || Game.Win.GetKey(KeyCode.Up))
+            if ((Game.Win.GetKey(KeyCode.W) || Game.Win.GetKey(KeyCode.Up)) && CanMoveUp)
             {
                 MovingUp();
             }
-            else if (Game.Win.GetKey(KeyCode.S) || Game.Win.GetKey(KeyCode.Down))
+            else if ((Game.Win.GetKey(KeyCode.S) || Game.Win.GetKey(KeyCode.Down)) && CanMoveDown)
             {
                 MovingDown();
             }
             else
             {
                 RigidBody.Velocity.Y = 0.0f;
+                CanMoveDown = true;
+                CanMoveUp = true;
             }
 
             if (RigidBody.Velocity.X != 0 || RigidBody.Velocity.Y != 0)
@@ -161,6 +175,14 @@ namespace PourMeSomePuree
             attackAnimation.Start();
         }
 
+        public override void OnCollide(GameObject other)
+        {
+            if (other is Pot)
+            {
+                ((Pot)other).AddHealth(this);
+            }
+            
+        }
         public override void OnDie()
         {
             base.Destroy();

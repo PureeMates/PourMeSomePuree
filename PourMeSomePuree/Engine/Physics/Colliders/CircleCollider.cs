@@ -9,7 +9,6 @@ namespace PourMeSomePuree
 {
     class CircleCollider : Collider
     {
-        private Sprite sprite;
         private float radius;
 
         public float Radius { get { return radius; } }
@@ -17,9 +16,7 @@ namespace PourMeSomePuree
         public CircleCollider(RigidBody rb, float radius) : base(rb)
         {
             this.radius = radius;
-            sprite = new Sprite(radius * 2, radius * 2);
-            sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
-            sprite.position = rb.Owner.Position;
+           
 
             DebugMgr.AddItem(this);
         }
@@ -48,6 +45,11 @@ namespace PourMeSomePuree
         public override bool Collides(BoxColliderInverted other)
         {
             return other.Collides(this);
+        }
+
+        public override bool Contains(Vector2 point)
+        {
+            throw new NotImplementedException();
         }
     }
 }

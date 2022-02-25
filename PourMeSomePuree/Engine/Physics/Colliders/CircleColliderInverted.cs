@@ -45,5 +45,10 @@ namespace PourMeSomePuree
         {
             return other.Collides(this);
         }
+
+        public override bool Contains(Vector2 point)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

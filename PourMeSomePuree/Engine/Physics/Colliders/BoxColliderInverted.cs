@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenTK;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -61,6 +62,11 @@ namespace PourMeSomePuree
         public override bool Collides(BoxColliderInverted other)
         {
             return true;
+        }
+
+        public override bool Contains(Vector2 point)
+        {
+            throw new NotImplementedException();
         }
     }
 }

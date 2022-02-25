@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PourMeSomePuree
 {
-    class GameOverScene : TitleScene
+    class GameOverScene : Scene
     {
-        public GameOverScene(string texturePath) : base(texturePath) { }
+        public GameOverScene() : base() { }
 
         public override void Input()
         {

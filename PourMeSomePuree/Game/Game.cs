@@ -12,6 +12,7 @@ namespace PourMeSomePuree
     static class Game
     {
         private static Window window;
+        private static TitleScene titleScene;
         private static PlayScene playScene;
 
         private static AudioDevice playerEar; 
@@ -35,7 +36,7 @@ namespace PourMeSomePuree
             bgAudioClip = AudioMgr.AddClip("background", "Assets/Audio/Horde_theme.ogg");
 
             //SCENES
-            //TitleScene titleScene = new TitleScene("");
+            titleScene = new TitleScene();
             playScene = new PlayScene();
             //GameOverScene gameOverScene = new GameOverScene();
         }
@@ -52,7 +53,7 @@ namespace PourMeSomePuree
                 SceneMgr.CurrentScene.Input();
 
                 //UPDATE
-                bgAudio.Stream(bgAudioClip, DeltaTime);
+                //bgAudio.Stream(bgAudioClip, DeltaTime); riggiungila
 
                 SceneMgr.Update();
                 SceneMgr.CurrentScene.Update();

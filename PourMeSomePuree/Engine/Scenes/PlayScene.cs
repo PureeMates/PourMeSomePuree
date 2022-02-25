@@ -22,6 +22,8 @@ namespace PourMeSomePuree
             LoadAssets();
             LoadAudio();
 
+            Game.Win.SetMouseVisible(false);
+            
             background = new Background();
             pot = new Pot();
             player = new Player();
@@ -64,7 +66,7 @@ namespace PourMeSomePuree
         public override void Draw()
         {
             DrawMgr.Draw();
-            //DebugMgr.Draw();
+            DebugMgr.Draw();
         }
 
         private void LoadAssets()

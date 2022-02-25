@@ -116,3 +116,47 @@ D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Enemy\Squ
 D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\Tileset.png
 D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\obj\Debug\PourMeSomePuree.csproj.AssemblyReference.cache
 D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\Bgf.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Audio\Horde_theme.ogg
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Audio\Sound_Coin.ogg
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Audio\Sound_sword_attack.mp3
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Audio\Sound_sword_melee.ogg
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\Background1.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Fonts\comics.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Player\Character.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Player\Character_SpriteSheet.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Player\Character_SpriteSheet_Block_hurt.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\Chest_SpriteSheet.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\Door.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\DoorGrid.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\HUD.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\HUD_Mask.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\Jar_SpriteSheet.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\PetitePieceShadow_SpriteSheet.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\PetitePiece_SpriteSheet.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\PieceHUD.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\Piece_HUD_SpriteSheet.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\Portrait.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Enemy\Squelette_SpriteSheet.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Enemy\Squelette_SpriteSheet_Hurt.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\Tileset.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\Bgf.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\PourMeSomePuree.exe.config
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\PourMeSomePuree.exe
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\PourMeSomePuree.pdb
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\aiv-audio.dll
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\aiv-fast2d.dll
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\NVorbis.dll
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\OpenTK.dll
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\System.ValueTuple.dll
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\NVorbis.xml
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\OpenTK.pdb
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\OpenTK.xml
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\System.ValueTuple.xml
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\obj\Debug\PourMeSomePuree.csproj.AssemblyReference.cache
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\obj\Debug\PourMeSomePuree.csproj.CoreCompileInputs.cache
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\obj\Debug\PourMeSomePuree.exe
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\obj\Debug\PourMeSomePuree.pdb
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\PlayButton1.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\PlayButton2.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\background2.png
+C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\bfg2.png
