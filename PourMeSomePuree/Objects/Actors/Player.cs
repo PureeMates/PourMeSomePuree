@@ -17,9 +17,12 @@ namespace PourMeSomePuree
         private int stamina;
         private int staminaAttCost;
         private float staminaRechargeRatio;
+        private int coins = 0;
 
         public override int Energy { get => base.Energy; set { base.Energy = value; hud.ScaleEnergy((float)value / maxEnergy); } }
         public int Stamina { get { return stamina; } set { stamina = value; hud.ScaleStamina((float)value / maxStamina); } }
+
+        
 
         public Player() : base("player", 64, 64)
         {
@@ -29,7 +32,8 @@ namespace PourMeSomePuree
 
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
             RigidBody.Type = RigidBodyType.Player;
-            RigidBody.AddCollisionType(RigidBodyType.Background);
+            RigidBody.AddCollisionType(RigidBodyType.Background | RigidBodyType.Coin);
+            
 
             AnimationStorage.LoadPlayerAnimations();
             movementAnimation = GfxMgr.GetAnimation("down");
@@ -140,6 +144,7 @@ namespace PourMeSomePuree
             {
                 actualAnimation = movementAnimation;
             }
+            Console.WriteLine(coins);
             base.Update(); 
         }
         public override void Draw()
@@ -213,6 +218,11 @@ namespace PourMeSomePuree
         {
             IsActive = false;
             base.Destroy();
+        }
+
+        public void AddCoin(int coin)
+        {
+            coins += coin;
         }
 
         

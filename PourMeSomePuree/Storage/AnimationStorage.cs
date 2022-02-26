@@ -33,5 +33,10 @@ namespace PourMeSomePuree
         {
 
         }
+
+        public static void LoadCoinAnimations()
+        {
+            GfxMgr.AddAnimation("rotationCoin", 15, 8, 32, 32, 1, 1);
+        }
     }
 }

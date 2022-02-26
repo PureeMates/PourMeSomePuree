@@ -84,6 +84,7 @@
     <Compile Include="Engine\Physics\Colliders\CircleCollider.cs" />
     <Compile Include="Engine\Physics\Colliders\CircleColliderInverted.cs" />
     <Compile Include="Engine\Physics\Colliders\Collider.cs" />
+    <Compile Include="Objects\Coin.cs" />
     <Compile Include="Storage\AnimationStorage.cs" />
     <Compile Include="Utility\CollidersFactory.cs" />
     <Compile Include="Game\Game.cs" />
@@ -129,6 +130,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Graphic\HUD\HudMaskStaminaBar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Graphic\Objects\coinAnimation.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Graphic\Player\Character.png">

@@ -13,6 +13,7 @@ namespace PourMeSomePuree
     {
         private Background background;
         private Player player;
+        private Coin coin;
 
         public PlayScene() : base() { }
 
@@ -23,6 +24,7 @@ namespace PourMeSomePuree
 
             background = new Background();
             player = new Player();
+            coin = new Coin();
 
             base.Start();
         }
@@ -91,6 +93,8 @@ namespace PourMeSomePuree
             GfxMgr.AddTexture("hudMaskAvatar", "Assets/Graphic/HUD/HudMaskAvatar.png");
             GfxMgr.AddTexture("hudMaskEnergy", "Assets/Graphic/HUD/HudMaskEnergyBar.png");
             GfxMgr.AddTexture("hudMaskStamina", "Assets/Graphic/HUD/HudMaskStaminaBar.png");
+            GfxMgr.AddTexture("coin", "Assets/Graphic/Objects/coinAnimation.png");
+
 
         }
         private void LoadAudio()
