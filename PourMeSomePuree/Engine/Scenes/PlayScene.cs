@@ -53,6 +53,7 @@ namespace PourMeSomePuree
             if(!player.IsAlive)
             {
                 IsPlaying = false;
+                OnExit();
             }
 
             UpdateMgr.Update();

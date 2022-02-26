@@ -160,3 +160,10 @@ C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourM
 C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\PlayButton2.png
 C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\background2.png
 C:\Users\innof\OneDrive\Desktop\Progetti AIV\ProgettiPuree\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\bfg2.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\background2.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\bfg2.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\gameOver1.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\PlayButton1.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\PlayButton2.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\textPlayAgain1.png
+D:\AIV\Lavori\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Background_Tiles\textPLayAgain2.png

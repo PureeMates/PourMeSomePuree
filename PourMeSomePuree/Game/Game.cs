@@ -14,6 +14,7 @@ namespace PourMeSomePuree
         private static Window window;
         private static TitleScene titleScene;
         private static PlayScene playScene;
+        private static GameOverScene gameOverScene;
 
         private static AudioDevice playerEar; 
         private static AudioSource bgAudio;
@@ -37,8 +38,8 @@ namespace PourMeSomePuree
 
             //SCENES
             titleScene = new TitleScene();
-            playScene = new PlayScene();
-            //GameOverScene gameOverScene = new GameOverScene();
+            //playScene = new PlayScene();
+            gameOverScene = new GameOverScene();
         }
 
         public static void Play()
