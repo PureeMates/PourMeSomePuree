@@ -49,7 +49,7 @@ namespace PourMeSomePuree
                 window.SetTitle($"FPS: {1.0f / DeltaTime}");
 
                 //INPUT
-                SceneMgr.CurrentScene.Input();
+                SceneMgr.CurrentScene.Input();                
 
                 //UPDATE
                 bgAudio.Stream(bgAudioClip, DeltaTime);
@@ -59,6 +59,7 @@ namespace PourMeSomePuree
 
                 //DRAW
                 SceneMgr.CurrentScene.Draw();
+
 
                 window.Update();
             }
