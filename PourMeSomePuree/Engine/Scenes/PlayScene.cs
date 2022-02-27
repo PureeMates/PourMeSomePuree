@@ -23,6 +23,7 @@ namespace PourMeSomePuree
 
             background = new Background();
             player = new Player();
+            Door door = new Door(0);
 
             base.Start();
         }
@@ -84,14 +85,17 @@ namespace PourMeSomePuree
         private void LoadAssets()
         {
             GfxMgr.AddTexture("background", "Assets/Graphic/Background_Tiles/Background1.png");
+
             GfxMgr.AddTexture("player", "Assets/Graphic/Player/Character_SpriteSheet.png");
-            GfxMgr.AddTexture("enemy", "Assets/Graphic/Enemy/Squelette_SpriteSheet.png");            
+            GfxMgr.AddTexture("enemy", "Assets/Graphic/Enemy/Squelette_SpriteSheet.png");     
+            
             GfxMgr.AddTexture("hud", "Assets/Graphic/HUD/HUD.png");
             GfxMgr.AddTexture("portrait", "Assets/Graphic/HUD/Portrait.png");
             GfxMgr.AddTexture("hudMaskAvatar", "Assets/Graphic/HUD/HudMaskAvatar.png");
             GfxMgr.AddTexture("hudMaskEnergy", "Assets/Graphic/HUD/HudMaskEnergyBar.png");
             GfxMgr.AddTexture("hudMaskStamina", "Assets/Graphic/HUD/HudMaskStaminaBar.png");
 
+            GfxMgr.AddTexture("door", "Assets/Graphic/Objects/Door.png");
         }
         private void LoadAudio()
         {

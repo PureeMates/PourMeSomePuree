@@ -44,7 +44,7 @@ namespace PourMeSomePuree
             return t;
         }
 
-        public static Animation AddAnimation(string name,int fps, int totFrames, int frameW, int frameH, int startCol, int startRow, bool loop = true)
+        public static Animation AddAnimation(string name,int fps, int totFrames, int frameW, int frameH, int startCol = 1, int startRow = 1, bool loop = true)
         {
             Animation a = new Animation(fps, totFrames, frameW, frameH, startCol, startRow, loop);
 
