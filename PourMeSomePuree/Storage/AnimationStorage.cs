@@ -11,27 +11,31 @@ namespace PourMeSomePuree
         public static void LoadPlayerAnimations()
         {
             //when player is moving
-            GfxMgr.AddAnimation("down", 15, 4, 64, 64, 1, 1);
-            GfxMgr.AddAnimation("up", 15, 4, 64, 64, 1, 2);
-            GfxMgr.AddAnimation("right", 15, 4, 64, 64, 1, 3);
-            GfxMgr.AddAnimation("left", 15, 4, 64, 64, 1, 4);
-
-            //When Player stop
-            GfxMgr.AddAnimation("idleDown", 15, 1, 64, 64, 1, 1);
-            GfxMgr.AddAnimation("idleUp", 15, 1, 64, 64, 1, 2);
-            GfxMgr.AddAnimation("idleRight", 15, 1, 64, 64, 1, 3);
-            GfxMgr.AddAnimation("idleLeft", 15, 1, 64, 64, 1, 4);
+            GfxMgr.AddAnimation("playerDown", 15, 4, 64, 64, 1, 1);
+            GfxMgr.AddAnimation("playerUp", 15, 4, 64, 64, 1, 2);
+            GfxMgr.AddAnimation("playerRight", 15, 4, 64, 64, 1, 3);
+            GfxMgr.AddAnimation("playerLeft", 15, 4, 64, 64, 1, 4);
 
             //when Player is attacking
-            GfxMgr.AddAnimation("attackDown", 15, 4, 64, 64, 5, 1, false);
-            GfxMgr.AddAnimation("attackUp", 15, 4, 64, 64, 5, 2, false);
-            GfxMgr.AddAnimation("attackRight", 15, 4, 64, 64, 5, 3, false);
-            GfxMgr.AddAnimation("attackLeft", 15, 4, 64, 64, 5, 4, false);
+            GfxMgr.AddAnimation("playerAttackDown", 15, 4, 64, 64, 5, 1, false);
+            GfxMgr.AddAnimation("playerAttackUp", 15, 4, 64, 64, 5, 2, false);
+            GfxMgr.AddAnimation("playerAttackRight", 15, 4, 64, 64, 5, 3, false);
+            GfxMgr.AddAnimation("playerAttackLeft", 15, 4, 64, 64, 5, 4, false);
         }
 
-        public static void LoadEnemyAnimations()
+        public static void LoadEnemyAnimations(int id)
         {
+            //when Enemy is moving
+            GfxMgr.AddAnimation($"{id}enemyDown", 15, 4, 64, 64, 1, 1);
+            GfxMgr.AddAnimation($"{id}enemyUp", 15, 4, 64, 64, 1, 2);
+            GfxMgr.AddAnimation($"{id}enemyLeft", 15, 4, 64, 64, 1, 3);
+            GfxMgr.AddAnimation($"{id}enemyRight", 15, 4, 64, 64, 1, 4);
 
+            //when Enemy is attacking
+            GfxMgr.AddAnimation($"{id}enemyAttackDown", 15, 4, 64, 64, 5, 1, false);
+            GfxMgr.AddAnimation($"{id}enemyAttackUp", 15, 4, 64, 64, 5, 2, false);
+            GfxMgr.AddAnimation($"{id}enemyAttackLeft", 15, 4, 64, 64, 5, 3, false);
+            GfxMgr.AddAnimation($"{id}enemyAttackRight", 15, 4, 64, 64, 5, 4, false);
         }
     }
 }

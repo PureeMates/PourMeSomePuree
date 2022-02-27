@@ -26,7 +26,7 @@ namespace PourMeSomePuree
             RigidBody = new RigidBody(this);
             RigidBody.Collider = CollidersFactory.CreateInvertedBoxFor(this, width, height);
             RigidBody.Type = RigidBodyType.Background;
-            RigidBody.AddCollisionType(RigidBodyType.Player);
+            RigidBody.AddCollisionType(RigidBodyType.Player | RigidBodyType.Enemy);
 
             IsActive = true;
         }

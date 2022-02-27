@@ -21,7 +21,6 @@ namespace PourMeSomePuree
         protected float maxSpeed;
         protected int maxEnergy;
         protected bool isAttackPressed;
-        protected bool isMoving;
         protected bool isReturnPressed; // DEBUG
 
         public virtual int Energy { get { return energy; } set { energy = MathHelper.Clamp(value, 0, maxEnergy); } }
@@ -35,6 +34,15 @@ namespace PourMeSomePuree
 
         public override void Update()
         {
+            if (RigidBody.Velocity.X != 0 || RigidBody.Velocity.Y != 0)
+            {
+                RigidBody.Velocity = RigidBody.Velocity.Normalized() * maxSpeed;
+            }
+            else
+            {
+                movementAnimation.Stop();
+            }
+
             actualAnimation.Update();
         }
 
