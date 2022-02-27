@@ -117,3 +117,7 @@ C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphi
 C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\HudMaskAvatar.png
 C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\HudMaskEnergyBar.png
 C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\HudMaskStaminaBar.png
+Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\HudMaskAvatar.png
+Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\HudMaskEnergyBar.png
+Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\HudMaskStaminaBar.png
+Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\coinAnimation.png

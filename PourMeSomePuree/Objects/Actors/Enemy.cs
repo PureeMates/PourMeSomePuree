@@ -24,8 +24,8 @@ namespace PourMeSomePuree
             maxSpeed = 150.0f;
 
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
-            RigidBody.Type = RigidBodyType.Enemy;
-            RigidBody.AddCollisionType(RigidBodyType.Background);
+            RigidBody.Type = RigidBodyType.ENEMY;
+            RigidBody.AddCollisionType(RigidBodyType.BACKGROUND);
 
             AnimationStorage.LoadEnemyAnimations(this.id);
             direction = Direction.DOWN;

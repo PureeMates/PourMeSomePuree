@@ -11,40 +11,44 @@ namespace PourMeSomePuree
     {
         protected Animation animation;
 
+        private int id;
+        protected int cashtsToAdd;
+
         protected bool isPickedUp;
 
-        protected int addCoins;
-
-        public Coin() : base("coin", 32, 32)
+        public Coin(int id) : base("coin", 32, 32)
         {
+            this.id = id;
             sprite.scale = new Vector2(1.75f);
-            Position = new Vector2(Game.Win.Width * 0.25f, Game.Win.Height * 0.5f);
+            Position = new Vector2(Game.Win.Width * 0.25f, Game.Win.Height * 0.5f); //TODO quando il nemico muore o anche a caso nella mappa
 
             RigidBody = new RigidBody(this);
             RigidBody.Collider = CollidersFactory.CreateCircleFor(this);
 
-            RigidBody.Type = RigidBodyType.Coin;
-            RigidBody.AddCollisionType(RigidBodyType.Player);
+            RigidBody.Type = RigidBodyType.COIN;
+            RigidBody.AddCollisionType(RigidBodyType.PLAYER);
 
-            AnimationStorage.LoadCoinAnimations();
-            animation = GfxMgr.GetAnimation("rotationCoin");
+            animation = GfxMgr.AddAnimation($"{this.id}rotationCoin", 15, 8, 32, 32, 1, 1);
 
             animation.Start();
 
-            addCoins = 1;
+            cashtsToAdd = 1;
 
-            IsActive = true;
+            IsActive = true; //TODO nel loro manager
             isPickedUp = false;
         }
 
         public override void Update()
         {
-            animation.Update();
+            if(IsActive)
+            {
+                animation.Update();
+            }
         }
         
         public override void Draw()
         {
-            if (isPickedUp == false)
+            if (IsActive)
             {
                 sprite.DrawTexture(texture, animation.XOffset, animation.YOffset, animation.FrameWidth, animation.FrameHeight);
             }
@@ -52,12 +56,9 @@ namespace PourMeSomePuree
 
         public override void OnCollide(GameObject other)
         {
-            if (other is Player)
-            {
-                IsActive = false;
-                isPickedUp = true;
-                ((Player)other).AddCoin(addCoins);
-            }
+            IsActive = false;
+            isPickedUp = true;
+            ((Player)other).AddCoin(cashtsToAdd);
         }
     }
 }

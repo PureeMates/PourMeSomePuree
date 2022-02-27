@@ -21,9 +21,7 @@ namespace PourMeSomePuree
 
         public override int Energy { get => base.Energy; set { base.Energy = value; hud.ScaleEnergy((float)value / maxEnergy); } }
         public int Stamina { get { return stamina; } set { stamina = value; hud.ScaleStamina((float)value / maxStamina); } }
-
         
-
         public Player() : base("player", 64, 64)
         {
             sprite.scale = new Vector2(1.75f);
@@ -31,8 +29,8 @@ namespace PourMeSomePuree
             maxSpeed = 200.0f;
 
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
-            RigidBody.Type = RigidBodyType.Player;
-            RigidBody.AddCollisionType(RigidBodyType.Background | RigidBodyType.Coin);
+            RigidBody.Type = RigidBodyType.PLAYER;
+            RigidBody.AddCollisionType(RigidBodyType.COIN);
             
 
             AnimationStorage.LoadPlayerAnimations();
@@ -136,7 +134,6 @@ namespace PourMeSomePuree
                 }
                 else
                 {
-                    audioSource.Play(audioClip);
                     actualAnimation = movementAnimation;
                 }
 
@@ -215,11 +212,9 @@ namespace PourMeSomePuree
             base.Destroy();
         }
 
-        public void AddCoin(int coin)
+        public void AddCoin(int cash)
         {
-            coins += coin;
+            coins += cash;
         }
-
-        
     }
 }

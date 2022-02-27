@@ -37,10 +37,5 @@ namespace PourMeSomePuree
             GfxMgr.AddAnimation($"{id}enemyAttackLeft", 15, 4, 64, 64, 5, 3, false);
             GfxMgr.AddAnimation($"{id}enemyAttackRight", 15, 4, 64, 64, 5, 4, false);
         }
-
-        public static void LoadCoinAnimations()
-        {
-            GfxMgr.AddAnimation("rotationCoin", 15, 8, 32, 32, 1, 1);
-        }
     }
 }
