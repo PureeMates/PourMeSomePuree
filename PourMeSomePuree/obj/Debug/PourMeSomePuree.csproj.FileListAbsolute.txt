@@ -100,7 +100,6 @@ C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphi
 C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Player\Character.png
 C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Player\Character_SpriteSheet.png
 C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Player\Character_SpriteSheet_Block_hurt.png
-C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\Chest_SpriteSheet.png
 C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\Door.png
 C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\DoorGrid.png
 C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\HUD.png
@@ -121,3 +120,5 @@ Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\Ass
 Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\HudMaskEnergyBar.png
 Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\HUD\HudMaskStaminaBar.png
 Z:\CORSI\AIV\PRIMO ANNO\PUREEMATES\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\coinAnimation.png
+C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\coinAnimation.png
+C:\Lavoro Programmazione\PourMeSomePuree\PourMeSomePuree\bin\Debug\Assets\Graphic\Objects\Chest_SpriteSheet1.png

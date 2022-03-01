@@ -17,7 +17,11 @@ namespace PourMeSomePuree
         private int stamina;
         private int staminaAttCost;
         private float staminaRechargeRatio;
-        private int coins = 0;
+        private int coins = 10;
+        private bool canOpen;
+        
+
+        public bool CanOpen { get { return canOpen; } }
 
         public override int Energy { get => base.Energy; set { base.Energy = value; hud.ScaleEnergy((float)value / maxEnergy); } }
         public int Stamina { get { return stamina; } set { stamina = value; hud.ScaleStamina((float)value / maxStamina); } }
@@ -52,6 +56,7 @@ namespace PourMeSomePuree
             Restore();
 
             IsActive = true;
+            canOpen = false;
         }
 
         public void Input()
@@ -96,7 +101,14 @@ namespace PourMeSomePuree
                 {
                     RigidBody.Velocity.Y = 0.0f;
                 }
-
+                if ( Game.Win.GetKey(KeyCode.E) && coins >= 5) 
+                {
+                    canOpen = true;
+                }
+                else
+                {
+                    canOpen = false;
+                }
                 if (Game.Win.GetKey(KeyCode.Return))
                 {
                     if (!isReturnPressed)

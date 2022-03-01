@@ -13,6 +13,7 @@ namespace PourMeSomePuree
     {
         private Background background;
         private Player player;
+        private Chest chest;
 
         public PlayScene() : base() { }
 
@@ -23,6 +24,7 @@ namespace PourMeSomePuree
 
             background = new Background();
             player = new Player();
+            chest = new Chest();
 
             base.Start();
         }
@@ -96,6 +98,8 @@ namespace PourMeSomePuree
 
             GfxMgr.AddTexture("coin", "Assets/Graphic/Objects/coinAnimation.png");
             GfxMgr.AddTexture("door", "Assets/Graphic/Objects/Door.png");
+            GfxMgr.AddTexture("chest", "Assets/Graphic/Objects/Chest_SpriteSheet1.png");
+
         }
 
         private void LoadAudio()
