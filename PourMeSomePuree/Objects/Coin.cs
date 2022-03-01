@@ -12,9 +12,7 @@ namespace PourMeSomePuree
         protected Animation animation;
 
         private int id;
-        protected int cashtsToAdd;
-
-        protected bool isPickedUp;
+        protected int cashToAdd;
 
         public Coin(int id) : base("coin", 32, 32)
         {
@@ -32,10 +30,9 @@ namespace PourMeSomePuree
 
             animation.Start();
 
-            cashtsToAdd = 1;
+            cashToAdd = 1;
 
             IsActive = true; //TODO nel loro manager
-            isPickedUp = false;
         }
 
         public override void Update()
@@ -57,8 +54,7 @@ namespace PourMeSomePuree
         public override void OnCollide(GameObject other)
         {
             IsActive = false;
-            isPickedUp = true;
-            ((Player)other).AddCoin(cashtsToAdd);
+            ((Player)other).AddCoin(cashToAdd);
         }
     }
 }

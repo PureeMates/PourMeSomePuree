@@ -86,6 +86,7 @@
     <Compile Include="Engine\Physics\Colliders\Collider.cs" />
     <Compile Include="Objects\Coin.cs" />
     <Compile Include="Objects\Door.cs" />
+    <Compile Include="Objects\Pot.cs" />
     <Compile Include="Storage\AnimationStorage.cs" />
     <Compile Include="Utility\CollidersFactory.cs" />
     <Compile Include="Game\Game.cs" />
@@ -118,6 +119,24 @@
     <Content Include="Assets\Graphic\Background_Tiles\Background1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Graphic\Background_Tiles\background2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Graphic\Background_Tiles\bfg2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Graphic\Background_Tiles\Bgf.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Graphic\Background_Tiles\gameOver1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Graphic\Background_Tiles\textPlayAgain1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Graphic\Background_Tiles\textPLayAgain2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Graphic\Fonts\comics.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -134,6 +153,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Graphic\Objects\coinAnimation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Graphic\Objects\PlayButton1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Graphic\Objects\PlayButton2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Graphic\Player\Character.png">

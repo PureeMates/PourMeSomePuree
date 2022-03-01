@@ -23,9 +23,8 @@ namespace PourMeSomePuree
         public virtual Vector2 Position { get { return sprite.position; } set { sprite.position = value; } }
         public Vector2 Pivot { get { return sprite.pivot; } set { sprite.pivot = value; } }
 
-        public float HalfWidth { get { return sprite.Width * 0.5f;} }
-        public float HalfHeight { get { return sprite.Height * 0.5f;} }
-
+        public float HalfWidth { get { return sprite.Width * 0.5f; } }
+        public float HalfHeight { get { return sprite.Height * 0.5f; } }
 
         public GameObject(string textureName, int spriteWidth = 0, int spriteHeight = 0)
         {
@@ -42,7 +41,13 @@ namespace PourMeSomePuree
         }
 
         public virtual void Update() { }
+
         public virtual void Draw()
+        {
+            sprite.DrawTexture(texture);
+        }
+
+        public virtual void Draw(Texture texture)
         {
             sprite.DrawTexture(texture);
         }

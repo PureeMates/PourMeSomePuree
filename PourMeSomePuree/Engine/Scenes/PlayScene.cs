@@ -18,6 +18,8 @@ namespace PourMeSomePuree
 
         public override void Start()
         {
+            Game.Win.SetMouseVisible(false);
+
             LoadAssets();
             LoadAudio();
 
@@ -42,15 +44,14 @@ namespace PourMeSomePuree
         {
             Quit();
 
-            if (player.IsAlive)
-            {
-                player.Input();
-            }
-            else
+            if (!player.IsAlive)
             {
                 IsPlaying = false;
             }
+
+            player.Input();
         }
+
         public override void Update()
         {
             if(player.IsAlive)
@@ -63,21 +64,14 @@ namespace PourMeSomePuree
                 //COLLISIONS
                 PhysicsMgr.CheckCollision();
             }
-            else
-            {
-                IsPlaying = false;
-            }
         }
+
         public override void Draw()
         {
             if (player.IsAlive)
             {
                 DrawMgr.Draw();
                 //DebugMgr.Draw();
-            }
-            else
-            {
-                IsPlaying = false;
             }
         }
 

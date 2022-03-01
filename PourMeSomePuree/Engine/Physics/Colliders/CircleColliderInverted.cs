@@ -25,6 +25,11 @@ namespace PourMeSomePuree
             return other.Collides(this);
         }
 
+        public override bool Contains(Vector2 point)
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool Collides(CircleCollider other)
         {
             Vector2 dist = other.Position - Position;

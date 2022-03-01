@@ -38,6 +38,11 @@ namespace PourMeSomePuree
             attackAnimation = GfxMgr.GetAnimation("playerAttackDown");
             actualAnimation = movementAnimation;
 
+            CanMoveUp = true;
+            CanMoveDown = true;
+            CanMoveLeft = true;
+            CanMoveRight = true;
+
             audioSource.Volume = 0.25f;
             audioClip = AudioMgr.GetClip("sword");
 
@@ -71,30 +76,34 @@ namespace PourMeSomePuree
                     isAttackPressed = false;
                 }
 
-                if (Game.Win.GetKey(KeyCode.D) || Game.Win.GetKey(KeyCode.Right))
+                if ((Game.Win.GetKey(KeyCode.D) || Game.Win.GetKey(KeyCode.Right)) && CanMoveRight)
                 {
                     MovingRight();
                 }
-                else if (Game.Win.GetKey(KeyCode.A) || Game.Win.GetKey(KeyCode.Left))
+                else if ((Game.Win.GetKey(KeyCode.A) || Game.Win.GetKey(KeyCode.Left)) && CanMoveLeft)
                 {
                     MovingLeft();
                 }
                 else
                 {
                     RigidBody.Velocity.X = 0.0f;
+                    CanMoveRight = true;
+                    CanMoveLeft = true;
                 }
 
-                if (Game.Win.GetKey(KeyCode.W) || Game.Win.GetKey(KeyCode.Up))
+                if ((Game.Win.GetKey(KeyCode.W) || Game.Win.GetKey(KeyCode.Up)) && CanMoveUp)
                 {
                     MovingUp();
                 }
-                else if (Game.Win.GetKey(KeyCode.S) || Game.Win.GetKey(KeyCode.Down))
+                else if ((Game.Win.GetKey(KeyCode.S) || Game.Win.GetKey(KeyCode.Down)) && CanMoveDown)
                 {
                     MovingDown();
                 }
                 else
                 {
                     RigidBody.Velocity.Y = 0.0f;
+                    CanMoveDown = true;
+                    CanMoveUp = true;
                 }
 
                 if (Game.Win.GetKey(KeyCode.Return))

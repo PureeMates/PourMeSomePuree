@@ -23,6 +23,11 @@ namespace PourMeSomePuree
         protected bool isAttackPressed;
         protected bool isReturnPressed; // DEBUG
 
+        public bool CanMoveRight { get; set; }
+        public bool CanMoveLeft { get; set; }
+        public bool CanMoveUp { get; set; }
+        public bool CanMoveDown { get; set; }
+
         public virtual int Energy { get { return energy; } set { energy = MathHelper.Clamp(value, 0, maxEnergy); } }
         public bool IsAlive { get { return energy > 0; } }
         

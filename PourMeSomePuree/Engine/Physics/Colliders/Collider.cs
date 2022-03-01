@@ -26,5 +26,6 @@ namespace PourMeSomePuree
         public abstract bool Collides(CircleColliderInverted other);
         public abstract bool Collides(BoxCollider other);
         public abstract bool Collides(BoxColliderInverted other);
+        public abstract bool Contains(Vector2 point);
     }
 }

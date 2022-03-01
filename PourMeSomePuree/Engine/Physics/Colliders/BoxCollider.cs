@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenTK;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,14 @@ namespace PourMeSomePuree
         public override bool Collides(Collider other)
         {
             return other.Collides(this);
+        }
+
+        public override bool Contains(Vector2 point)
+        {
+            return point.X >= Position.X - halfWidth &&
+                   point.X <= Position.X + halfWidth &&
+                   point.Y >= Position.Y - halfHeight &&
+                   point.Y <= Position.Y + halfHeight;
         }
 
         public override bool Collides(CircleColliderInverted other)
