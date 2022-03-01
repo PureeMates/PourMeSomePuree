@@ -21,7 +21,8 @@ namespace PourMeSomePuree
 
         public override int Energy { get => base.Energy; set { base.Energy = value; hud.ScaleEnergy((float)value / maxEnergy); } }
         public int Stamina { get { return stamina; } set { stamina = value; hud.ScaleStamina((float)value / maxStamina); } }
-        
+        public bool CanOpen { get; set; }
+
         public Player() : base("player", 64, 64)
         {
             sprite.scale = new Vector2(1.75f);
@@ -32,7 +33,6 @@ namespace PourMeSomePuree
             RigidBody.Type = RigidBodyType.PLAYER;
             RigidBody.AddCollisionType(RigidBodyType.COIN);
             
-
             AnimationStorage.LoadPlayerAnimations();
             movementAnimation = GfxMgr.GetAnimation("playerDown");
             attackAnimation = GfxMgr.GetAnimation("playerAttackDown");
@@ -42,6 +42,7 @@ namespace PourMeSomePuree
             CanMoveDown = true;
             CanMoveLeft = true;
             CanMoveRight = true;
+            CanOpen = false;
 
             audioSource.Volume = 0.25f;
             audioClip = AudioMgr.GetClip("sword");
@@ -104,6 +105,15 @@ namespace PourMeSomePuree
                     RigidBody.Velocity.Y = 0.0f;
                     CanMoveDown = true;
                     CanMoveUp = true;
+                }
+
+                if (Game.Win.GetKey(KeyCode.E) && coins >= 5)
+                {
+                    CanOpen = true;
+                }
+                else
+                {
+                    CanOpen = false;
                 }
 
                 if (Game.Win.GetKey(KeyCode.Return))

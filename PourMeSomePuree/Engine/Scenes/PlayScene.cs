@@ -90,6 +90,7 @@ namespace PourMeSomePuree
 
             GfxMgr.AddTexture("coin", "Assets/Graphic/Objects/coinAnimation.png");
             GfxMgr.AddTexture("door", "Assets/Graphic/Objects/Door.png");
+            GfxMgr.AddTexture("chest", "Assets/Graphic/Objects/Chest_SpriteSheet.png");
         }
 
         private void LoadAudio()

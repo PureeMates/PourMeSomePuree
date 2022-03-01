@@ -84,6 +84,7 @@
     <Compile Include="Engine\Physics\Colliders\CircleCollider.cs" />
     <Compile Include="Engine\Physics\Colliders\CircleColliderInverted.cs" />
     <Compile Include="Engine\Physics\Colliders\Collider.cs" />
+    <Compile Include="Objects\Chest.cs" />
     <Compile Include="Objects\Coin.cs" />
     <Compile Include="Objects\Door.cs" />
     <Compile Include="Objects\Pot.cs" />
