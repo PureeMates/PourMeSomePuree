@@ -14,18 +14,22 @@ namespace PourMeSomePuree
 
         private float nextAttack;
         private float nextMovement;
+        private float nextChange;
+        private float cronoToCollisionCheck;
 
-        public Enemy(int id) : base ("enemy", 64, 64)
+        public Enemy(int id, Vector2 startingPosition, int nextMovement = 0) : base ("enemy", 64, 64)
         {
             this.id = id;
 
             sprite.scale = new Vector2(1.75f);
-            Position = new Vector2(250.0f, 250.0f); //TODO enemyManager
+            Position = startingPosition;
             maxSpeed = 150.0f;
 
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
             RigidBody.Type = RigidBodyType.ENEMY;
             RigidBody.AddCollisionType(RigidBodyType.BACKGROUND);
+            RigidBody.IsCollisionAffected = false;
+            cronoToCollisionCheck = 1.5f;
 
             AnimationStorage.LoadEnemyAnimations(this.id);
             direction = Direction.DOWN;
@@ -37,10 +41,9 @@ namespace PourMeSomePuree
             Restore();
 
             nextAttack = RandomGenerator.GetRandomInt(1, 3);
-            nextMovement = RandomGenerator.GetRandomInt(0, 4);
-            ChangeDirection(nextMovement);
-
-            IsActive = true; //TODO enemyManager
+            this.nextMovement = nextMovement;
+            nextChange = RandomGenerator.GetRandomInt(2, 4);
+            ChangeDirection(this.nextMovement);
         }
 
         public override void Update()
@@ -49,6 +52,13 @@ namespace PourMeSomePuree
             {
                 nextAttack -= Game.DeltaTime;
                 nextMovement -= Game.DeltaTime;
+                nextChange -= Game.DeltaTime;
+                cronoToCollisionCheck -= Game.DeltaTime;
+
+                if(cronoToCollisionCheck <= 0.0f)
+                {
+                    RigidBody.IsCollisionAffected = true;
+                }
 
                 if (nextAttack <= 0.0f)
                 {
@@ -56,10 +66,11 @@ namespace PourMeSomePuree
                     Attack();
                 }
 
-                if(nextMovement <= 0.0f)
+                if(nextChange <= 0.0f)
                 {
                     nextMovement = RandomGenerator.GetRandomInt(0, 4);
                     ChangeDirection(nextMovement);
+                    nextChange = RandomGenerator.GetRandomFloat() + 1.5f;
                 }
 
                 if (attackAnimation.IsPlaying)

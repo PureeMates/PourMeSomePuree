@@ -13,16 +13,51 @@ namespace PourMeSomePuree
 
         private Animation animation;
 
-        public Door(int id) : base("door", 96, 80)
+        private Queue<Enemy> enemies;
+        private Vector2 offset;
+        private int enemyStartingDirection;
+
+        private float timer;
+        private float crono;
+        private float nextSpawn;
+
+        private bool isAnimationPaused;
+
+        public Door(int id, int numEnemies, ref int enemyId, Vector2 position) : base("door", 96, 80)
         {
             this.id = id;
 
             sprite.scale = new Vector2(1.75f);
-            Position = new Vector2(Game.Win.Width * 0.5f, sprite.Height - 21.5f); //TODO SpawnManager
+            Position = position;
+
+            if(position.Y >= 0 && position.Y <= HalfHeight * 2)
+            {
+                enemyStartingDirection = 0;
+            }
+            else if(position.Y <= Game.Win.Height && position.Y >= Game.Win.Height - HalfHeight * 2)
+            {
+                enemyStartingDirection = 1;
+            }
+            else if(position.X >= 0 && position.X <= HalfWidth * 2)
+            {
+                enemyStartingDirection = 3;
+            }
+            else if(position.X <= Game.Win.Width && position.X >= Game.Win.Width - HalfWidth * 2)
+            {
+                enemyStartingDirection = 2;
+            }
 
             animation = GfxMgr.AddAnimation($"{this.id}doorOpen", 6, 4, 96, 80, loop:false);
 
-            animation.Start(); //TODO spawnManager
+            enemies = new Queue<Enemy>();
+            offset = new Vector2(0.0f, 15.0f);
+            for (int i = 0; i < numEnemies; i++)
+            {
+                enemies.Enqueue(new Enemy(enemyId++, Position + offset, enemyStartingDirection));
+            }
+            timer = RandomGenerator.GetRandomInt(2, 10);
+            crono = timer;
+            nextSpawn = 0.0f;
 
             IsActive = true;
         }
@@ -31,10 +66,36 @@ namespace PourMeSomePuree
         {
             if (IsActive)
             {
-                if (animation.CurrentFrame == 3)
+                if(crono > 0.0f)
                 {
+                    crono -= Game.DeltaTime;
+
+                    if (crono <= 0.0f)
+                    {
+                        animation.Start();
+                    }
+                }
+
+                if (animation.CurrentFrame == 3 && !isAnimationPaused)
+                {
+                    isAnimationPaused = true;
                     animation.Pause();
                 }
+
+                if(isAnimationPaused)
+                {
+                    nextSpawn -= Game.DeltaTime;
+
+                    if(nextSpawn <= 0.0f)
+                    {
+                        Spawn();
+                        nextSpawn = RandomGenerator.GetRandomFloat() + 1.7f;
+                    }
+                }
+
+                //TODO - se tutti i nemici della porta sono sconfitti allora chiudila
+                //TODO - animazione apposita
+                //TODO - check per capire dove si trova la porta ed iniziare a far muovere il nemico di conseguenza
 
                 animation.Update(); 
             }
@@ -45,6 +106,15 @@ namespace PourMeSomePuree
             if (IsActive)
             {
                 sprite.DrawTexture(texture, animation.XOffset, animation.YOffset, animation.FrameWidth, animation.FrameHeight);
+            }
+        }
+
+        private void Spawn()
+        {
+            if(enemies.Count > 0)
+            {
+                Enemy enemy = enemies.Dequeue();
+                enemy.IsActive = true;
             }
         }
     }

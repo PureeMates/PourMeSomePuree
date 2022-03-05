@@ -26,6 +26,13 @@ namespace PourMeSomePuree
             background = new Background();
             player = new Player();
 
+            DoorMgr.Init(4, 5);
+            //TODO - girare le porte nella direzione corretta
+            DoorMgr.PutDoorAt(new Vector2(Game.Win.Width * 0.5f, 80 - 21.5f));
+            DoorMgr.PutDoorAt(new Vector2(Game.Win.Width * 0.5f, Game.Win.Height - 80 + 21.5f));
+            DoorMgr.PutDoorAt(new Vector2(80 - 21.5f, Game.Win.Height * 0.5f));
+            DoorMgr.PutDoorAt(new Vector2(Game.Win.Width - 80 + 21.5f, Game.Win.Height * 0.5f));
+
             base.Start();
         }
 

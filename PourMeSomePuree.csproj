@@ -65,6 +65,7 @@
     <Compile Include="Engine\Interfaces\I_Drawable.cs" />
     <Compile Include="Engine\Interfaces\I_Updatable.cs" />
     <Compile Include="Engine\Managers\FontMgr.cs" />
+    <Compile Include="Engine\Managers\DoorMgr.cs" />
     <Compile Include="Engine\Physics\Colliders\BoxCollider.cs" />
     <Compile Include="Engine\Physics\Colliders\BoxColliderInverted.cs" />
     <Compile Include="Engine\Scenes\GameOverScene.cs" />
