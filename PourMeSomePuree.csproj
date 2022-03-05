@@ -89,6 +89,7 @@
     <Compile Include="Objects\Door.cs" />
     <Compile Include="Objects\Pot.cs" />
     <Compile Include="Storage\AnimationStorage.cs" />
+    <Compile Include="Test1v.cs" />
     <Compile Include="Utility\CollidersFactory.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Objects\GameObject.cs" />
@@ -105,6 +106,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Audio\Broken glass.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Audio\Horde_theme.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
