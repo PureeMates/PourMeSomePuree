@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PourMeSomePuree
+﻿namespace PourMeSomePuree
 {
     class Animation
     {
@@ -22,6 +16,9 @@ namespace PourMeSomePuree
 
         private bool isPlaying;
         private bool loop;
+        private bool pingPong;
+
+        private bool pingPongBegan;
 
         public int XOffset { get; private set; }
         public int YOffset { get; private set; }
@@ -32,7 +29,7 @@ namespace PourMeSomePuree
         public int FrameWidth { get { return frameWidth; } }
         public int FrameHeight { get { return frameHeight; } }
 
-        public Animation(int fps, int totFrames, int frameW, int frameH, int startColumn = 1, int startRow = 1, bool loop = true)
+        public Animation(int fps, int totFrames, int frameW, int frameH, int startColumn = 1, int startRow = 1, bool loop = true, bool pingPong = false)
         {
             frameNumber = totFrames;
             currentFrame = 0;
@@ -50,6 +47,8 @@ namespace PourMeSomePuree
 
             isPlaying = false;
             this.loop = loop;
+            this.pingPong = pingPong;
+            pingPongBegan = false;
         }
 
         public void Update()
@@ -61,15 +60,43 @@ namespace PourMeSomePuree
                 if (elapsedTime >= frameDuration)
                 {
                     elapsedTime = 0.0f;
-                    currentFrame++;
-                    actualColumn++;
+                    if (!pingPongBegan)
+                    {
+                        currentFrame++;
+                        actualColumn++;
+                    }
+                    else
+                    {
+                        currentFrame--;
+                        actualColumn--;
+                    }
 
-                    if (currentFrame >= frameNumber)
+                    if (!pingPongBegan && (currentFrame >= frameNumber))
+                    {
+                        if (pingPong)
+                        {
+                            pingPongBegan = true;
+                            currentFrame--;
+                            actualColumn--;
+                        }
+                        else
+                        {
+                            if (loop)
+                            {
+                                currentFrame = 0;
+                                actualColumn = startColumn;
+                            }
+                            else
+                            {
+                                Stop();
+                            }
+                        }
+                    }
+                    else if (pingPongBegan && (currentFrame <= 0))
                     {
                         if (loop)
                         {
-                            currentFrame = 0;
-                            actualColumn = startColumn;
+                            pingPongBegan = false;
                         }
                         else
                         {

@@ -22,6 +22,7 @@ namespace PourMeSomePuree
         private float nextSpawn;
 
         private bool isAnimationPaused;
+        private bool isSpawnStopped;
 
         public Door(int id, int numEnemies, ref int enemyId, Vector2 position) : base("door", 96, 80)
         {
@@ -33,24 +34,30 @@ namespace PourMeSomePuree
             if(position.Y >= 0 && position.Y <= HalfHeight * 2)
             {
                 enemyStartingDirection = 0;
+                offset = new Vector2(0.0f, 15.0f);
             }
             else if(position.Y <= Game.Win.Height && position.Y >= Game.Win.Height - HalfHeight * 2)
             {
+                sprite.Rotation = MathHelper.Pi;
                 enemyStartingDirection = 1;
+                offset = new Vector2(0.0f, -15.0f);
             }
             else if(position.X >= 0 && position.X <= HalfWidth * 2)
             {
+                sprite.Rotation = MathHelper.ThreePiOver2;
                 enemyStartingDirection = 3;
+                offset = new Vector2(15.0f, 0.0f);
             }
             else if(position.X <= Game.Win.Width && position.X >= Game.Win.Width - HalfWidth * 2)
             {
+                sprite.Rotation = MathHelper.PiOver2;
                 enemyStartingDirection = 2;
+                offset = new Vector2(-15.0f, 0.0f);
             }
 
-            animation = GfxMgr.AddAnimation($"{this.id}doorOpen", 6, 4, 96, 80, loop:false);
+            animation = GfxMgr.AddAnimation($"{this.id}doorOpen", 6, 4, 96, 80, loop:false, pingPong: true);
 
             enemies = new Queue<Enemy>();
-            offset = new Vector2(0.0f, 15.0f);
             for (int i = 0; i < numEnemies; i++)
             {
                 enemies.Enqueue(new Enemy(enemyId++, Position + offset, enemyStartingDirection));
@@ -66,36 +73,35 @@ namespace PourMeSomePuree
         {
             if (IsActive)
             {
-                if(crono > 0.0f)
+                if (!isSpawnStopped)
                 {
-                    crono -= Game.DeltaTime;
-
-                    if (crono <= 0.0f)
+                    if (crono > 0.0f)
                     {
-                        animation.Start();
+                        crono -= Game.DeltaTime;
+
+                        if (crono <= 0.0f)
+                        {
+                            animation.Start();
+                        }
                     }
-                }
 
-                if (animation.CurrentFrame == 3 && !isAnimationPaused)
-                {
-                    isAnimationPaused = true;
-                    animation.Pause();
-                }
-
-                if(isAnimationPaused)
-                {
-                    nextSpawn -= Game.DeltaTime;
-
-                    if(nextSpawn <= 0.0f)
+                    if (animation.CurrentFrame == 3 && !isAnimationPaused)
                     {
-                        Spawn();
-                        nextSpawn = RandomGenerator.GetRandomFloat() + 1.7f;
+                        isAnimationPaused = true;
+                        animation.Pause();
                     }
-                }
 
-                //TODO - se tutti i nemici della porta sono sconfitti allora chiudila
-                //TODO - animazione apposita
-                //TODO - check per capire dove si trova la porta ed iniziare a far muovere il nemico di conseguenza
+                    if (isAnimationPaused)
+                    {
+                        nextSpawn -= Game.DeltaTime;
+
+                        if (nextSpawn <= 0.0f)
+                        {
+                            Spawn();
+                            nextSpawn = RandomGenerator.GetRandomFloat() + 1.7f;
+                        }
+                    } 
+                }
 
                 animation.Update(); 
             }
@@ -116,6 +122,20 @@ namespace PourMeSomePuree
                 Enemy enemy = enemies.Dequeue();
                 enemy.IsActive = true;
             }
+            else
+            {
+                animation.Start();
+                StopSpawn();
+            }
+        }
+
+        private void StopSpawn()
+        {
+            timer = 0.0f;
+            crono = 0.0f;
+            nextSpawn = 0.0f;
+
+            isSpawnStopped = true;
         }
     }
 }
