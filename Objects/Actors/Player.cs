@@ -12,16 +12,23 @@ namespace PourMeSomePuree
     class Player : Actor
     {
         private Hud hud;
+        //private PowerUp prUp;
 
         private int maxStamina;
         private int stamina;
         private int staminaAttCost;
         private float staminaRechargeRatio;
         private int coins = 0;
+        private int damage;
 
         public override int Energy { get => base.Energy; set { base.Energy = value; hud.ScaleEnergy((float)value / maxEnergy); } }
         public int Stamina { get { return stamina; } set { stamina = value; hud.ScaleStamina((float)value / maxStamina); } }
+
+        public int StaminaAttCost { get { return staminaAttCost; } set { staminaAttCost = value; } } 
         public bool CanOpen { get; set; }
+
+        public int Damage { get { return damage; } set { damage = value; } }
+        public int Defence { get; set; }
 
         public Player() : base("player", 64, 64)
         {
@@ -50,6 +57,9 @@ namespace PourMeSomePuree
             hud = new Hud("hudMaskAvatar", "hudMaskEnergy", "hudMaskStamina", "portrait", new Vector2(17.5f, 17.5f), new Vector2(73.0f,16.0f), new Vector2(86.75f,34.0f), new Vector2(24.5f,17.5f));
             hud.Position = new Vector2(10.0f, 10.0f);
 
+            coins = 10;
+            Defence = 0;
+            damage = 50;
             maxEnergy = 100;
             maxStamina = 100;
             staminaAttCost = 25;
@@ -109,18 +119,22 @@ namespace PourMeSomePuree
 
                 if (Game.Win.GetKey(KeyCode.E) && coins >= 5)
                 {
+                    coins -= 5;
                     CanOpen = true;
                 }
                 else
                 {
                     CanOpen = false;
                 }
-
+                if (Game.Win.GetKey(KeyCode.P))
+                {
+                    coins += 5;
+                }
                 if (Game.Win.GetKey(KeyCode.Return))
                 {
                     if (!isReturnPressed)
                     {
-                        AddDamage(15);
+                        AddDamage(15,Defence);
                     }
                 }
                 else if (isReturnPressed)
@@ -156,7 +170,7 @@ namespace PourMeSomePuree
                     actualAnimation = movementAnimation;
                 }
 
-                base.Update(); 
+                base.Update();
             } 
         }
         public override void Draw()

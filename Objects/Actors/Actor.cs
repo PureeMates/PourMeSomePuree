@@ -51,6 +51,21 @@ namespace PourMeSomePuree
             actualAnimation.Update();
         }
 
+        public virtual void AddDamage(int dmg, int def)
+        {
+            isReturnPressed = true;
+           
+            if (def < dmg)
+            {
+                Energy -= dmg - def;
+            }
+           
+            if (Energy <= 0)
+            {
+                OnDie();
+            }
+        }
+
         public virtual void AddDamage(int dmg)
         {
             isReturnPressed = true;
