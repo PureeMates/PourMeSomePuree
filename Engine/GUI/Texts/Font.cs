@@ -16,10 +16,10 @@ namespace PourMeSomePuree
         private int firstVal;
 
         public string TextureName { get; }
-        public int CharWidth { get; }
-        public int CharHeight { get; }
+        public float CharWidth { get; }
+        public float CharHeight { get; }
 
-        public Font(string textureName, string texturePath, int numColumns, int firstCharacterASCIIvalue, int charWidth, int charHeight)
+        public Font(string textureName, string texturePath, int numColumns, int firstCharacterASCIIvalue, float charWidth, float charHeight)
         {
             TextureName = textureName;
             texture = GfxMgr.AddTexture(TextureName, texturePath);

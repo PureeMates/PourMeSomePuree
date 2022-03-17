@@ -12,8 +12,10 @@ namespace PourMeSomePuree
     class PlayScene : Scene
     {
         private Background background;
+        private Font font;
         private Player player;
 
+        public Font Font { get { return font; } }
         public PlayScene() : base() { }
 
         public override void Start()
@@ -24,6 +26,7 @@ namespace PourMeSomePuree
             LoadAudio();
 
             background = new Background();
+            font = FontMgr.GetFont("stdFont");
             player = new Player();
 
             base.Start();
@@ -36,6 +39,8 @@ namespace PourMeSomePuree
 
             player = null;
             background = null;
+
+            FontMgr.ClearAll();
 
             base.OnExit();
         }
@@ -91,6 +96,8 @@ namespace PourMeSomePuree
             GfxMgr.AddTexture("coin", "Assets/Graphic/Objects/coinAnimation.png");
             GfxMgr.AddTexture("door", "Assets/Graphic/Objects/Door.png");
             GfxMgr.AddTexture("chest", "Assets/Graphic/Objects/Chest_SpriteSheet.png");
+
+            FontMgr.AddFont("stdFont", "Assets/Graphic/Fonts/comics.png", 10, 32, 61, 65);
         }
 
         private void LoadAudio()

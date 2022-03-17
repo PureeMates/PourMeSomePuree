@@ -17,7 +17,8 @@ namespace PourMeSomePuree
         private int stamina;
         private int staminaAttCost;
         private float staminaRechargeRatio;
-        private int coins = 0;
+        private int coins;
+        private TextObject coinsText;
 
         public override int Energy { get => base.Energy; set { base.Energy = value; hud.ScaleEnergy((float)value / maxEnergy); } }
         public int Stamina { get { return stamina; } set { stamina = value; hud.ScaleStamina((float)value / maxStamina); } }
@@ -49,6 +50,12 @@ namespace PourMeSomePuree
 
             hud = new Hud("hudMaskAvatar", "hudMaskEnergy", "hudMaskStamina", "portrait", new Vector2(17.5f, 17.5f), new Vector2(73.0f,16.0f), new Vector2(86.75f,34.0f), new Vector2(24.5f,17.5f));
             hud.Position = new Vector2(10.0f, 10.0f);
+
+            coins = 0;
+            coinsText = new TextObject(hud.Position + new Vector2(100.0f, 47.0f), "", ((PlayScene)SceneMgr.CurrentScene).Font, -13);
+            coinsText.IsActive = true;
+            UpdateScore();
+            coinsText.SetColor(new Vector4(0.921f, 0.545f, 0.117f, 1.0f));
 
             maxEnergy = 100;
             maxStamina = 100;
@@ -219,6 +226,17 @@ namespace PourMeSomePuree
             attackAnimation.Start();
         }
 
+        protected void UpdateScore()
+        {
+            coinsText.Text = coins.ToString("000");
+        }
+
+        public void AddCoins(int points)
+        {
+            coins += MathHelper.Clamp(points, 0, 999);
+            UpdateScore();
+        }
+
         public override void Restore()
         {
             Stamina = maxStamina;
@@ -229,11 +247,6 @@ namespace PourMeSomePuree
         {
             IsActive = false;
             base.Destroy();
-        }
-
-        public void AddCoin(int cash)
-        {
-            coins += cash;
         }
     }
 }

@@ -26,12 +26,12 @@ namespace PourMeSomePuree
         public float HalfWidth { get { return sprite.Width * 0.5f; } }
         public float HalfHeight { get { return sprite.Height * 0.5f; } }
 
-        public GameObject(string textureName, int spriteWidth = 0, int spriteHeight = 0)
+        public GameObject(string textureName, float spriteWidth = 0, float spriteHeight = 0)
         {
             texture = GfxMgr.GetTexture(textureName);
 
-            int spriteW = spriteWidth != 0 ? spriteWidth : texture.Width;
-            int spriteH = spriteHeight != 0 ? spriteHeight : texture.Height;
+            float spriteW = spriteWidth != 0 ? spriteWidth : texture.Width;
+            float spriteH = spriteHeight != 0 ? spriteHeight : texture.Height;
 
             sprite = new Sprite(spriteW, spriteH);
             sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);

@@ -52,7 +52,7 @@ namespace PourMeSomePuree
                 {
                     char c = text[i];
 
-                    if(i > sprites.Count)
+                    if(i > sprites.Count - 1)
                     {
                         TextChar tc = new TextChar(new Vector2(charX, charY), c, font);
                         sprites.Add(tc);
@@ -84,6 +84,13 @@ namespace PourMeSomePuree
             for (int i = 0; i < sprites.Count; i++)
             {
                 sprites[i].IsActive = activeStatus;
+            }
+        }
+        public void SetColor(Vector4 color)
+        {
+            for (int i = 0; i < sprites.Count; i++)
+            {
+                sprites[i].Color = color;
             }
         }
     }

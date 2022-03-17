@@ -15,6 +15,8 @@ namespace PourMeSomePuree
         private float nextAttack;
         private float nextMovement;
 
+        private Coin coin;
+
         public Enemy(int id) : base ("enemy", 64, 64)
         {
             this.id = id;
@@ -39,6 +41,8 @@ namespace PourMeSomePuree
             nextAttack = RandomGenerator.GetRandomInt(1, 3);
             nextMovement = RandomGenerator.GetRandomInt(0, 4);
             ChangeDirection(nextMovement);
+
+            coin = new Coin(this.id);
 
             IsActive = true; //TODO enemyManager
         }
@@ -158,6 +162,8 @@ namespace PourMeSomePuree
         public override void OnDie()
         {
             IsActive = false;
+            coin.Position = Position;
+            coin.IsActive = true;
             base.Destroy();
         }
     }
