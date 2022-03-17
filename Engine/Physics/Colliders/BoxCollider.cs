@@ -9,12 +9,17 @@ namespace PourMeSomePuree
 {
     class BoxCollider : Collider
     {
-        private float halfWidth;
-        private float halfHeight;
+        private float actualHalfWidth;
+        private float actualHalfHeight;
 
-        public float HalfWidth { get { return halfWidth; } }
-        public float HalfHeight { get { return halfHeight; } }
+        private float rotatedHalfWidth;
+        private float rotatedHalfHeight;
 
+        private float baseHalfWidth;
+        private float baseHalfHeight;
+
+        public float HalfWidth { get { return actualHalfWidth; } }
+        public float HalfHeight { get { return actualHalfHeight; } }
         public float RightPos { get; private set; }
         public float LeftPos { get; private set; }
         public float UpPos { get; private set; }
@@ -22,13 +27,19 @@ namespace PourMeSomePuree
 
         public BoxCollider(RigidBody rb, int w, int h) : base(rb)
         {
-            halfWidth = w * 0.5f;
-            halfHeight = h * 0.5f;
+            baseHalfWidth = w * 0.5f;
+            baseHalfHeight = h * 0.5f;
 
-            RightPos = Position.X + HalfWidth;
-            LeftPos = Position.X - halfWidth;
-            UpPos = Position.Y - halfHeight;
-            DownPos = Position.Y + halfHeight;
+            actualHalfWidth = baseHalfWidth;
+            actualHalfHeight = baseHalfHeight;
+
+            rotatedHalfWidth = baseHalfHeight;
+            rotatedHalfHeight = baseHalfWidth;
+
+            RightPos = Position.X + actualHalfWidth;
+            LeftPos = Position.X - actualHalfWidth;
+            UpPos = Position.Y - actualHalfHeight;
+            DownPos = Position.Y + actualHalfHeight;
 
             DebugMgr.AddItem(this);
         }
@@ -40,16 +51,16 @@ namespace PourMeSomePuree
 
         public override bool Contains(Vector2 point)
         {
-            return point.X >= Position.X - halfWidth &&
-                   point.X <= Position.X + halfWidth &&
-                   point.Y >= Position.Y - halfHeight &&
-                   point.Y <= Position.Y + halfHeight;
+            return point.X >= Position.X - actualHalfWidth &&
+                   point.X <= Position.X + actualHalfWidth &&
+                   point.Y >= Position.Y - actualHalfHeight &&
+                   point.Y <= Position.Y + actualHalfHeight;
         }
 
         public override bool Collides(CircleColliderInverted other)
         {
-            float deltaX = other.Position.X - Math.Max(Position.X - halfWidth, Math.Min(other.Position.X, Position.X + halfWidth));
-            float deltaY = other.Position.Y - Math.Max(Position.Y - halfHeight, Math.Min(other.Position.Y, Position.Y + halfHeight));
+            float deltaX = other.Position.X - Math.Max(Position.X - actualHalfWidth, Math.Min(other.Position.X, Position.X + actualHalfWidth));
+            float deltaY = other.Position.Y - Math.Max(Position.Y - actualHalfHeight, Math.Min(other.Position.Y, Position.Y + actualHalfHeight));
 
             return deltaX * deltaX + deltaY * deltaY >= other.Radius * other.Radius;
         }
@@ -59,13 +70,13 @@ namespace PourMeSomePuree
             float deltaX = Math.Abs(other.Position.X - Position.X);
             float deltaY = Math.Abs(other.Position.Y - Position.Y);
 
-            return (deltaX <= other.halfWidth + halfWidth) && (deltaY <= other.halfHeight + halfHeight);
+            return (deltaX <= other.actualHalfWidth + actualHalfWidth) && (deltaY <= other.actualHalfHeight + actualHalfHeight);
         }
 
         public override bool Collides(CircleCollider other)
         {
-            float deltaX = other.Position.X - Math.Max(Position.X - halfWidth, Math.Min(other.Position.X, Position.X + halfWidth));
-            float deltaY = other.Position.Y - Math.Max(Position.Y - halfHeight, Math.Min(other.Position.Y, Position.Y + halfHeight));
+            float deltaX = other.Position.X - Math.Max(Position.X - actualHalfWidth, Math.Min(other.Position.X, Position.X + actualHalfWidth));
+            float deltaY = other.Position.Y - Math.Max(Position.Y - actualHalfHeight, Math.Min(other.Position.Y, Position.Y + actualHalfHeight));
 
             return deltaX * deltaX + deltaY * deltaY <= other.Radius * other.Radius;
         }
@@ -73,6 +84,22 @@ namespace PourMeSomePuree
         public override bool Collides(BoxColliderInverted other)
         {
             return other.Collides(this);
+        }
+        public void ChangeRotation(Direction dir)
+        {
+            switch (dir)
+            {
+                case Direction.DOWN:
+                case Direction.UP:
+                    actualHalfWidth = baseHalfWidth;
+                    actualHalfHeight = baseHalfHeight;
+                    break;
+                case Direction.RIGHT:
+                case Direction.LEFT:
+                    actualHalfWidth = rotatedHalfWidth;
+                    actualHalfHeight = rotatedHalfHeight;
+                    break;
+            }
         }
     }
 }

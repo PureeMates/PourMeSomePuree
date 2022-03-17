@@ -18,10 +18,11 @@ namespace PourMeSomePuree
         private int staminaAttCost;
         private float staminaRechargeRatio;
         private int coins = 0;
-
+        private Sword sword;
         public override int Energy { get => base.Energy; set { base.Energy = value; hud.ScaleEnergy((float)value / maxEnergy); } }
         public int Stamina { get { return stamina; } set { stamina = value; hud.ScaleStamina((float)value / maxStamina); } }
         public bool CanOpen { get; set; }
+
 
         public Player() : base("player", 64, 64)
         {
@@ -32,7 +33,6 @@ namespace PourMeSomePuree
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
             RigidBody.Type = RigidBodyType.PLAYER;
             RigidBody.AddCollisionType(RigidBodyType.COIN);
-            
             AnimationStorage.LoadPlayerAnimations();
             movementAnimation = GfxMgr.GetAnimation("playerDown");
             attackAnimation = GfxMgr.GetAnimation("playerAttackDown");
@@ -54,6 +54,8 @@ namespace PourMeSomePuree
             maxStamina = 100;
             staminaAttCost = 25;
             staminaRechargeRatio = 0.2f;
+
+            sword = new Sword(this);
 
             Restore();
 
@@ -150,6 +152,11 @@ namespace PourMeSomePuree
                     {
                         audioSource.Play(audioClip);
                     }
+
+                    if (attackAnimation.CurrentFrame == 3)
+                    {
+                        sword.DeactiveSword();
+                    }
                 }
                 else
                 {
@@ -215,7 +222,7 @@ namespace PourMeSomePuree
                     attackAnimation = GfxMgr.GetAnimation("playerAttackLeft");
                     break;
             }
-
+            sword.ActiveSword();
             attackAnimation.Start();
         }
 
@@ -230,7 +237,6 @@ namespace PourMeSomePuree
             IsActive = false;
             base.Destroy();
         }
-
         public void AddCoin(int cash)
         {
             coins += cash;

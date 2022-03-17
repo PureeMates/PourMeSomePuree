@@ -27,7 +27,7 @@ namespace PourMeSomePuree
         public bool CanMoveLeft { get; set; }
         public bool CanMoveUp { get; set; }
         public bool CanMoveDown { get; set; }
-
+        public Direction Dir { get { return direction; } }
         public virtual int Energy { get { return energy; } set { energy = MathHelper.Clamp(value, 0, maxEnergy); } }
         public bool IsAlive { get { return energy > 0; } }
         
