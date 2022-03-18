@@ -64,6 +64,7 @@
     <Compile Include="Engine\GUI\Texts\TextObject.cs" />
     <Compile Include="Engine\Interfaces\I_Drawable.cs" />
     <Compile Include="Engine\Interfaces\I_Updatable.cs" />
+    <Compile Include="Engine\Managers\DoorMgr.cs" />
     <Compile Include="Engine\Managers\FontMgr.cs" />
     <Compile Include="Engine\Managers\PowerUpMgr.cs" />
     <Compile Include="Engine\Physics\Colliders\BoxCollider.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Objects\Pot.cs" />
     <Compile Include="Objects\PowerUp.cs" />
     <Compile Include="Objects\PowerUpStamina.cs" />
+    <Compile Include="Objects\Sword.cs" />
     <Compile Include="Storage\AnimationStorage.cs" />
     <Compile Include="Utility\CollidersFactory.cs" />
     <Compile Include="Game\Game.cs" />

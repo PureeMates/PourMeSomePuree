@@ -21,6 +21,7 @@ namespace PourMeSomePuree
         private float staminaRechargeRatio;
 
         private int coins;
+        private int damage;
 
         public override int Energy { get => base.Energy; set { base.Energy = value; hud.ScaleEnergy((float)value / maxEnergy); } }
         public int Stamina { get { return stamina; } set { stamina = value; hud.ScaleStamina((float)value / maxStamina); } }
@@ -63,6 +64,9 @@ namespace PourMeSomePuree
             UpdateScore();
             coinsText.SetColor(new Vector4(0.921f, 0.545f, 0.117f, 1.0f));
 
+            coins = 10;
+            Defence = 0;
+            damage = 50;
             maxEnergy = 100;
             maxStamina = 100;
             staminaAttCost = 25;
@@ -139,7 +143,7 @@ namespace PourMeSomePuree
                 {
                     if (!isReturnPressed)
                     {
-                        AddDamage(15,Defence);
+                        AddDamage(15, Defence);
                     }
                 }
                 else if (isReturnPressed)

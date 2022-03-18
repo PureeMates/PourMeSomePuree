@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Aiv.Audio;
 using OpenTK;
-using Aiv.Audio;
 
 namespace PourMeSomePuree
 {
@@ -30,8 +25,8 @@ namespace PourMeSomePuree
         public Direction Dir { get { return direction; } }
         public virtual int Energy { get { return energy; } set { energy = MathHelper.Clamp(value, 0, maxEnergy); } }
         public bool IsAlive { get { return energy > 0; } }
-        
-        public Actor(string textureName, int w = 0, int h = 0) : base (textureName, w, h)
+
+        public Actor(string textureName, int w = 0, int h = 0) : base(textureName, w, h)
         {
             RigidBody = new RigidBody(this);
             audioSource = new AudioSource();
@@ -54,12 +49,12 @@ namespace PourMeSomePuree
         public virtual void AddDamage(int dmg, int def)
         {
             isReturnPressed = true;
-           
+
             if (def < dmg)
             {
                 Energy -= dmg - def;
             }
-           
+
             if (Energy <= 0)
             {
                 OnDie();

@@ -1,31 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PourMeSomePuree
+﻿namespace PourMeSomePuree
 {
     abstract class PowerUp : GameObject
     {
-        public Player owner;         
+        public Player owner;
         protected bool isVisible;
         protected float counter;
         protected float startCounter;
 
-        private bool isOpen;
-
-        public PowerUp(string textureName) : base(textureName) 
-        {            
+        public PowerUp(string textureName) : base(textureName)
+        {
             isVisible = false;
             IsActive = false;
-            isOpen = false;
             startCounter = 10.0f;
-            counter = startCounter;          
+            counter = startCounter;
         }
 
         public override void Update()
-        {            
+        {
             if (IsActive)
             {
                 counter -= Game.DeltaTime;
@@ -37,8 +28,8 @@ namespace PourMeSomePuree
                     EndPowerUp();
                 }
             }
-        } 
-        
+        }
+
         public virtual void Effect(Player player) { }
 
         public virtual void EndPowerUp() { }
@@ -48,11 +39,7 @@ namespace PourMeSomePuree
             if (IsActive)
             {
                 base.Draw();
-            }            
+            }
         }
-
-
-
-
     }
 }

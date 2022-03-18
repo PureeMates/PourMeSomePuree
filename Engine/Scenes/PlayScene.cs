@@ -14,10 +14,8 @@ namespace PourMeSomePuree
         private Background background;
         private Font font;
         private Player player;
-        private Chest chest;
 
         public Font Font { get { return font; } }
-        public PlayScene() : base() { }
 
         public override void Start()
         {
@@ -26,11 +24,9 @@ namespace PourMeSomePuree
             LoadAssets();
             LoadAudio();
             
-
             background = new Background();
             font = FontMgr.GetFont("stdFont");
             player = new Player();
-            chest = new Chest(1);
 
             PowerUpMgr.Init();
 
@@ -108,6 +104,10 @@ namespace PourMeSomePuree
             GfxMgr.AddTexture("door", "Assets/Graphic/Objects/Door.png");
             GfxMgr.AddTexture("chest", "Assets/Graphic/Objects/Chest_SpriteSheet.png");
             GfxMgr.AddTexture("pot", "Assets/Graphic/Objects/Jar_SpriteSheet.png");
+
+            GfxMgr.AddTexture("powerUpStamina", "Assets/Graphic/PowerUp/icon_32.png");
+            GfxMgr.AddTexture("powerUpDamage", "Assets/Graphic/PowerUp/icon_84.png");
+            GfxMgr.AddTexture("powerUpInvulnerability", "Assets/Graphic/PowerUp/icon_86.png");
 
             FontMgr.AddFont("stdFont", "Assets/Graphic/Fonts/comics.png", 10, 32, 61, 65);
         }
