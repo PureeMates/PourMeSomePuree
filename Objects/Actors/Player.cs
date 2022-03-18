@@ -12,13 +12,14 @@ namespace PourMeSomePuree
     class Player : Actor
     {
         private Hud hud;
+        private TextObject coinsText;
 
         private int maxStamina;
         private int stamina;
         private int staminaAttCost;
         private float staminaRechargeRatio;
+
         private int coins;
-        private TextObject coinsText;
 
         public override int Energy { get => base.Energy; set { base.Energy = value; hud.ScaleEnergy((float)value / maxEnergy); } }
         public int Stamina { get { return stamina; } set { stamina = value; hud.ScaleStamina((float)value / maxStamina); } }

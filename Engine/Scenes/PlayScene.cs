@@ -14,8 +14,6 @@ namespace PourMeSomePuree
         private Background background;
         private Font font;
         private Player player;
-        private Pot pot;
-        private Pot pot2;
 
         public Font Font { get { return font; } }
         public PlayScene() : base() { }
@@ -30,8 +28,6 @@ namespace PourMeSomePuree
             background = new Background();
             font = FontMgr.GetFont("stdFont");
             player = new Player();
-            pot = new Pot(0, new Vector2(Game.Win.Width * 0.25f - 6, 108));
-            pot2 = new Pot(1, new Vector2(Game.Win.Width * 0.75f - 3, 590));
 
             DoorMgr.Init(4, 5);
             DoorMgr.PutDoorAt(new Vector2(Game.Win.Width * 0.5f, 80 - 21.5f));
@@ -106,6 +102,7 @@ namespace PourMeSomePuree
             GfxMgr.AddTexture("coin", "Assets/Graphic/Objects/coinAnimation.png");
             GfxMgr.AddTexture("door", "Assets/Graphic/Objects/Door.png");
             GfxMgr.AddTexture("chest", "Assets/Graphic/Objects/Chest_SpriteSheet.png");
+            GfxMgr.AddTexture("pot", "Assets/Graphic/Objects/Jar_SpriteSheet.png");
 
             FontMgr.AddFont("stdFont", "Assets/Graphic/Fonts/comics.png", 10, 32, 61, 65);
         }

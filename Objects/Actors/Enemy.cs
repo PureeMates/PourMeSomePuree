@@ -12,6 +12,8 @@ namespace PourMeSomePuree
     {
         private int id;
 
+        private Coin coin;
+
         private float nextAttack;
         private float nextMovement;
         private float nextChange;
@@ -44,6 +46,8 @@ namespace PourMeSomePuree
             this.nextMovement = nextMovement;
             nextChange = RandomGenerator.GetRandomInt(2, 4);
             ChangeDirection(this.nextMovement);
+
+            coin = new Coin(this.id);
         }
 
         public override void Update()
