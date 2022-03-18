@@ -55,12 +55,13 @@ namespace PourMeSomePuree
             }
         }
 
-        public void OpenChest()
+        public void OpenChest(Player player)
         {
             if (!isOpen)
             {
                 isOpen = true;
                 animation.Start();
+                PowerUpMgr.GetPowerUp(player);
             }
         }
 
@@ -68,7 +69,7 @@ namespace PourMeSomePuree
         {
             if (((Player)other).CanOpen)
             {
-                OpenChest();
+                OpenChest((Player)other);
             }
         }
     }

@@ -14,6 +14,7 @@ namespace PourMeSomePuree
         private Background background;
         private Font font;
         private Player player;
+        private Chest chest;
 
         public Font Font { get { return font; } }
         public PlayScene() : base() { }
@@ -24,10 +25,14 @@ namespace PourMeSomePuree
 
             LoadAssets();
             LoadAudio();
+            
 
             background = new Background();
             font = FontMgr.GetFont("stdFont");
             player = new Player();
+            chest = new Chest(1);
+
+            PowerUpMgr.Init();
 
             DoorMgr.Init(4, 5);
             DoorMgr.PutDoorAt(new Vector2(Game.Win.Width * 0.5f, 80 - 21.5f));

@@ -58,7 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Objects\Sword.cs" />
     <Compile Include="Engine\GUI\HUD\Hud.cs" />
     <Compile Include="Engine\GUI\Texts\Font.cs" />
     <Compile Include="Engine\GUI\Texts\TextChar.cs" />
@@ -66,7 +65,7 @@
     <Compile Include="Engine\Interfaces\I_Drawable.cs" />
     <Compile Include="Engine\Interfaces\I_Updatable.cs" />
     <Compile Include="Engine\Managers\FontMgr.cs" />
-    <Compile Include="Engine\Managers\DoorMgr.cs" />
+    <Compile Include="Engine\Managers\PowerUpMgr.cs" />
     <Compile Include="Engine\Physics\Colliders\BoxCollider.cs" />
     <Compile Include="Engine\Physics\Colliders\BoxColliderInverted.cs" />
     <Compile Include="Engine\Scenes\GameOverScene.cs" />
@@ -88,8 +87,12 @@
     <Compile Include="Engine\Physics\Colliders\Collider.cs" />
     <Compile Include="Objects\Chest.cs" />
     <Compile Include="Objects\Coin.cs" />
+    <Compile Include="Objects\DamagePowerUp.cs" />
     <Compile Include="Objects\Door.cs" />
+    <Compile Include="Objects\InvulnerabilityPowerUp.cs" />
     <Compile Include="Objects\Pot.cs" />
+    <Compile Include="Objects\PowerUp.cs" />
+    <Compile Include="Objects\PowerUpStamina.cs" />
     <Compile Include="Storage\AnimationStorage.cs" />
     <Compile Include="Utility\CollidersFactory.cs" />
     <Compile Include="Game\Game.cs" />
@@ -210,6 +213,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Graphic\Background_Tiles\Tileset.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Graphic\PowerUp\icon_32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Graphic\PowerUp\icon_84.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Graphic\PowerUp\icon_86.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
