@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Graphic\Objects\Sword.cs" />
     <Compile Include="Engine\GUI\HUD\Hud.cs" />
     <Compile Include="Engine\GUI\Texts\Font.cs" />
     <Compile Include="Engine\GUI\Texts\TextChar.cs" />

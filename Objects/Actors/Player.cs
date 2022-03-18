@@ -25,6 +25,7 @@ namespace PourMeSomePuree
         public int Stamina { get { return stamina; } set { stamina = value; hud.ScaleStamina((float)value / maxStamina); } }
         public bool CanOpen { get; set; }
 
+
         public Player() : base("player", 64, 64)
         {
             sprite.scale = new Vector2(1.75f);
@@ -34,7 +35,6 @@ namespace PourMeSomePuree
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
             RigidBody.Type = RigidBodyType.PLAYER;
             RigidBody.AddCollisionType(RigidBodyType.COIN);
-            
             AnimationStorage.LoadPlayerAnimations();
             movementAnimation = GfxMgr.GetAnimation("playerDown");
             attackAnimation = GfxMgr.GetAnimation("playerAttackDown");
@@ -62,6 +62,8 @@ namespace PourMeSomePuree
             maxStamina = 100;
             staminaAttCost = 25;
             staminaRechargeRatio = 0.2f;
+
+            sword = new Sword(this);
 
             Restore();
 
@@ -158,6 +160,11 @@ namespace PourMeSomePuree
                     {
                         audioSource.Play(audioClip);
                     }
+
+                    if (attackAnimation.CurrentFrame == 3)
+                    {
+                        sword.DeactiveSword();
+                    }
                 }
                 else
                 {
@@ -223,7 +230,7 @@ namespace PourMeSomePuree
                     attackAnimation = GfxMgr.GetAnimation("playerAttackLeft");
                     break;
             }
-
+            sword.ActiveSword();
             attackAnimation.Start();
         }
 
