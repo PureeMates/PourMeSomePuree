@@ -25,11 +25,11 @@ namespace PourMeSomePuree
         public float HalfWidth { get { return sprite.Width * 0.5f; } }
         public float HalfHeight { get { return sprite.Height * 0.5f; } }
 
-        public GameObject(string textureName = null, int spriteWidth = 0, int spriteHeight = 0)
+        public GameObject(string textureName = null, float spriteWidth = 0, float spriteHeight = 0)
         {
             if (textureName != null)
             {
-            texture = GfxMgr.GetTexture(textureName);
+                texture = GfxMgr.GetTexture(textureName);
             }
 
             float spriteW = spriteWidth != 0 ? spriteWidth : texture.Width;

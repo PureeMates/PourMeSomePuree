@@ -56,7 +56,7 @@ namespace PourMeSomePuree
         {
             if (other is Enemy)
             {
-                
+                other.OnDie();
             }
         }
     }

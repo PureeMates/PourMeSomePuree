@@ -13,6 +13,7 @@ namespace PourMeSomePuree
     {
         private Hud hud;
         private TextObject coinsText;
+        private Sword sword;
 
         private int maxStamina;
         private int stamina;
