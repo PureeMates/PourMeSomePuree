@@ -169,6 +169,8 @@ namespace PourMeSomePuree
         public override void OnDie()
         {
             IsActive = false;
+            coin.Position = Position;
+            coin.IsActive = true;
             base.Destroy();
         }
     }

@@ -18,7 +18,6 @@ namespace PourMeSomePuree
         {
             this.id = id;
             sprite.scale = new Vector2(1.75f);
-            Position = new Vector2(Game.Win.Width * 0.25f, Game.Win.Height * 0.5f); //TODO quando il nemico muore o anche a caso nella mappa
 
             RigidBody = new RigidBody(this);
             RigidBody.Collider = CollidersFactory.CreateCircleFor(this);
@@ -31,8 +30,6 @@ namespace PourMeSomePuree
             animation.Start();
 
             cashToAdd = 1;
-
-            IsActive = true; //TODO nel loro manager
         }
 
         public override void Update()
@@ -54,7 +51,7 @@ namespace PourMeSomePuree
         public override void OnCollide(GameObject other)
         {
             IsActive = false;
-            ((Player)other).AddCoin(cashToAdd);
+            ((Player)other).AddCoins(cashToAdd);
         }
     }
 }
