@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace PourMeSomePuree
     {
         private Hud hud;
         private TextObject coinsText;
+        private TextObject highScoreText;
+        private TextObject timeText;
         private Sword sword;
 
         private int maxStamina;
@@ -21,7 +24,13 @@ namespace PourMeSomePuree
         private float staminaRechargeRatio;
 
         private int coins;
+        private long timeStart;
+        private int time;
+        private long counter;
         private int damage;
+
+        private string path;
+        private int highScore;
 
         public override int Energy { get => base.Energy; set { base.Energy = value; hud.ScaleEnergy((float)value / maxEnergy); } }
         public int Stamina { get { return stamina; } set { stamina = value; hud.ScaleStamina((float)value / maxStamina); } }
@@ -59,12 +68,17 @@ namespace PourMeSomePuree
             hud.Position = new Vector2(10.0f, 10.0f);
 
             coins = 0;
-            coinsText = new TextObject(hud.Position + new Vector2(100.0f, 47.0f), "", ((PlayScene)SceneMgr.CurrentScene).Font, -13);
+            coinsText = new TextObject(hud.Position + new Vector2(100.0f, 47.0f), horizontalSpace: -13);
             coinsText.IsActive = true;
-            UpdateScore();
+            UpdateScoreText();
             coinsText.SetColor(new Vector4(0.921f, 0.545f, 0.117f, 1.0f));
 
-            coins = 10;
+            timeStart = DateTime.Now.Ticks;
+            counter = 0;
+            timeText = new TextObject(hud.Position + new Vector2(300.0f, hud.Position.Y), horizontalSpace: -13);
+            timeText.IsActive = true;
+            UpdateTimeText();
+
             Defence = 0;
             damage = 50;
             maxEnergy = 100;
@@ -75,6 +89,20 @@ namespace PourMeSomePuree
             sword = new Sword(this);
 
             Restore();
+
+            path = @".\HighScore.txt";
+            try
+            {
+                using (StreamReader sr = File.OpenText(path))
+                {
+                    highScore = int.Parse(sr.ReadToEnd().Trim());
+                }
+            }
+            catch (FileNotFoundException) { }
+
+            highScoreText = new TextObject(hud.Position + new Vector2(850.0f, hud.Position.Y), horizontalSpace: -13);
+            highScoreText.IsActive = true;
+            UpdateHighScore();
 
             IsActive = true;
         }
@@ -99,10 +127,16 @@ namespace PourMeSomePuree
                 if ((Game.Win.GetKey(KeyCode.D) || Game.Win.GetKey(KeyCode.Right)) && CanMoveRight)
                 {
                     MovingRight();
+                    CanMoveDown = false;
+                    CanMoveLeft = false;
+                    CanMoveUp = false;
                 }
                 else if ((Game.Win.GetKey(KeyCode.A) || Game.Win.GetKey(KeyCode.Left)) && CanMoveLeft)
                 {
                     MovingLeft();
+                    CanMoveDown = false;
+                    CanMoveRight = false;
+                    CanMoveUp = false;
                 }
                 else
                 {
@@ -114,10 +148,16 @@ namespace PourMeSomePuree
                 if ((Game.Win.GetKey(KeyCode.W) || Game.Win.GetKey(KeyCode.Up)) && CanMoveUp)
                 {
                     MovingUp();
+                    CanMoveDown = false;
+                    CanMoveRight = false;
+                    CanMoveLeft = false;
                 }
                 else if ((Game.Win.GetKey(KeyCode.S) || Game.Win.GetKey(KeyCode.Down)) && CanMoveDown)
                 {
                     MovingDown();
+                    CanMoveLeft = false;
+                    CanMoveRight = false;
+                    CanMoveUp = false;
                 }
                 else
                 {
@@ -130,6 +170,7 @@ namespace PourMeSomePuree
                 {
                     coins -= 5;
                     CanOpen = true;
+                    UpdateScoreText();
                 }
                 else
                 {
@@ -139,6 +180,8 @@ namespace PourMeSomePuree
                 {
                     coins += 5;
                 }
+
+                //CHEATER
                 if (Game.Win.GetKey(KeyCode.Return))
                 {
                     if (!isReturnPressed)
@@ -149,13 +192,22 @@ namespace PourMeSomePuree
                 else if (isReturnPressed)
                 {
                     isReturnPressed = false;
-                } 
+                }
             }
         }
         public override void Update()
         {
             if (IsActive)
             {
+                counter = DateTime.Now.Ticks - timeStart;
+                if(counter >= TimeSpan.TicksPerSecond)
+                {
+                    timeStart = DateTime.Now.Ticks;
+                    time++;
+                    UpdateTimeText();
+                }
+
+
                 if (stamina < maxStamina)
                 {
                     staminaRechargeRatio -= Game.DeltaTime;
@@ -243,19 +295,30 @@ namespace PourMeSomePuree
                     attackAnimation = GfxMgr.GetAnimation("playerAttackLeft");
                     break;
             }
+
             sword.ActiveSword();
             attackAnimation.Start();
         }
 
-        protected void UpdateScore()
+        protected void UpdateHighScore()
+        {
+            highScoreText.Text = $"HighScore: {highScore}";
+        }
+
+        protected void UpdateScoreText()
         {
             coinsText.Text = coins.ToString("000");
+        }
+
+        protected void UpdateTimeText()
+        {
+            timeText.Text = $"{time}s";
         }
 
         public void AddCoins(int points)
         {
             coins += MathHelper.Clamp(points, 0, 999);
-            UpdateScore();
+            UpdateScoreText();
         }
 
         public override void Restore()
@@ -267,7 +330,16 @@ namespace PourMeSomePuree
         public override void OnDie()
         {
             IsActive = false;
-            base.Destroy();
+            sword.IsActive = false;
+            sword = null;
+
+            if (time > highScore)
+            {
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.Write(time);
+                } 
+            }
         }
     }
 }

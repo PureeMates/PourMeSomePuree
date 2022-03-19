@@ -129,10 +129,15 @@ namespace PourMeSomePuree
             }
         }
 
+        public void Restart()
+        {
+            isSpawnStopped = false;
+        }
+
         private void StopSpawn()
         {
-            timer = 0.0f;
-            crono = 0.0f;
+            timer = RandomGenerator.GetRandomInt(2, 10);
+            crono = timer;
             nextSpawn = 0.0f;
 
             isSpawnStopped = true;

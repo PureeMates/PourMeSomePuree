@@ -13,11 +13,14 @@ namespace PourMeSomePuree
         private int id;
 
         private Coin coin;
+        private Sword sword;
 
         private float nextAttack;
         private float nextMovement;
         private float nextChange;
         private float cronoToCollisionCheck;
+
+        public int Damage { get; }
 
         public Enemy(int id, Vector2 startingPosition, int nextMovement = 0) : base ("enemy", 64, 64)
         {
@@ -48,6 +51,8 @@ namespace PourMeSomePuree
             ChangeDirection(this.nextMovement);
 
             coin = new Coin(this.id);
+            sword = new Sword(this);
+            Damage = 25;
         }
 
         public override void Update()
@@ -80,6 +85,10 @@ namespace PourMeSomePuree
                 if (attackAnimation.IsPlaying)
                 {
                     actualAnimation = attackAnimation;
+                    if(actualAnimation.CurrentFrame == 3)
+                    {
+                        sword.DeactiveSword();
+                    }
                 }
                 else
                 {
@@ -126,18 +135,22 @@ namespace PourMeSomePuree
                 case 0:
                     direction = Direction.DOWN;
                     RigidBody.Velocity.Y = maxSpeed;
+                    RigidBody.Velocity.X = 0.0f;
                     break;
                 case 1:
                     direction = Direction.UP;
                     RigidBody.Velocity.Y = -maxSpeed;
+                    RigidBody.Velocity.X = 0.0f;
                     break;
                 case 2:
                     direction = Direction.LEFT;
                     RigidBody.Velocity.X = -maxSpeed;
+                    RigidBody.Velocity.Y = 0.0f;
                     break;
                 case 3:
                     direction = Direction.RIGHT;
                     RigidBody.Velocity.X = maxSpeed;
+                    RigidBody.Velocity.Y = 0.0f;
                     break;
             }
 
@@ -162,6 +175,7 @@ namespace PourMeSomePuree
                     break;
             }
 
+            sword.ActiveSword();
             attackAnimation.Start();
         }
 
@@ -175,6 +189,10 @@ namespace PourMeSomePuree
             IsActive = false;
             coin.Position = Position;
             coin.IsActive = true;
+            sword.IsActive = false;
+            sword = null;
+            DoorMgr.TotalEnemies--;
+
             base.Destroy();
         }
     }

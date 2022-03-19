@@ -30,14 +30,14 @@ namespace PourMeSomePuree
             RigidBody = new RigidBody(this);
             RigidBody.Collider = CollidersFactory.CreateBoxFor(this);
             RigidBody.Type = RigidBodyType.POT;
-            RigidBody.AddCollisionType(RigidBodyType.PLAYER | RigidBodyType.ENEMY);
+            RigidBody.AddCollisionType(RigidBodyType.PLAYER);
 
             animation = GfxMgr.AddAnimation($"{this.id}breaking", 15, 4, 64, 64, 1, 1, false);
             actualAnimation = animation;
 
             destroyed = false;
 
-            restartCounter = 15;
+            restartCounter = 60.0f;
             counter = restartCounter;
 
             IsActive = true;
@@ -45,9 +45,13 @@ namespace PourMeSomePuree
 
         public override void Update()
         {
-            if (!animation.IsPlaying)
+            counter -= Game.DeltaTime;
+
+            if(counter <= 0.0f)
             {
-                animation.Stop();
+                counter = restartCounter;
+                IsActive = true;
+                destroyed = false;
             }
 
             actualAnimation.Update();
@@ -55,7 +59,7 @@ namespace PourMeSomePuree
 
         public override void Draw()
         {
-            if (destroyed == false || animation.IsPlaying)
+            if (!destroyed || animation.IsPlaying)
             {
                 sprite.DrawTexture(texture, actualAnimation.XOffset, actualAnimation.YOffset, actualAnimation.FrameWidth, actualAnimation.FrameHeight);
             }
@@ -63,7 +67,6 @@ namespace PourMeSomePuree
 
         public override void OnCollide(GameObject other)
         {
-            BoxCollider pot = (BoxCollider)RigidBody.Collider;
             Player player = (Player)other;
             if (!animation.IsPlaying && destroyed == false)
             {
@@ -72,26 +75,6 @@ namespace PourMeSomePuree
                 IsActive = false;
             }
 
-            if ((other.Position.X < pot.LeftPos && other.Position.X + other.HalfWidth >= pot.LeftPos))
-            {
-                other.Position = new Vector2(pot.LeftPos - other.HalfWidth, other.Position.Y);
-            }
-            else if (other.Position.X > pot.RightPos && other.Position.X - other.HalfWidth <= pot.RightPos)
-            {
-                other.Position = new Vector2(pot.RightPos + other.HalfWidth, other.Position.Y);
-            }
-            else if (other.Position.Y > pot.DownPos && other.Position.Y - other.HalfHeight <= pot.DownPos)
-            {
-                other.Position = new Vector2(other.Position.X, pot.DownPos + other.HalfHeight);
-            }
-            else if (other.Position.Y < pot.UpPos && other.Position.Y + other.HalfHeight >= pot.UpPos)
-            {
-                other.Position = new Vector2(other.Position.X, pot.UpPos - other.HalfHeight);
-            }
-        }
-
-        public void AddHealth(Player player)
-        {
             player.Restore();
         }
     }

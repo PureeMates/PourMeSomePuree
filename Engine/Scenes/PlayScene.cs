@@ -15,6 +15,14 @@ namespace PourMeSomePuree
         private Font font;
         private Player player;
 
+        private Chest chest1;
+        private Chest chest2;
+        private Pot pot1;
+        private Pot pot2;
+        private Pot pot3;
+
+        public int Level;
+
         public Font Font { get { return font; } }
 
         public override void Start()
@@ -28,13 +36,30 @@ namespace PourMeSomePuree
             font = FontMgr.GetFont("stdFont");
             player = new Player();
 
+            Level = 1;
+
             PowerUpMgr.Init();
 
-            DoorMgr.Init(4, 5);
-            DoorMgr.PutDoorAt(new Vector2(Game.Win.Width * 0.5f, 80 - 21.5f));
-            DoorMgr.PutDoorAt(new Vector2(Game.Win.Width * 0.5f, Game.Win.Height - 80 + 21.5f));
-            DoorMgr.PutDoorAt(new Vector2(80 - 21.5f, Game.Win.Height * 0.5f));
-            DoorMgr.PutDoorAt(new Vector2(Game.Win.Width - 80 + 21.5f, Game.Win.Height * 0.5f));
+            DoorMgr.Init(4, Level);
+            DoorMgr.CreateAndPutDoorAt(new Vector2(Game.Win.Width * 0.5f, 80 - 21.5f));
+            DoorMgr.CreateAndPutDoorAt(new Vector2(Game.Win.Width * 0.5f, Game.Win.Height - 80 + 21.5f));
+            DoorMgr.CreateAndPutDoorAt(new Vector2(80 - 21.5f, Game.Win.Height * 0.5f));
+            DoorMgr.CreateAndPutDoorAt(new Vector2(Game.Win.Width - 80 + 21.5f, Game.Win.Height * 0.5f));
+
+            Vector2 chest1Pos = new Vector2(1140.0f, 136.0f);
+            Vector2 chest2Pos = new Vector2(155.0f, 600.0f);
+            Vector2 pot1Pos = new Vector2(1040.0f, 140.0f);
+            Vector2 pot2Pos = new Vector2(130.0f, 125.0f);
+            Vector2 pot3Pos = new Vector2(1145.0f, 550.0f);
+
+            chest1 = new Chest(0);
+            chest1.Position = chest1Pos;
+            chest2 = new Chest(1);
+            chest2.Position = chest2Pos;
+            chest2.Sprite.Rotation = MathHelper.Pi;
+            pot1 = new Pot(0, pot1Pos);
+            pot2 = new Pot(0, pot2Pos);
+            pot3 = new Pot(0, pot3Pos);
 
             base.Start();
         }
@@ -72,6 +97,7 @@ namespace PourMeSomePuree
                 PhysicsMgr.Update();
 
                 Game.PlayerEarPosition = new Vector3(player.Position.X, player.Position.Y, 0.0f);
+                DoorMgr.Update();
 
                 //COLLISIONS
                 PhysicsMgr.CheckCollision();

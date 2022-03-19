@@ -20,6 +20,7 @@ namespace PourMeSomePuree
         public RigidBody RigidBody;
         public bool IsActive;
 
+        public Sprite Sprite { get { return sprite; } }
         public virtual Vector2 Position { get { return sprite.position; } set { sprite.position = value; } }
         public Vector2 Pivot { get { return sprite.pivot; } set { sprite.pivot = value; } }
         public float HalfWidth { get { return sprite.Width * 0.5f; } }
@@ -27,13 +28,16 @@ namespace PourMeSomePuree
 
         public GameObject(string textureName = null, float spriteWidth = 0, float spriteHeight = 0)
         {
+            float spriteW = 0.0f;
+            float spriteH = 0.0f;
+
             if (textureName != null)
             {
                 texture = GfxMgr.GetTexture(textureName);
-            }
 
-            float spriteW = spriteWidth != 0 ? spriteWidth : texture.Width;
-            float spriteH = spriteHeight != 0 ? spriteHeight : texture.Height;
+                spriteW = spriteWidth != 0 ? spriteWidth : texture.Width;
+                spriteH = spriteHeight != 0 ? spriteHeight : texture.Height;
+            }
 
             sprite = new Sprite(spriteW, spriteH);
             sprite.pivot = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
